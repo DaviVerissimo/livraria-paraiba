@@ -1,4 +1,4 @@
-package modelo;
+package br.edu.ifpb.dac.modelo;
 
 public abstract class Usuario  {
 
