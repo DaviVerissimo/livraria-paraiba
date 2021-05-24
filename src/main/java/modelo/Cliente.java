@@ -15,7 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "autor")
+@Table(name = "cliente")
 public class Cliente implements Serializable {
 	/**
 	 * 
@@ -31,7 +31,7 @@ public class Cliente implements Serializable {
 	private Date nascimento;
 	private String rua, bairro, cidade, estado;
 	private int numero;
-	@ManyToMany(mappedBy = "autor")
+	@ManyToMany(mappedBy = "cliente")
 	private List<Livro> listaLivros;
 	
 	public Cliente() {
