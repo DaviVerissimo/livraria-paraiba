@@ -1,7 +1,8 @@
-package br.edu.ifpb.dac.modelo;
+package br.edu.ifpb.dac.livrariaParaiba.modelo;
 
 import java.io.Serializable;
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
