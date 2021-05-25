@@ -8,18 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
-import br.edu.ifpb.dac.modelo.Cliente;
-import br.edu.ifpb.dac.service.ClienteServiceImpl;
+import br.edu.ifpb.dac.livrariaParaiba.modelo.Cliente;
+import br.edu.ifpb.dac.livrariaParaiba.service.ClienteServiceImpl;
 
 @SpringBootApplication
 public class LivrariaParaibaApplication implements CommandLineRunner {
 	
 	private ClienteServiceImpl clienteService;
 	
-	@Autowired
 	public LivrariaParaibaApplication(ClienteServiceImpl clienteService) {
-		this.clienteService = clienteService;
+	
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(LivrariaParaibaApplication.class, args);
@@ -41,7 +41,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 		c.setNascimento(data);
 		c.setNumero(102);
 		c.setRua("Rua Madalena");
-		clienteService.salvarCliente(c);
+		//clienteService.salvarCliente(c);
 	
 	}
 

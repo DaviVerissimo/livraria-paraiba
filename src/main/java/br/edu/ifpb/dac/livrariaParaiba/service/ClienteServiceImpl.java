@@ -1,10 +1,10 @@
-package br.edu.ifpb.dac.service;
+package br.edu.ifpb.dac.livrariaParaiba.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.edu.ifpb.dac.modelo.Cliente;
-import br.edu.ifpb.dac.repositorio.ClienteRepository;
+import br.edu.ifpb.dac.livrariaParaiba.modelo.Cliente;
+import br.edu.ifpb.dac.livrariaParaiba.repositorio.ClienteRepository;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
