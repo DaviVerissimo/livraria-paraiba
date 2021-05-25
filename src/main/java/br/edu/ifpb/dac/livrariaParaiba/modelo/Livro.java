@@ -1,12 +1,14 @@
-package modelo;
+package br.edu.ifpb.dac.livrariaParaiba.modelo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Livro implements Serializable {
@@ -14,11 +16,14 @@ public class Livro implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -8235602197506319410L;
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
+
+	@ManyToMany
+	private List<Autor> autores;
 
 	private Integer edicao;
 
