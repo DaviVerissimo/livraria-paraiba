@@ -1,5 +1,5 @@
 package br.edu.ifpb.dac.livrariaParaiba.modelo;
 
-public class Usuario {
+public abstract class Usuario {
 
 }
