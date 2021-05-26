@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import modelo.Livro;
-
 /**Modelo de Autor.
  * @author davi
  *
