@@ -10,6 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.sun.istack.NotNull;
+
+/**
+ * Classe que representa objetos do tipo livro
+ * 
+ * @author bruno
+ * 
+ */
+
 @Entity
 public class Livro implements Serializable {
 
@@ -19,25 +28,65 @@ public class Livro implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
+	@ManyToMany
+	private Carrinho carrinho;
+
+	private Integer quantidade;
+
+	private List<Autor> autores;
 
 	private Integer edicao;
 
 	private String genero;
 
+	@NotNull
 	private String nome;
 
+	@NotNull
 	private BigDecimal valor;
 
 	private String descricao;
 
+	@NotNull
 	private String isbn;
 
 	private Integer nPaginas;
 
-	public Integer getId() {
+	public Livro(long id, Carrinho carrinho, Integer quantidade, List<Autor> autores, Integer edicao, String genero,
+			String nome, BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
+		super();
+		this.id = id;
+		this.carrinho = carrinho;
+		this.quantidade = quantidade;
+		this.autores = autores;
+		this.edicao = edicao;
+		this.genero = genero;
+		this.nome = nome;
+		this.valor = valor;
+		this.descricao = descricao;
+		this.isbn = isbn;
+		this.nPaginas = nPaginas;
+	}
+
+	public Livro(Carrinho carrinho, Integer quantidade, List<Autor> autores, Integer edicao, String genero, String nome,
+			BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
+		super();
+		this.carrinho = carrinho;
+		this.quantidade = quantidade;
+		this.autores = autores;
+		this.edicao = edicao;
+		this.genero = genero;
+		this.nome = nome;
+		this.valor = valor;
+		this.descricao = descricao;
+		this.isbn = isbn;
+		this.nPaginas = nPaginas;
+	}
+
+	public long getId() {
 		return id;
 	}
 
@@ -67,6 +116,14 @@ public class Livro implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public List<Autor> getAutores() {
+		return autores;
+	}
+
+	public void setAutores(List<Autor> autores) {
+		this.autores = autores;
 	}
 
 	public BigDecimal getValor() {
@@ -101,8 +158,32 @@ public class Livro implements Serializable {
 		this.nPaginas = nPaginas;
 	}
 
+	public Carrinho getCarrinho() {
+		return carrinho;
+	}
+
+	public void setCarrinho(Carrinho carrinho) {
+		this.carrinho = carrinho;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidadeEstoque(Integer quantidade) {
+		this.quantidade += quantidade;
+	}
+
+	public void removerDoEstoque() {
+		quantidade--;
 	}
 
 }

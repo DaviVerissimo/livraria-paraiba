@@ -11,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Cliente;
+
 import br.edu.ifpb.dac.livrariaParaiba.service.ClienteService;
 
 @SpringBootApplication
@@ -20,7 +21,6 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 
 	public LivrariaParaibaApplication(ClienteService clienteService) {
 		this.clienteService = clienteService;
-
 	}
 
 	public static void main(String[] args) {
