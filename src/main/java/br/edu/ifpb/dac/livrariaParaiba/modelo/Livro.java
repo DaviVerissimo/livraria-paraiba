@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,8 +29,8 @@ public class Livro implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
 	@ManyToMany
 	private List<Autor> autores;
@@ -51,10 +52,9 @@ public class Livro implements Serializable {
 
 	private Integer nPaginas;
 
-	public Livro(Integer id, List<Autor> autores, Integer edicao, String genero, String nome, BigDecimal valor,
-			String descricao, String isbn, Integer nPaginas) {
+	public Livro(List<Autor> autores, Integer edicao, String genero, String nome, BigDecimal valor, String descricao,
+			String isbn, Integer nPaginas) {
 		super();
-		this.id = id;
 		this.autores = autores;
 		this.edicao = edicao;
 		this.genero = genero;
@@ -65,7 +65,7 @@ public class Livro implements Serializable {
 		this.nPaginas = nPaginas;
 	}
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
