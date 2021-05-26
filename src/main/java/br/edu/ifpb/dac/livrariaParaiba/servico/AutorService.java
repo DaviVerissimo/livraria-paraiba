@@ -22,8 +22,8 @@ public class AutorService {
 	 * @param nomeDoAutor Nome do Autor.
 	 * @param ID Identificador único do Autor.
 	 */
-	public void salvar(String nomeDoAutor, long ID) {
-		Autor autor = new Autor(nomeDoAutor, ID);
+	public void salvar(String nomeDoAutor, long ID, String genero) {
+		Autor autor = new Autor(nomeDoAutor, ID, genero);
 		autorRepositorio.save(autor);
 	}
 	
@@ -84,7 +84,7 @@ public class AutorService {
 	 * @param novoNome Novo nome que o autor receberá.
 	 * @param ID Identificador do Autor a ser editado.
 	 */
-	public void editarAutor(String novoNome, long ID) {
+	public void editarAutor(String novoNome, long ID, String genero) {
 		Autor autor = this.pesquisarAutorPorID(ID);
 		autor.setNome(novoNome);
 		autorRepositorio.save(autor);
