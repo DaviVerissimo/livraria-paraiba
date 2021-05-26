@@ -32,8 +32,8 @@ public class Livro implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@ManyToMany
-	private List<Autor> autores;
+	@ManyToMany (mappedBy = "carrinho")
+	private List<Cliente> cliente;
 
 	private Integer edicao;
 
