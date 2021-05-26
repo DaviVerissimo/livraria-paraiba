@@ -10,6 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+/**
+ * Classe que representa objetos do tipo livro
+ * 
+ * @author bruno
+ * 
+ */
+
 @Entity
 public class Livro implements Serializable {
 
@@ -38,6 +45,20 @@ public class Livro implements Serializable {
 	private String isbn;
 
 	private Integer nPaginas;
+
+	public Livro(Integer id, List<Autor> autores, Integer edicao, String genero, String nome, BigDecimal valor,
+			String descricao, String isbn, Integer nPaginas) {
+		super();
+		this.id = id;
+		this.autores = autores;
+		this.edicao = edicao;
+		this.genero = genero;
+		this.nome = nome;
+		this.valor = valor;
+		this.descricao = descricao;
+		this.isbn = isbn;
+		this.nPaginas = nPaginas;
+	}
 
 	public Integer getId() {
 		return id;

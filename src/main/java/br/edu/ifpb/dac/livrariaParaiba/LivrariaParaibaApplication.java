@@ -12,13 +12,15 @@ import org.springframework.context.annotation.Bean;
 
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Cliente;
 import br.edu.ifpb.dac.livrariaParaiba.service.ClienteServiceImpl;
+import br.edu.ifpb.dac.livrariaParaiba.service.LivroServiceImpl;
 
 @SpringBootApplication
 public class LivrariaParaibaApplication implements CommandLineRunner {
 	
 	private ClienteServiceImpl clienteService;
+	private LivroServiceImpl livroService;
 	
-	public LivrariaParaibaApplication(ClienteServiceImpl clienteService) {
+	public LivrariaParaibaApplication(ClienteServiceImpl clienteService, LivroServiceImpl livroService) {
 	
 	}
 	public static void main(String[] args) {
