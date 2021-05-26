@@ -1,7 +1,6 @@
 package br.edu.ifpb.dac.livrariaParaiba.modelo;
 
-import java.util.ArrayList;
-
+import java.util.List;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToMany;
 /*
@@ -11,7 +10,7 @@ import javax.persistence.ManyToMany;
 public class Carrinho {
 
 	@ManyToMany (mappedBy = "carrinho")
-	private ArrayList<Livro> lista;
+	private List<Livro> lista;
 	
 	/*
 	 * Adiciona um livro ao carrinho

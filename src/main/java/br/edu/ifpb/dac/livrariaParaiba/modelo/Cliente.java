@@ -2,7 +2,6 @@ package br.edu.ifpb.dac.livrariaParaiba.modelo;
 
 import java.io.Serializable;
 
-
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,6 +16,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.sun.istack.NotNull;
+
 /*
  * @author André Felipe
  */
@@ -27,29 +27,29 @@ public class Cliente extends Usuario implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@NotNull
 	private String nome;
-	
+
 	@NotNull
 	private String cpf;
-	
+
 	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date nascimento;
 
 	private String rua, bairro, cidade, estado;
 	private int numero;
-	
+
 	@Embedded
 	private Carrinho carrinho;
-	
+
 	public Cliente() {
-		
+
 	}
 
 	public String getCpf() {
@@ -123,7 +123,7 @@ public class Cliente extends Usuario implements Serializable {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-	
+
 	public Carrinho getCarrinho() {
 		return carrinho;
 	}
@@ -155,6 +155,5 @@ public class Cliente extends Usuario implements Serializable {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
-	
+
 }

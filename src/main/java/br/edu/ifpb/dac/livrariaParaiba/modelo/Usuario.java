@@ -1,19 +1,20 @@
 package br.edu.ifpb.dac.livrariaParaiba.modelo;
 
 import javax.persistence.MappedSuperclass;
+
 /*
  * @author André Felipe
  */
 @MappedSuperclass
-public abstract class Usuario  {
-	
+public abstract class Usuario {
+
 	private String username, senha;
 	private boolean status;
-	
+
 	public abstract boolean verificarLogin(String user, String senha);
-	
+
 	public abstract boolean isLogado();
-	
+
 	public abstract boolean validarLogin(String user, String senha);
 
 	public String getUsername() {
@@ -40,5 +41,4 @@ public abstract class Usuario  {
 		this.status = estado;
 	}
 
-	
 }
