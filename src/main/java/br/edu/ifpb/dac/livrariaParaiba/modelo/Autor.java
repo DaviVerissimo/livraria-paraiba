@@ -67,7 +67,6 @@ public class Autor {
 	public void setGeneros(List<String> generos) {
 		this.generos = generos;
 	}
-
 	public List<Livro> getListaAssociados() {
 		return listaAssociados;
 	}
@@ -76,8 +75,4 @@ public class Autor {
 		this.listaAssociados = listaAssociados;
 	}
 
-	
-	
-	
-	
 }
