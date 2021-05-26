@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.sun.istack.NotNull;
+
 /**
  * Classe que representa objetos do tipo livro
  * 
@@ -36,12 +38,15 @@ public class Livro implements Serializable {
 
 	private String genero;
 
+	@NotNull
 	private String nome;
 
+	@NotNull
 	private BigDecimal valor;
 
 	private String descricao;
 
+	@NotNull
 	private String isbn;
 
 	private Integer nPaginas;
@@ -92,6 +97,14 @@ public class Livro implements Serializable {
 		this.nome = nome;
 	}
 
+	public List<Autor> getAutores() {
+		return autores;
+	}
+
+	public void setAutores(List<Autor> autores) {
+		this.autores = autores;
+	}
+
 	public BigDecimal getValor() {
 		return valor;
 	}
@@ -127,5 +140,4 @@ public class Livro implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 }

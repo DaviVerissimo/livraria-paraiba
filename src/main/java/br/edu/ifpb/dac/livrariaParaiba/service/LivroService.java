@@ -7,10 +7,18 @@ import br.edu.ifpb.dac.livrariaParaiba.modelo.Livro;
 import br.edu.ifpb.dac.livrariaParaiba.repositorio.LivroRepository;
 
 @Service
-public interface LivroService {
-	
-	public void cadastrarLivro(Livro livro);
-	public void editarLivro(Livro aSerEditado);
-	public void removerLivro(Livro removido);
-	
+public class LivroService {
+
+	@Autowired
+	LivroRepository repositorioLivro;
+
+	public void cadastrarOuAtualizarLivro(Livro livro) {
+
+		repositorioLivro.save(livro);
+	}
+
+	public void removerLivro(Livro removido) {
+		repositorioLivro.delete(removido);
+	}
+
 }
