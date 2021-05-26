@@ -21,6 +21,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 
 	public LivrariaParaibaApplication(ClienteService clienteService) {
 		this.clienteService = clienteService;
+
 	}
 
 	public static void main(String[] args) {
