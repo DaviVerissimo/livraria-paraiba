@@ -11,7 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Cliente;
-
+import br.edu.ifpb.dac.livrariaParaiba.modelo.Endereco;
 import br.edu.ifpb.dac.livrariaParaiba.service.ClienteService;
 
 @SpringBootApplication
@@ -44,14 +44,17 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 		case 1:
 			c.setNome("Bruno");
 			c.setCpf("121.323.223-98");
-			c.setBairro("São Vicente");
-			c.setCidade("Monteiro");
-			c.setEstado("Paraíba");
+			Endereco endereco = new Endereco();
+			endereco.setBairro("São Vicente");
+			endereco.setCidade("Monteiro");
+			endereco.setEstado("Paraíba");
+			endereco.setNumero(102);
+			endereco.setRua("Rua Madalena");
+			
 			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 			Date data = formato.parse("17/10/2000");
 			c.setNascimento(data);
-			c.setNumero(102);
-			c.setRua("Rua Madalena");
+			c.getEndereco().add(endereco);
 			c.setUsername("bruno@gmail.com");
 			clienteService.salvarCliente(c);
 			break;
