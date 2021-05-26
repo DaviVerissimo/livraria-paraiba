@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 
 import java.util.Date;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,7 +27,7 @@ public class Cliente extends Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@NotNull
@@ -39,12 +39,12 @@ public class Cliente extends Usuario implements Serializable {
 	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date nascimento;
-	@NotNull
+
 	private String rua, bairro, cidade, estado;
-	@NotNull
 	private int numero;
-	@ManyToMany
-	private List<Livro> carrinho;
+	
+	@Embedded
+	private Carrinho carrinho;
 	
 	public Cliente() {
 		
@@ -121,16 +121,15 @@ public class Cliente extends Usuario implements Serializable {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-
-	public List<Livro> getCarrinho() {
+	
+	public Carrinho getCarrinho() {
 		return carrinho;
 	}
 
-	public void setCarrinho(List<Livro> carrinho) {
+	public void setCarrinho(Carrinho carrinho) {
 		this.carrinho = carrinho;
 	}
 
-	
 	@Override
 	public boolean validarLogin(String user, String senha) {
 		if (user != null && user.length() > 0 && senha.length() > 8) {

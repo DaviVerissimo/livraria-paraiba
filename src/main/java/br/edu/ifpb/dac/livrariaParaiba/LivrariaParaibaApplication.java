@@ -1,8 +1,8 @@
 package br.edu.ifpb.dac.livrariaParaiba;
 
 import java.util.Date;
+
 import java.util.List;
-import java.util.Optional;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
@@ -44,37 +44,39 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				+ "\n11 - Adicionar Livro ao Carrinho");
 		int n = leitor.nextInt();
 		Cliente c = new Cliente();
-		switch (n) {
 		
-		case 1:
-			c.setNome("Andre Felipe");
-			c.setBairro("São Vicente");
-			c.setCidade("Monteiro");
-			c.setEstado("Paraíba");
-			SimpleDateFormat formato =  new SimpleDateFormat("dd/MM/yyyy");
-			Date data = formato.parse("17/10/2000");
-			c.setNascimento(data);
-			c.setNumero(102);
-			c.setRua("Rua Madalena");
-			c.setUsername("andre@gmail.com");
-			clienteService.salvarCliente(c);	
-			break;
-		case 2:
-			c = clienteService.pesquisarPorEmail(c.getUsername());
-			System.out.println(c.getNome());
+			switch (n) {
 			
-			break;
-		case 10:
-			List<Cliente> lista = clienteService.pesquisarTodosClientes();
-			for(Cliente a: lista) {
-				System.out.println(a.getNome());
+			case 1:
+				c.setNome("Bruno");
+				c.setCpf("121.323.223-98");
+				c.setBairro("São Vicente");
+				c.setCidade("Monteiro");
+				c.setEstado("Paraíba");
+				SimpleDateFormat formato =  new SimpleDateFormat("dd/MM/yyyy");
+				Date data = formato.parse("17/10/2000");
+				c.setNascimento(data);
+				c.setNumero(102);
+				c.setRua("Rua Madalena");
+				c.setUsername("bruno@gmail.com");
+				clienteService.salvarCliente(c);	
+				break;
+			case 2:
+				c = clienteService.pesquisarPorEmail(c.getUsername());
+				System.out.println(c.getNome());
+				
+				break;
+			case 10:
+				List<Cliente> lista = clienteService.pesquisarTodosClientes();
+				for(Cliente a: lista) {
+					System.out.println(a.getNome());
+				}
+				break;
+			default:
+				break;
 			}
-			break;
-		default:
-			break;
-		}
 		
-	
+		
 	}
 
 }
