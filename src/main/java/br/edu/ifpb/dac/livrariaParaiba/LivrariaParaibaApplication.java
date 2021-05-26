@@ -9,6 +9,7 @@ public class LivrariaParaibaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LivrariaParaibaApplication.class, args);
 		System.out.println("Colega");
+
 	}
 
 }
