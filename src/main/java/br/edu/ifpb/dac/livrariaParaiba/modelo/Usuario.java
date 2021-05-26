@@ -1,7 +1,9 @@
 package br.edu.ifpb.dac.livrariaParaiba.modelo;
 
 import javax.persistence.MappedSuperclass;
-
+/*
+ * @author André Felipe
+ */
 @MappedSuperclass
 public abstract class Usuario  {
 	

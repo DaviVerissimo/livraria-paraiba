@@ -11,8 +11,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.edu.ifpb.dac.livrariaParaiba.service.CompraService;
+/*
+ * @author André Felipe
+ */
 @Entity
 public class Compra {
+	
+	@Autowired
+	private CompraService cs;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -51,6 +60,12 @@ public class Compra {
 		this.valor = valor;
 	}
 	
+	public Compra finalizarCompra(Compra compra) {
+		return cs.salvarCompra(compra);
+	}
 	
+	public void cancelarCompra(Compra compra) {
+		
+	}
 
 }

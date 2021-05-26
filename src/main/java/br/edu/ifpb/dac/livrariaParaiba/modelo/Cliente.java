@@ -17,7 +17,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.sun.istack.NotNull;
-
+/*
+ * @author André Felipe
+ */
 @Entity
 @Table(name = "cliente")
 public class Cliente extends Usuario implements Serializable {

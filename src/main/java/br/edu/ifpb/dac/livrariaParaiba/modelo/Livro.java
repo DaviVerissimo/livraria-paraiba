@@ -22,8 +22,6 @@ public class Livro implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
 
-	@ManyToMany (mappedBy = "carrinho")
-	private List<Cliente> cliente;
 
 	private Integer edicao;
 
