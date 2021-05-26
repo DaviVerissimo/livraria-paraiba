@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,8 +31,12 @@ public class Livro implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@ManyToMany (mappedBy = "carrinho")
-	private List<Cliente> cliente;
+	@ManyToMany
+	private Carrinho carrinho;
+
+	private Integer quantidade;
+
+	private List<Autor> autores;
 
 	private Integer edicao;
 
@@ -52,9 +55,27 @@ public class Livro implements Serializable {
 
 	private Integer nPaginas;
 
-	public Livro(List<Autor> autores, Integer edicao, String genero, String nome, BigDecimal valor, String descricao,
-			String isbn, Integer nPaginas) {
+	public Livro(long id, Carrinho carrinho, Integer quantidade, List<Autor> autores, Integer edicao, String genero,
+			String nome, BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
 		super();
+		this.id = id;
+		this.carrinho = carrinho;
+		this.quantidade = quantidade;
+		this.autores = autores;
+		this.edicao = edicao;
+		this.genero = genero;
+		this.nome = nome;
+		this.valor = valor;
+		this.descricao = descricao;
+		this.isbn = isbn;
+		this.nPaginas = nPaginas;
+	}
+
+	public Livro(Carrinho carrinho, Integer quantidade, List<Autor> autores, Integer edicao, String genero, String nome,
+			BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
+		super();
+		this.carrinho = carrinho;
+		this.quantidade = quantidade;
 		this.autores = autores;
 		this.edicao = edicao;
 		this.genero = genero;
@@ -137,7 +158,32 @@ public class Livro implements Serializable {
 		this.nPaginas = nPaginas;
 	}
 
+	public Carrinho getCarrinho() {
+		return carrinho;
+	}
+
+	public void setCarrinho(Carrinho carrinho) {
+		this.carrinho = carrinho;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidadeEstoque(Integer quantidade) {
+		this.quantidade += quantidade;
+	}
+
+	public void removerDoEstoque() {
+		quantidade--;
+	}
+
 }
