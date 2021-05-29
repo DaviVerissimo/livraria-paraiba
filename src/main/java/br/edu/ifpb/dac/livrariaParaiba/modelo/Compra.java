@@ -1,6 +1,8 @@
 package br.edu.ifpb.dac.livrariaParaiba.modelo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -10,19 +12,19 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import br.edu.ifpb.dac.livrariaParaiba.service.CompraService;
 /*
  * @author André Felipe
  */
 @Entity
-public class Compra {
+public class Compra implements Serializable {
 	
-	@Autowired
-	private CompraService cs;
 	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
@@ -60,12 +62,5 @@ public class Compra {
 		this.valor = valor;
 	}
 	
-	public Compra finalizarCompra(Compra compra) {
-		return cs.salvarCompra(compra);
-	}
-	
-	public void cancelarCompra(Compra compra) {
-		
-	}
 
 }

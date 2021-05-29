@@ -2,15 +2,21 @@ package br.edu.ifpb.dac.livrariaParaiba.modelo;
 
 import java.io.Serializable;
 
+
+
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.persistence.Embedded;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -42,11 +48,12 @@ public class Cliente extends Usuario implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date nascimento;
 
-	private String rua, bairro, cidade, estado;
-	private int numero;
+	@OneToMany(mappedBy = "cliente")
+	private List<Endereco> endereco;
 
-	@Embedded
-	private Carrinho carrinho;
+	@OneToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name = "id", referencedColumnName = "id")
+	private Carrinho carrinhoDeCompras;
 
 	public Cliente() {
 
@@ -83,53 +90,22 @@ public class Cliente extends Usuario implements Serializable {
 	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
 	}
+	
 
-	public String getRua() {
-		return rua;
+	public List<Endereco> getEndereco() {
+		return endereco;
 	}
 
-	public void setRua(String rua) {
-		this.rua = rua;
+	public void setEndereco(List<Endereco> endereco) {
+		this.endereco = endereco;
 	}
 
-	public String getBairro() {
-		return bairro;
+	public Carrinho getCarrinhoDeCompras() {
+		return carrinhoDeCompras;
 	}
 
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public int getNumero() {
-		return numero;
-	}
-
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-
-	public Carrinho getCarrinho() {
-		return carrinho;
-	}
-
-	public void setCarrinho(Carrinho carrinho) {
-		this.carrinho = carrinho;
+	public void setCarrinhoDeCompras(Carrinho carrinhoDeCompras) {
+		this.carrinhoDeCompras = carrinhoDeCompras;
 	}
 
 	@Override

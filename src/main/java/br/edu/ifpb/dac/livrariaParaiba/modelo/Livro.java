@@ -1,6 +1,7 @@
 package br.edu.ifpb.dac.livrariaParaiba.modelo;
 
 import java.io.Serializable;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -31,12 +32,13 @@ public class Livro implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@ManyToMany
-	private Carrinho carrinho;
+	@ManyToMany (mappedBy = "lista")
+	private List<Carrinho> carrinho;
 
 	private Integer quantidade;
 
 	private List<Autor> autores;
+
 
 	private Integer edicao;
 
@@ -59,9 +61,8 @@ public class Livro implements Serializable {
 			String nome, BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
 		super();
 		this.id = id;
-		this.carrinho = carrinho;
 		this.quantidade = quantidade;
-		this.autores = autores;
+	//	this.autores = autores;
 		this.edicao = edicao;
 		this.genero = genero;
 		this.nome = nome;
@@ -74,9 +75,8 @@ public class Livro implements Serializable {
 	public Livro(Carrinho carrinho, Integer quantidade, List<Autor> autores, Integer edicao, String genero, String nome,
 			BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
 		super();
-		this.carrinho = carrinho;
 		this.quantidade = quantidade;
-		this.autores = autores;
+	//	this.autores = autores;
 		this.edicao = edicao;
 		this.genero = genero;
 		this.nome = nome;
@@ -118,13 +118,13 @@ public class Livro implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Autor> getAutores() {
+/*	public List<Autor> getAutores() {
 		return autores;
 	}
 
 	public void setAutores(List<Autor> autores) {
 		this.autores = autores;
-	}
+	}*/
 
 	public BigDecimal getValor() {
 		return valor;
@@ -158,13 +158,7 @@ public class Livro implements Serializable {
 		this.nPaginas = nPaginas;
 	}
 
-	public Carrinho getCarrinho() {
-		return carrinho;
-	}
-
-	public void setCarrinho(Carrinho carrinho) {
-		this.carrinho = carrinho;
-	}
+	
 
 	public void setId(long id) {
 		this.id = id;
