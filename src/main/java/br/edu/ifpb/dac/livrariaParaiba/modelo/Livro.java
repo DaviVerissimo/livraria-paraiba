@@ -36,8 +36,8 @@ public class Livro implements Serializable {
 	private List<Carrinho> carrinho;
 
 	private Integer quantidade;
-
-	//private List<Autor> autores;
+	@ManyToMany
+	private List<Autor> autores;
 
 	private Integer edicao;
 

@@ -1,9 +1,7 @@
 package br.edu.ifpb.dac.livrariaParaiba.modelo;
 
 import java.io.Serializable;
-
-
-
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -49,7 +47,7 @@ public class Cliente extends Usuario implements Serializable {
 	private Date nascimento;
 
 	@OneToMany(mappedBy = "cliente")
-	private List<Endereco> endereco;
+	private List<Endereco> endereco = new ArrayList<Endereco>();
 
 	@OneToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name = "id", referencedColumnName = "id")
@@ -96,8 +94,8 @@ public class Cliente extends Usuario implements Serializable {
 		return endereco;
 	}
 
-	public void setEndereco(List<Endereco> endereco) {
-		this.endereco = endereco;
+	public void setEndereco(Endereco endereco) {
+		this.endereco.add(endereco);
 	}
 
 	public Carrinho getCarrinhoDeCompras() {
