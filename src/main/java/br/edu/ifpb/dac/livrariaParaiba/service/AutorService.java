@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.livrariaParaiba.servico;
+package br.edu.ifpb.dac.livrariaParaiba.service;
 
 import java.util.List;
 
