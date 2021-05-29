@@ -2,17 +2,21 @@ package br.edu.ifpb.dac.livrariaParaiba.modelo;
 
 import java.io.Serializable;
 
+
+
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.persistence.Embedded;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -44,12 +48,12 @@ public class Cliente extends Usuario implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date nascimento;
 
-	@Embedded
-	@OneToMany
+	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> endereco;
 
-	@Embedded
-	private Carrinho carrinho;
+	@OneToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name = "id", referencedColumnName = "id")
+	private Carrinho carrinhoDeCompras;
 
 	public Cliente() {
 
@@ -96,12 +100,12 @@ public class Cliente extends Usuario implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public Carrinho getCarrinho() {
-		return carrinho;
+	public Carrinho getCarrinhoDeCompras() {
+		return carrinhoDeCompras;
 	}
 
-	public void setCarrinho(Carrinho carrinho) {
-		this.carrinho = carrinho;
+	public void setCarrinhoDeCompras(Carrinho carrinhoDeCompras) {
+		this.carrinhoDeCompras = carrinhoDeCompras;
 	}
 
 	@Override
