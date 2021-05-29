@@ -6,6 +6,7 @@ import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,11 +14,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Cliente;
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Endereco;
 import br.edu.ifpb.dac.livrariaParaiba.service.ClienteService;
+import br.edu.ifpb.dac.livrariaParaiba.service.EnderecoService;
 
 @SpringBootApplication
 public class LivrariaParaibaApplication implements CommandLineRunner {
 
 	private ClienteService clienteService;
+	@Autowired
+	private EnderecoService enderecoService;
 
 	public LivrariaParaibaApplication(ClienteService clienteService) {
 		this.clienteService = clienteService;
@@ -81,8 +85,9 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 			endereco.setNumero(numero);
 			endereco.setRua(rua);
 			c.setEndereco(endereco);
+			endereco.setCliente(c);
 			clienteService.salvarCliente(c);
-			//metodo de adicionar endereço faltando!!!
+			enderecoService.salvarEndereco(endereco);
 			break;
 		case 2:
 			System.out.println("Digite seus dados");
