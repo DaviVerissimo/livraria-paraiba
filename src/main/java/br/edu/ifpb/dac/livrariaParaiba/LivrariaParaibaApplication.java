@@ -83,10 +83,13 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 			c.setEndereco(endereco);
 			clienteService.salvarCliente(c);
 			//metodo de adicionar endereço faltando!!!
-			leitor.close();
 			break;
 		case 2:
-			c = clienteService.pesquisarPorEmail(c.getUsername());
+			System.out.println("Digite seus dados");
+			cond = leitor.nextLine();
+			System.out.println("Digite o email: ");
+			email = leitor.nextLine();
+			c = clienteService.pesquisarPorEmail(email);
 			System.out.println(c.getNome());
 
 			break;
@@ -99,7 +102,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 		default:
 			break;
 		}
-
+		leitor.close();
 	}
 
 }
