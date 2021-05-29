@@ -21,9 +21,9 @@ public class Autor {
 	@Id
 	private long ID;
 	
-	private List<String> generos;
+	private ArrayList<String> generos;
 	
-	@ManyToMany(mappedBy = "livro")
+	@ManyToMany(mappedBy = "autores")
 	private List<Livro> listaAssociados;
 	
 	public Autor() {
@@ -58,13 +58,14 @@ public class Autor {
 		return "Autor [nome=" + nome + ", ID=" + ID +  "]";
 	}
 
-	public List<String> getGeneros() {
+	public ArrayList<String> getGeneros() {
 		return generos;
 	}
 
-	public void setGeneros(List<String> generos) {
+	public void setGeneros(ArrayList<String> generos) {
 		this.generos = generos;
 	}
+
 	public List<Livro> getListaAssociados() {
 		return listaAssociados;
 	}

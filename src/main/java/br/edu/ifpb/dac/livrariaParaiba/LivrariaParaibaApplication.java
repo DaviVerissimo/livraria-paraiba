@@ -43,21 +43,48 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 		switch (n) {
 
 		case 1:
-			c.setNome("Bruno");
-			c.setCpf("121.323.223-98");
-			Endereco endereco = new Endereco();
-			endereco.setBairro("São Vicente");
-			endereco.setCidade("Monteiro");
-			endereco.setEstado("Paraíba");
-			endereco.setNumero(102);
-			endereco.setRua("Rua Madalena");
 			
+			Endereco endereco = new Endereco();
+			System.out.println("Digite seus dados");
+			String cond = leitor.nextLine();
+			System.out.println("Digite seu CPF: ");
+			String cpf = leitor.nextLine();
+			System.out.println("Digite seu nome: ");
+			String nome = leitor.nextLine();
+			System.out.println("Digite o dia, mês e ano em que nasceu (dd/mm/aaaa): ");
+			String nascimento = leitor.nextLine();
+			System.out.println("Digite seu email: ");
+			String email = leitor.nextLine();
+			System.out.println("Digite sua senha: ");
+			String senha = leitor.nextLine();
+			System.out.println("Digite o estado onde reside: ");
+			String estado = leitor.nextLine();
+			System.out.println("Digite a cidade: ");
+			String cidade = leitor.nextLine();
+			System.out.println("Digite seu bairro: ");
+			String bairro = leitor.nextLine();
+			System.out.println("Digite sua rua: ");
+			String rua = leitor.nextLine();
+			System.out.println("Digite o numero da residência: ");
+			int numero = leitor.nextInt();
+
+			// set dos atributos
+			c.setCpf(cpf);
+			c.setNome(nome);
 			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-			Date data = formato.parse("17/10/2000");
+			Date data = formato.parse(nascimento);
 			c.setNascimento(data);
-			c.getEndereco().add(endereco);
-			c.setUsername("bruno@gmail.com");
+			c.setUsername(email);
+			c.setSenha(senha);
+			endereco.setBairro(bairro);
+			endereco.setCidade(cidade);
+			endereco.setEstado(estado);
+			endereco.setNumero(numero);
+			endereco.setRua(rua);
+			c.setEndereco(endereco);
 			clienteService.salvarCliente(c);
+			//metodo de adicionar endereço faltando!!!
+			leitor.close();
 			break;
 		case 2:
 			c = clienteService.pesquisarPorEmail(c.getUsername());
