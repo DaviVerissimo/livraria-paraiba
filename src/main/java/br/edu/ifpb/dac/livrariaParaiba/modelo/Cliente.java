@@ -48,8 +48,8 @@ public class Cliente extends Usuario implements Serializable {
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> endereco = new ArrayList<Endereco>();
 
-	@ManyToMany
-	private List<Livro> carrinhoDeCompras = new ArrayList<Livro>();
+	@OneToMany(mappedBy = "cliente")
+	private List<ItemCarrinho> carrinhoDeCompras = new ArrayList<ItemCarrinho>();
 
 	public Cliente() {
 
@@ -96,11 +96,11 @@ public class Cliente extends Usuario implements Serializable {
 		this.endereco.add(endereco);
 	}
 
-	public List<Livro> getCarrinhoDeCompras() {
+	public List<ItemCarrinho> getCarrinhoDeCompras() {
 		return carrinhoDeCompras;
 	}
 
-	public void setCarrinhoDeCompras(List<Livro> carrinhoDeCompras) {
+	public void setCarrinhoDeCompras(List<ItemCarrinho> carrinhoDeCompras) {
 		this.carrinhoDeCompras = carrinhoDeCompras;
 	}
 
@@ -131,7 +131,7 @@ public class Cliente extends Usuario implements Serializable {
 	/*
 	 * Adiciona um livro ao carrinho
 	 */
-	public void adicionarLivroAoCarrinho(Livro livro) {
+	public void adicionarLivroAoCarrinho(ItemCarrinho livro) {
 		carrinhoDeCompras.add(livro);
 	}
 	
@@ -139,7 +139,7 @@ public class Cliente extends Usuario implements Serializable {
 	 * remove um livro do carrinho pelo id
 	 */
 	public boolean removerLivroDoCarrinho(long id) {
-		for(Livro l: carrinhoDeCompras) {
+		for(ItemCarrinho l: carrinhoDeCompras) {
 			if(l.getId()==id) {
 				carrinhoDeCompras.remove(l);
 				return true;

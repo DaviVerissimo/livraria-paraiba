@@ -11,18 +11,22 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Cliente;
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Endereco;
+import br.edu.ifpb.dac.livrariaParaiba.modelo.ItemCarrinho;
 import br.edu.ifpb.dac.livrariaParaiba.service.ClienteService;
 import br.edu.ifpb.dac.livrariaParaiba.service.EnderecoService;
+import br.edu.ifpb.dac.livrariaParaiba.service.ItemCarrinhoService;
 
 @SpringBootApplication
 public class LivrariaParaibaApplication implements CommandLineRunner {
 
 	private ClienteService clienteService;
 	private EnderecoService enderecoService;
+	private ItemCarrinhoService carrinhoService;
 
-	public LivrariaParaibaApplication(ClienteService clienteService, EnderecoService enderecoService) {
+	public LivrariaParaibaApplication(ClienteService clienteService, EnderecoService enderecoService, ItemCarrinhoService carrinhoService) {
 		this.clienteService = clienteService;
 		this.enderecoService = enderecoService;
+		this.carrinhoService = carrinhoService;
 	}
 
 	public static void main(String[] args) {
@@ -104,7 +108,12 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				}
 				break;
 			case 11:
-				c = clienteService.pesquisarPorId(3);
+				c = clienteService.pesquisarPorId(1);
+			/*	ItemCarrinho item = new ItemCarrinho();
+				item.setCliente(c);
+				item.setQtd(3);
+				item.setStatus("Pendente"); 
+				carrinhoService.salvarItem(null); */
 				
 				
 			default:
