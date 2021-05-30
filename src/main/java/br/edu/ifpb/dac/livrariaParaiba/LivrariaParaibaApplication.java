@@ -6,11 +6,9 @@ import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Cliente;
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Endereco;
 import br.edu.ifpb.dac.livrariaParaiba.service.ClienteService;
@@ -20,11 +18,11 @@ import br.edu.ifpb.dac.livrariaParaiba.service.EnderecoService;
 public class LivrariaParaibaApplication implements CommandLineRunner {
 
 	private ClienteService clienteService;
-	@Autowired
 	private EnderecoService enderecoService;
 
-	public LivrariaParaibaApplication(ClienteService clienteService) {
+	public LivrariaParaibaApplication(ClienteService clienteService, EnderecoService enderecoService) {
 		this.clienteService = clienteService;
+		this.enderecoService = enderecoService;
 	}
 
 	public static void main(String[] args) {
@@ -105,6 +103,10 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 					System.out.println(a.getNome());
 				}
 				break;
+			case 11:
+				c = clienteService.pesquisarPorId(3);
+				
+				
 			default:
 				leitor.close();
 				aux = false;

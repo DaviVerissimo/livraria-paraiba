@@ -32,8 +32,8 @@ public class Livro implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@ManyToMany (mappedBy = "lista")
-	private List<Carrinho> carrinho;
+	@ManyToMany (mappedBy = "carrinhoDeCompras")
+	private List<Cliente> carrinho;
 
 	private Integer quantidade;
 	@ManyToMany
@@ -56,7 +56,7 @@ public class Livro implements Serializable {
 
 	private Integer nPaginas;
 
-	public Livro(long id, Carrinho carrinho, Integer quantidade, List<Autor> autores, Integer edicao, String genero,
+	public Livro(long id, Integer quantidade, List<Autor> autores, Integer edicao, String genero,
 			String nome, BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
 		super();
 		this.id = id;
@@ -71,7 +71,7 @@ public class Livro implements Serializable {
 		this.nPaginas = nPaginas;
 	}
 
-	public Livro(Carrinho carrinho, Integer quantidade, List<Autor> autores, Integer edicao, String genero, String nome,
+	public Livro(Integer quantidade, List<Autor> autores, Integer edicao, String genero, String nome,
 			BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
 		super();
 		this.quantidade = quantidade;
