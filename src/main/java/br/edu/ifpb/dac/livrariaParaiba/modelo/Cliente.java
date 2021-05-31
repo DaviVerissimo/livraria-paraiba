@@ -1,20 +1,19 @@
 package br.edu.ifpb.dac.livrariaParaiba.modelo;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,9 +48,8 @@ public class Cliente extends Usuario implements Serializable {
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> endereco = new ArrayList<Endereco>();
 
-	@OneToOne (cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", referencedColumnName = "id")
-	private Carrinho carrinhoDeCompras;
+	@OneToMany(mappedBy = "cliente")
+	private List<ItemCarrinho> carrinhoDeCompras = new ArrayList<ItemCarrinho>();
 
 	public Cliente() {
 
@@ -98,11 +96,11 @@ public class Cliente extends Usuario implements Serializable {
 		this.endereco.add(endereco);
 	}
 
-	public Carrinho getCarrinhoDeCompras() {
+	public List<ItemCarrinho> getCarrinhoDeCompras() {
 		return carrinhoDeCompras;
 	}
 
-	public void setCarrinhoDeCompras(Carrinho carrinhoDeCompras) {
+	public void setCarrinhoDeCompras(List<ItemCarrinho> carrinhoDeCompras) {
 		this.carrinhoDeCompras = carrinhoDeCompras;
 	}
 
@@ -128,6 +126,32 @@ public class Cliente extends Usuario implements Serializable {
 	public boolean verificarLogin(String user, String senha) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	/*
+	 * Adiciona um livro ao carrinho
+	 */
+	public void adicionarLivroAoCarrinho(ItemCarrinho livro) {
+		carrinhoDeCompras.add(livro);
+	}
+	
+	/*
+	 * remove um livro do carrinho pelo id
+	 */
+	public boolean removerLivroDoCarrinho(long id) {
+		for(ItemCarrinho l: carrinhoDeCompras) {
+			if(l.getId()==id) {
+				carrinhoDeCompras.remove(l);
+				return true;
+			}
+		}
+		return false;
+	}
+	/*
+	 * Esvazeia o carrinho do usuario cliente
+	 */
+	public void esvaziarCarrinho() {
+		carrinhoDeCompras.clear();
 	}
 
 }

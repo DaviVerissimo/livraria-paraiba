@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.sun.istack.NotNull;
 
@@ -32,8 +34,8 @@ public class Livro implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@ManyToMany (mappedBy = "lista")
-	private List<Carrinho> carrinho;
+	@OneToMany(mappedBy = "livro")
+	private List<ItemCarrinho> itemCarrinho;
 
 	private Integer quantidade;
 
@@ -57,7 +59,7 @@ public class Livro implements Serializable {
 
 	private Integer nPaginas;
 
-	public Livro(long id, Carrinho carrinho, Integer quantidade, List<Autor> autores, Integer edicao, String genero,
+	public Livro(long id, Integer quantidade, List<Autor> autores, Integer edicao, String genero,
 			String nome, BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
 		super();
 		this.id = id;
@@ -72,7 +74,7 @@ public class Livro implements Serializable {
 		this.nPaginas = nPaginas;
 	}
 
-	public Livro(Carrinho carrinho, Integer quantidade, List<Autor> autores, Integer edicao, String genero, String nome,
+	public Livro(Integer quantidade, List<Autor> autores, Integer edicao, String genero, String nome,
 			BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
 		super();
 		this.quantidade = quantidade;

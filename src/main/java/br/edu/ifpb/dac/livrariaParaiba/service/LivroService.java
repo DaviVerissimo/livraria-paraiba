@@ -1,6 +1,7 @@
 package br.edu.ifpb.dac.livrariaParaiba.service;
 
 import java.math.BigDecimal;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Autor;
-import br.edu.ifpb.dac.livrariaParaiba.modelo.Carrinho;
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Livro;
 import br.edu.ifpb.dac.livrariaParaiba.repositorio.AutorRepositorio;
 import br.edu.ifpb.dac.livrariaParaiba.repositorio.LivroRepository;
@@ -47,7 +47,7 @@ public class LivroService {
 	 * @return Boolean - indica se a ação foi bem sucedida
 	 */
 
-	public boolean cadastrarLivro(Carrinho carrinho, Integer quantidade, List<Autor> autores, Integer edicao,
+	public boolean cadastrarLivro(Integer quantidade, List<Autor> autores, Integer edicao,
 			String genero, String nome, BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
 		List<Autor> autoresCadastrados = repositorioAutor.findAll();
 		int aux = 0;
@@ -55,7 +55,7 @@ public class LivroService {
 			if (autores.contains(autoresCadastrados.get(i))) {
 				aux++;
 				if (aux == autores.size()) {
-					Livro novoLivro = new Livro(carrinho, quantidade, autoresCadastrados, edicao, genero, nome, valor,
+					Livro novoLivro = new Livro( quantidade, autoresCadastrados, edicao, genero, nome, valor,
 							descricao, isbn, nPaginas);
 					repositorioLivro.save(novoLivro);
 					return true;
@@ -84,11 +84,11 @@ public class LivroService {
 	 * 
 	 */
 
-	public void editarLivro(long id, Carrinho carrinho, Integer quantidade, List<Autor> autores, Integer edicao,
+	public void editarLivro(long id, Integer quantidade, List<Autor> autores, Integer edicao,
 			String genero, String nome, BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
 
 		if (repositorioLivro.findById(id) != null) {
-			Livro livroAtrAlterados = new Livro(id, carrinho, quantidade, autores, edicao, genero, nome, valor,
+			Livro livroAtrAlterados = new Livro(id, quantidade, autores, edicao, genero, nome, valor,
 					descricao, isbn, nPaginas);
 			repositorioLivro.save(livroAtrAlterados);
 		}
