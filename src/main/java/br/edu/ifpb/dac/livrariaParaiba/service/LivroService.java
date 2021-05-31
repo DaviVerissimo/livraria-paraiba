@@ -138,4 +138,14 @@ public class LivroService {
 		repositorioLivro.deleteById(id);
 	}
 
+	/**
+	 * Busca os 5 livros mais baratos no repositorio e ordena-os de forna ascendente
+	 * 
+	 * @autor bruno
+	 * 
+	 */
+
+	public List<Livro> cincoLivrosMaisBaratos() {
+		return repositorioLivro.findTop5ByOrderByPrecoAsc();
+	}
 }
