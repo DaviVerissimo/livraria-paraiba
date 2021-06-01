@@ -10,6 +10,6 @@ import br.edu.ifpb.dac.livrariaParaiba.modelo.Livro;
 @Repository
 public interface LivroRepository extends JpaRepository<Livro, Long> {
 
-	public List<Livro> findTop5ByOrderByPrecoAsc();
+	public List<Livro> findTop5ByOrderByValorAsc();
 
 }

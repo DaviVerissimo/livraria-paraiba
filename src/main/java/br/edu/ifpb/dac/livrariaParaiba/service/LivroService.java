@@ -146,6 +146,6 @@ public class LivroService {
 	 */
 
 	public List<Livro> cincoLivrosMaisBaratos() {
-		return repositorioLivro.findTop5ByOrderByPrecoAsc();
+		return repositorioLivro.findTop5ByOrderByValorAsc();
 	}
 }
