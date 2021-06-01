@@ -132,9 +132,11 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				break;
 
 			case 10:
-				List<Cliente> lista = clienteService.pesquisarTodosClientes();
-				for (Cliente a : lista) {
-					System.out.println(a.getNome());
+				List<Livro> estoque = livroService.recuperarTodosOsLivros();
+				for (Livro livro : estoque) {
+					System.out.println("ID: " + livro.getId() + "\nNome: " + livro.getNome() + "\nPreço: "
+							+ livro.getValor() + "\nQuantidade disponível: " + livro.getQuantidade()
+							+ "\n---------------------------------------------");
 				}
 				break;
 			case 11:
