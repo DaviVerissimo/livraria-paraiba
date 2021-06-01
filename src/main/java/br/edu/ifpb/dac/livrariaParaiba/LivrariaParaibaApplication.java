@@ -139,6 +139,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 
 				break;
 			case 5:
+				System.out.println("Insira os dados para cadastrar um novo livro");
 				break;
 			case 6:
 				break;

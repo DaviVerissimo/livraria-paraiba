@@ -60,9 +60,9 @@ public class Livro implements Serializable {
 	private String isbn;
 
 	private Integer nPaginas;
-	
+
 	public Livro() {
-		
+
 	}
 
 	public Livro(Integer quantidade, List<Autor> autores, Integer edicao, GenerosTipos genero, String nome,
@@ -170,4 +170,9 @@ public class Livro implements Serializable {
 		quantidade--;
 	}
 
+	@Override
+	public String toString() {
+		return "[ " + nome + ", " + autores.toString() + " " + edicao + " ISBN " + isbn + ", " + quantidade
+				+ " paginas, R$" + valor + ", quantidade: " + quantidade + "]";
+	}
 }
