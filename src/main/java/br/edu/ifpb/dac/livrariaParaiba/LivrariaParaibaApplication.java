@@ -3,6 +3,7 @@ package br.edu.ifpb.dac.livrariaParaiba;
 import java.util.Date;
 
 import java.util.List;
+import java.util.Optional;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
@@ -12,9 +13,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Cliente;
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Endereco;
 import br.edu.ifpb.dac.livrariaParaiba.modelo.ItemCarrinho;
+import br.edu.ifpb.dac.livrariaParaiba.modelo.Livro;
 import br.edu.ifpb.dac.livrariaParaiba.service.ClienteService;
 import br.edu.ifpb.dac.livrariaParaiba.service.EnderecoService;
 import br.edu.ifpb.dac.livrariaParaiba.service.ItemCarrinhoService;
+import br.edu.ifpb.dac.livrariaParaiba.service.LivroService;
 
 @SpringBootApplication
 public class LivrariaParaibaApplication implements CommandLineRunner {
@@ -22,11 +25,14 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 	private ClienteService clienteService;
 	private EnderecoService enderecoService;
 	private ItemCarrinhoService carrinhoService;
+	private LivroService livroService;
 
-	public LivrariaParaibaApplication(ClienteService clienteService, EnderecoService enderecoService, ItemCarrinhoService carrinhoService) {
+	public LivrariaParaibaApplication(ClienteService clienteService, EnderecoService enderecoService,
+			ItemCarrinhoService carrinhoService, LivroService livroService) {
 		this.clienteService = clienteService;
 		this.enderecoService = enderecoService;
 		this.carrinhoService = carrinhoService;
+		this.livroService = livroService;
 	}
 
 	public static void main(String[] args) {
@@ -109,13 +115,29 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				break;
 			case 11:
 				c = clienteService.pesquisarPorId(1);
-			/*	ItemCarrinho item = new ItemCarrinho();
-				item.setCliente(c);
-				item.setQtd(3);
-				item.setStatus("Pendente"); 
-				carrinhoService.salvarItem(null); */
-				
-				
+				List<Livro> catalogo = livroService.recuperarTodosOsLivros();
+				for (Livro livro : catalogo) {
+					System.out.println("ID: " + livro.getId() + "\nNome: " + livro.getNome() + "\nPreço: "
+							+ livro.getValor() + "\nQuantidade disponível: " + livro.getQuantidade()
+							+ "\n---------------------------------------------");
+				}
+				System.out.println("Digite o id do livro: ");
+				long id = leitor.nextLong();
+				System.out.println("Digite a quantidade: ");
+				int qtd = leitor.nextInt();
+				Optional<Livro> livro = livroService.recuperarLivro(id);
+				if (livro.get().getQuantidade() >= qtd) {
+					ItemCarrinho item = new ItemCarrinho();
+					item.setCliente(c);
+					item.setLivro(livro.get());
+					item.setQtd(qtd);
+					item.setStatus("Pendente");
+					carrinhoService.salvarItem(item);
+				} else {
+					System.out.println("Quantidade indisponível");
+				}
+				break;
+
 			default:
 				leitor.close();
 				aux = false;

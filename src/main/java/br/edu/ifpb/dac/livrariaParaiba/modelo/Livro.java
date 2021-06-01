@@ -57,6 +57,10 @@ public class Livro implements Serializable {
 	private String isbn;
 
 	private Integer nPaginas;
+	
+	public Livro() {
+		
+	}
 
 	public Livro(long id, Integer quantidade, List<Autor> autores, Integer edicao, String genero,
 			String nome, BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
