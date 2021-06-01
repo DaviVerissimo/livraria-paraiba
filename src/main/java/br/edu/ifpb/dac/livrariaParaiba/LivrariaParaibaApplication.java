@@ -1,5 +1,7 @@
 package br.edu.ifpb.dac.livrariaParaiba;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import java.util.List;
@@ -10,10 +12,13 @@ import java.util.Scanner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import br.edu.ifpb.dac.livrariaParaiba.modelo.Autor;
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Cliente;
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Endereco;
 import br.edu.ifpb.dac.livrariaParaiba.modelo.ItemCarrinho;
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Livro;
+import br.edu.ifpb.dac.livrariaParaiba.service.AutorService;
 import br.edu.ifpb.dac.livrariaParaiba.service.ClienteService;
 import br.edu.ifpb.dac.livrariaParaiba.service.EnderecoService;
 import br.edu.ifpb.dac.livrariaParaiba.service.ItemCarrinhoService;
@@ -26,13 +31,16 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 	private EnderecoService enderecoService;
 	private ItemCarrinhoService carrinhoService;
 	private LivroService livroService;
+	private AutorService autorService;
 
 	public LivrariaParaibaApplication(ClienteService clienteService, EnderecoService enderecoService,
-			ItemCarrinhoService carrinhoService, LivroService livroService) {
+			ItemCarrinhoService carrinhoService, LivroService livroService, AutorService autorService) {
 		this.clienteService = clienteService;
 		this.enderecoService = enderecoService;
 		this.carrinhoService = carrinhoService;
 		this.livroService = livroService;
+		this.autorService = autorService;
+
 	}
 
 	public static void main(String[] args) {
@@ -107,6 +115,22 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				System.out.println(c.getNome());
 
 				break;
+
+			case 3:
+				Autor autorNovo = new Autor();
+//				List<String> generos = autorNovo.getGeneros();
+				System.out.println("Digite seus dados");
+				cond = leitor.nextLine();
+				System.out.print("Nome do autor: ");
+				String nomeAutor = leitor.nextLine();
+//				System.out.println("Generos: separe por ',' se houver mais de um");
+//				String genero = leitor.nextLine();
+//				generos = Arrays.asList(genero.split(","));
+				autorNovo.setNome(nomeAutor);
+				autorService.salvar(autorNovo);
+				System.out.println("Autor cadastrado");
+				break;
+
 			case 10:
 				List<Cliente> lista = clienteService.pesquisarTodosClientes();
 				for (Cliente a : lista) {
@@ -137,7 +161,6 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 					System.out.println("Quantidade indisponível");
 				}
 				break;
-
 			default:
 				leitor.close();
 				aux = false;

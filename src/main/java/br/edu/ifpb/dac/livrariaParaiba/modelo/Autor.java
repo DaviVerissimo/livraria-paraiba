@@ -8,34 +8,35 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-/**Modelo de Autor.
+/**
+ * Modelo de Autor.
+ * 
  * @author davi
  *
  */
 @Entity
 @Table(name = "autor")
 public class Autor {
-	
+
 	private String nome;
-	
+
 	@Id
 	private long ID;
 	
-	private ArrayList<String> generos;
 	
+//	private List<String> generos = new ArrayList<>();
+
 	@ManyToMany(mappedBy = "autores")
 	private List<Livro> listaAssociados;
-	
+
 	public Autor() {
-		generos = new ArrayList<>();
+
 	}
-	
-	public Autor(String nome, long ID, String genero) {
+
+	public Autor(String nome) {
 		this.nome = nome;
-		this.ID = ID;
-		generos.add(genero);
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
@@ -44,7 +45,6 @@ public class Autor {
 		this.nome = nome;
 	}
 
-
 	public long getID() {
 		return ID;
 	}
@@ -52,19 +52,19 @@ public class Autor {
 	public void setID(long ID) {
 		this.ID = ID;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Autor [nome=" + nome + ", ID=" + ID +  "]";
+		return "Autor [nome=" + nome + ", ID=" + ID + "]";
 	}
 
-	public ArrayList<String> getGeneros() {
-		return generos;
-	}
-
-	public void setGeneros(ArrayList<String> generos) {
-		this.generos = generos;
-	}
+//	public List<String> getGeneros() {
+//		return generos;
+//	}
+//
+//	public void setGeneros(List<String> generos) {
+//		this.generos = generos;
+//	}
 
 	public List<Livro> getListaAssociados() {
 		return listaAssociados;
