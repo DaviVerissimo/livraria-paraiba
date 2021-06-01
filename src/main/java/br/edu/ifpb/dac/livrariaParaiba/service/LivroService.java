@@ -47,17 +47,14 @@ public class LivroService {
 	 * @return Boolean - indica se a ação foi bem sucedida
 	 */
 
-	public boolean cadastrarLivro(Integer quantidade, List<Autor> autores, Integer edicao,
-			String genero, String nome, BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
+	public boolean cadastrarLivro(Livro livroNovo) {
 		List<Autor> autoresCadastrados = repositorioAutor.findAll();
 		int aux = 0;
 		for (int i = 0; i < autoresCadastrados.size(); i++) {
-			if (autores.contains(autoresCadastrados.get(i))) {
+			if (livroNovo.getAutores().contains(autoresCadastrados.get(i))) {
 				aux++;
-				if (aux == autores.size()) {
-					Livro novoLivro = new Livro( quantidade, autoresCadastrados, edicao, genero, nome, valor,
-							descricao, isbn, nPaginas);
-					repositorioLivro.save(novoLivro);
+				if (aux == livroNovo.getAutores().size()) {
+					repositorioLivro.save(livroNovo);
 					return true;
 				}
 			}
@@ -84,15 +81,12 @@ public class LivroService {
 	 * 
 	 */
 
-	public void editarLivro(long id, Integer quantidade, List<Autor> autores, Integer edicao,
-			String genero, String nome, BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
+	public void editarLivro(long livroAntigo, Livro livroNovo ) {
 
-		if (repositorioLivro.findById(id) != null) {
-			Livro livroAtrAlterados = new Livro(id, quantidade, autores, edicao, genero, nome, valor,
-					descricao, isbn, nPaginas);
-			repositorioLivro.save(livroAtrAlterados);
+		if (repositorioLivro.findById(livroAntigo) != null) {
+			livroNovo.setId(livroAntigo);
+			repositorioLivro.save(livroNovo);
 		}
-
 	}
 
 	/**
