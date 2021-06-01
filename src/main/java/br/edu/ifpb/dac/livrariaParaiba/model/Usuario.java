@@ -2,7 +2,7 @@ package br.edu.ifpb.dac.livrariaParaiba.model;
 
 import javax.persistence.MappedSuperclass;
 
-/*
+/**
  * @author André Felipe
  */
 @MappedSuperclass

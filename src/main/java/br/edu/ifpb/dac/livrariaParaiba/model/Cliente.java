@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 
 import com.sun.istack.NotNull;
 
-/*
+/**
  * @author André Felipe
  */
 @Entity
@@ -128,14 +128,14 @@ public class Cliente extends Usuario implements Serializable {
 		return false;
 	}
 	
-	/*
+	/**
 	 * Adiciona um livro ao carrinho
 	 */
 	public void adicionarLivroAoCarrinho(ItemCarrinho livro) {
 		carrinhoDeCompras.add(livro);
 	}
 	
-	/*
+	/**
 	 * remove um livro do carrinho pelo id
 	 */
 	public boolean removerLivroDoCarrinho(long id) {
@@ -147,7 +147,7 @@ public class Cliente extends Usuario implements Serializable {
 		}
 		return false;
 	}
-	/*
+	/**
 	 * Esvazeia o carrinho do usuario cliente
 	 */
 	public void esvaziarCarrinho() {

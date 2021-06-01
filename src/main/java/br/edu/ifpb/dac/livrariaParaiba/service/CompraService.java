@@ -5,7 +5,11 @@ import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.Compra;
 import br.edu.ifpb.dac.livrariaParaiba.repository.CompraRepository;
-
+/**
+ * 
+ * @author andré felipe
+ *
+ */
 @Service
 public class CompraService {
 

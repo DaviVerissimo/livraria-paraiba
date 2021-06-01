@@ -8,7 +8,9 @@ import java.util.List;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.Endereco;
 import br.edu.ifpb.dac.livrariaParaiba.repository.EnderecoRepository;
-
+/**
+ * @author andré felipe
+ */
 @Service
 public class EnderecoService{
 	

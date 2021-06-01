@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
 import br.edu.ifpb.dac.livrariaParaiba.repository.ClienteRepository;
 
-/*
+/**
  * @author André Felipe
  */
 @Service
@@ -18,7 +18,7 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository repositorioCliente;
 
-	/*
+	/**
 	 * Recebe um usuário cliente e salva no database
 	 * 
 	 * @param Cliente
@@ -29,7 +29,7 @@ public class ClienteService {
 		return repositorioCliente.save(cliente);
 	}
 
-	/*
+	/**
 	 * Deleta um usuário cliente pelo id
 	 * 
 	 * @param id 
@@ -38,7 +38,7 @@ public class ClienteService {
 		repositorioCliente.deleteById(id);
 	}
 
-	/*
+	/**
 	 * Metodo que atualiza o usuário cliente Ele recebe um id e o objeto com as
 	 * auterações O banco busca o cliente com o id passado e ocorre uma cópia de
 	 * suas propriedades por meio do BeanUtils
@@ -49,21 +49,21 @@ public class ClienteService {
 		repositorioCliente.save(clienteSalvo);
 	}
 
-	/*
+	/**
 	 * Retorna todos os usuários clientes cadastrados
 	 */
 	public List<Cliente> pesquisarTodosClientes() {
 		return repositorioCliente.findAll();
 	}
 
-	/*
+	/**
 	 * Retorna um usuário cliente pelo o id
 	 */
 	public Cliente pesquisarPorId(long id) {
 		return repositorioCliente.findById(id);
 	}
 
-	/*
+	/**
 	 * Retorna um usuário cliente pelo email
 	 */
 	public Cliente pesquisarPorEmail(String email) {

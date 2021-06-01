@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.ItemCarrinho;
 import br.edu.ifpb.dac.livrariaParaiba.repository.ItemCarrinhoRepository;
-
+/**
+ * @author andré felipe
+ */
 @Service
 public class ItemCarrinhoService {
 	
