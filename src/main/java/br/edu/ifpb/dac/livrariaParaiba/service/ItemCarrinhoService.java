@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.edu.ifpb.dac.livrariaParaiba.modelo.ItemCarrinho;
-import br.edu.ifpb.dac.livrariaParaiba.repositorio.ItemCarrinhoRepository;
+import br.edu.ifpb.dac.livrariaParaiba.model.ItemCarrinho;
+import br.edu.ifpb.dac.livrariaParaiba.repository.ItemCarrinhoRepository;
 
 @Service
 public class ItemCarrinhoService {

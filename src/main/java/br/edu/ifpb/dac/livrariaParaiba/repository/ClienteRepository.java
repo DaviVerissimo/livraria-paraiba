@@ -1,10 +1,10 @@
-package br.edu.ifpb.dac.livrariaParaiba.repositorio;
+package br.edu.ifpb.dac.livrariaParaiba.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.edu.ifpb.dac.livrariaParaiba.modelo.Cliente;
+import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
 /*
  * @author André Felipe
  */

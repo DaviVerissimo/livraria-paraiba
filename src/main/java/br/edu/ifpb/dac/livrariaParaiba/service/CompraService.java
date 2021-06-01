@@ -3,8 +3,8 @@ package br.edu.ifpb.dac.livrariaParaiba.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.edu.ifpb.dac.livrariaParaiba.modelo.Compra;
-import br.edu.ifpb.dac.livrariaParaiba.repositorio.CompraRepository;
+import br.edu.ifpb.dac.livrariaParaiba.model.Compra;
+import br.edu.ifpb.dac.livrariaParaiba.repository.CompraRepository;
 
 @Service
 public class CompraService {

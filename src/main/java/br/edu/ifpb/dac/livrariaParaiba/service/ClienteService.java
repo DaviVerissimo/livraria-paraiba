@@ -5,8 +5,9 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import br.edu.ifpb.dac.livrariaParaiba.modelo.Cliente;
-import br.edu.ifpb.dac.livrariaParaiba.repositorio.ClienteRepository;
+
+import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
+import br.edu.ifpb.dac.livrariaParaiba.repository.ClienteRepository;
 
 /*
  * @author André Felipe

@@ -13,11 +13,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.edu.ifpb.dac.livrariaParaiba.modelo.Autor;
-import br.edu.ifpb.dac.livrariaParaiba.modelo.Cliente;
-import br.edu.ifpb.dac.livrariaParaiba.modelo.Endereco;
-import br.edu.ifpb.dac.livrariaParaiba.modelo.ItemCarrinho;
-import br.edu.ifpb.dac.livrariaParaiba.modelo.Livro;
+import br.edu.ifpb.dac.livrariaParaiba.model.Autor;
+import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
+import br.edu.ifpb.dac.livrariaParaiba.model.Endereco;
+import br.edu.ifpb.dac.livrariaParaiba.model.ItemCarrinho;
+import br.edu.ifpb.dac.livrariaParaiba.model.Livro;
 import br.edu.ifpb.dac.livrariaParaiba.service.AutorService;
 import br.edu.ifpb.dac.livrariaParaiba.service.ClienteService;
 import br.edu.ifpb.dac.livrariaParaiba.service.EnderecoService;

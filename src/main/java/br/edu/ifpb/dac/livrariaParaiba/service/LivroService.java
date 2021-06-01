@@ -9,10 +9,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.edu.ifpb.dac.livrariaParaiba.modelo.Autor;
-import br.edu.ifpb.dac.livrariaParaiba.modelo.Livro;
-import br.edu.ifpb.dac.livrariaParaiba.repositorio.AutorRepositorio;
-import br.edu.ifpb.dac.livrariaParaiba.repositorio.LivroRepository;
+import br.edu.ifpb.dac.livrariaParaiba.model.Autor;
+import br.edu.ifpb.dac.livrariaParaiba.model.Livro;
+import br.edu.ifpb.dac.livrariaParaiba.repository.AutorRepositorio;
+import br.edu.ifpb.dac.livrariaParaiba.repository.LivroRepository;
 
 /**
  * Classe que representa o servico de persistencia da entidade Livro

@@ -8,8 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import br.edu.ifpb.dac.livrariaParaiba.modelo.Autor;
-import br.edu.ifpb.dac.livrariaParaiba.repositorio.AutorRepositorio;
+import br.edu.ifpb.dac.livrariaParaiba.model.Autor;
+import br.edu.ifpb.dac.livrariaParaiba.repository.AutorRepositorio;
 
 /**
  * Gerencia Autor.

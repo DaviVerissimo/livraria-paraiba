@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.livrariaParaiba.modelo;
+package br.edu.ifpb.dac.livrariaParaiba.model;
 
 import javax.persistence.MappedSuperclass;
 
