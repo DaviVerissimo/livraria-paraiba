@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+//import br.edu.ifpb.dac.livrariaParaiba.modelo.Livro;
+
 @Entity
 @Table(name = "cliente")
 public class Cliente implements Serializable {
@@ -31,7 +33,7 @@ public class Cliente implements Serializable {
 	private Date nascimento;
 	private String rua, bairro, cidade, estado;
 	private int numero;
-	@ManyToMany(mappedBy = "cliente")
+	@ManyToMany(mappedBy = "livro")
 	private List<Livro> listaLivros;
 	
 	public Cliente() {

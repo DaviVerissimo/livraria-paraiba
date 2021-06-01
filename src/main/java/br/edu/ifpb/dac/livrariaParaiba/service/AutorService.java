@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.livrariaParaiba.servico;
+package br.edu.ifpb.dac.livrariaParaiba.service;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Autor;
 import br.edu.ifpb.dac.livrariaParaiba.repositorio.AutorRepositorio;
@@ -13,6 +14,7 @@ import br.edu.ifpb.dac.livrariaParaiba.repositorio.AutorRepositorio;
 /**Gerencia Autor.
  * @author davi
  */
+@Service
 public class AutorService {
 	
 	@Autowired
@@ -20,10 +22,9 @@ public class AutorService {
 	
 	/**Salva um Autor no sistema.
 	 * @param nomeDoAutor Nome do Autor.
-	 * @param ID Identificador único do Autor.
 	 */
-	public void salvar(String nomeDoAutor, long ID, String genero) {
-		Autor autor = new Autor(nomeDoAutor, ID, genero);
+	public void salvar(String nomeDoAutor, String genero) {
+		Autor autor = new Autor(nomeDoAutor, genero);
 		autorRepositorio.save(autor);
 	}
 	
