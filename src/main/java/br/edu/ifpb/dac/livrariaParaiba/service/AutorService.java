@@ -2,6 +2,7 @@ package br.edu.ifpb.dac.livrariaParaiba.service;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.livrariaParaiba.modelo.Autor;
+import br.edu.ifpb.dac.livrariaParaiba.modelo.Cliente;
 import br.edu.ifpb.dac.livrariaParaiba.repositorio.AutorRepositorio;
 
 /**
@@ -99,10 +101,10 @@ public class AutorService {
 	 * @param novoNome Novo nome que o autor receberá.
 	 * @param ID       Identificador do Autor a ser editado.
 	 */
-	public void editarAutor(String novoNome, long ID, String genero) {
-		Autor autor = this.pesquisarAutorPorID(ID);
-		autor.setNome(novoNome);
-		autorRepositorio.save(autor);
+	public void editarAutor(Autor novoAutor, long idAntigo) {
+		Autor autorSalvo = autorRepositorio.findByID(idAntigo);
+		BeanUtils.copyProperties(novoAutor, autorSalvo);
+		autorRepositorio.save(autorSalvo);
 	}
 
 }

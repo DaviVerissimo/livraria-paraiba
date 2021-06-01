@@ -112,19 +112,36 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 
 			case 3:
 				Autor autorNovo = new Autor();
-//				List<String> generos = autorNovo.getGeneros();
 				System.out.println("Digite seus dados");
 				cond = leitor.nextLine();
 				System.out.print("Nome do autor: ");
 				String nomeAutor = leitor.nextLine();
-//				System.out.println("Generos: separe por ',' se houver mais de um");
-//				String genero = leitor.nextLine();
-//				generos = Arrays.asList(genero.split(","));
 				autorNovo.setNome(nomeAutor);
 				autorService.salvar(autorNovo);
 				System.out.println("Autor cadastrado");
 				break;
 
+			case 4:
+				System.out.println(autorService.retornarListaDeAutores().toString());
+				System.out.println("Qual o ID do autor deseja editar? ");
+				long idAutor = leitor.nextLong();
+				System.out.println("Digite o novo nome para esse autor: ");
+				String novoNomeAutor = leitor.next();
+				Autor novoAutor = autorService.pesquisarAutorPorID(idAutor);
+				novoAutor.setNome(novoNomeAutor);
+				autorService.editarAutor(novoAutor, idAutor);
+
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			case 7:
+				break;
+			case 8:
+				break;
+			case 9:
+				break;
 			case 10:
 				List<Cliente> lista = clienteService.pesquisarTodosClientes();
 				for (Cliente a : lista) {
@@ -137,7 +154,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				 * ItemCarrinho item = new ItemCarrinho(); item.setCliente(c); item.setQtd(3);
 				 * item.setStatus("Pendente"); carrinhoService.salvarItem(null);
 				 */
-
+				break;
 			default:
 				leitor.close();
 				aux = false;

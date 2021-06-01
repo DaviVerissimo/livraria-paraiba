@@ -6,11 +6,12 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.sun.istack.NotNull;
@@ -38,14 +39,14 @@ public class Livro implements Serializable {
 	private List<ItemCarrinho> itemCarrinho;
 
 	private Integer quantidade;
-	
+
 	@ManyToMany
 	private List<Autor> autores;
 
-
 	private Integer edicao;
 
-	private String genero;
+	@Enumerated(EnumType.STRING)
+	private GenerosTipos genero;
 
 	@NotNull
 	private String nome;
@@ -60,26 +61,10 @@ public class Livro implements Serializable {
 
 	private Integer nPaginas;
 
-	public Livro(long id, Integer quantidade, List<Autor> autores, Integer edicao, String genero,
-			String nome, BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
-		super();
-		this.id = id;
-		this.quantidade = quantidade;
-	//	this.autores = autores;
-		this.edicao = edicao;
-		this.genero = genero;
-		this.nome = nome;
-		this.valor = valor;
-		this.descricao = descricao;
-		this.isbn = isbn;
-		this.nPaginas = nPaginas;
-	}
-
-	public Livro(Integer quantidade, List<Autor> autores, Integer edicao, String genero, String nome,
+	public Livro(Integer quantidade, List<Autor> autores, Integer edicao, GenerosTipos genero, String nome,
 			BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
 		super();
 		this.quantidade = quantidade;
-	//	this.autores = autores;
 		this.edicao = edicao;
 		this.genero = genero;
 		this.nome = nome;
@@ -105,11 +90,11 @@ public class Livro implements Serializable {
 		this.edicao = edicao;
 	}
 
-	public String getGenero() {
+	public GenerosTipos getGenero() {
 		return genero;
 	}
 
-	public void setGenero(String genero) {
+	public void setGenero(GenerosTipos genero) {
 		this.genero = genero;
 	}
 
@@ -121,13 +106,13 @@ public class Livro implements Serializable {
 		this.nome = nome;
 	}
 
-/*	public List<Autor> getAutores() {
+	public List<Autor> getAutores() {
 		return autores;
 	}
 
 	public void setAutores(List<Autor> autores) {
 		this.autores = autores;
-	}*/
+	}
 
 	public BigDecimal getValor() {
 		return valor;
@@ -160,8 +145,6 @@ public class Livro implements Serializable {
 	public void setnPaginas(Integer nPaginas) {
 		this.nPaginas = nPaginas;
 	}
-
-	
 
 	public void setId(long id) {
 		this.id = id;
