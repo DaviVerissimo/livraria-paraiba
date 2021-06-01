@@ -1,18 +1,14 @@
 package br.edu.ifpb.dac.livrariaParaiba.modelo;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import modelo.Livro;
 
 /**Modelo de Autor.
  * @author davi
@@ -20,30 +16,26 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "autor")
-public class Autor implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+public class Autor {
 	
 	private String nome;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long ID;
 	
-	//@ManyToMany(mappedBy = "Autor") 
-	//private List<String> generos;
-	//private ArrayList<String> generos;
+	private List<String> generos;
 	
-	//@ManyToMany
-	//private List<Livro> listaLivros;
+	@ManyToMany(mappedBy = "livro")
+	private List<Livro> listaAssociados;
 	
 	public Autor() {
-		
+		generos = new ArrayList<>();
 	}
 	
-	public Autor(String nome, String genero) {
+	public Autor(String nome, long ID, String genero) {
 		this.nome = nome;
-		//generos.add(genero);
+		this.ID = ID;
+		generos.add(genero);
 	}
 	
 	public String getNome() {
@@ -68,8 +60,19 @@ public class Autor implements Serializable{
 		return "Autor [nome=" + nome + ", ID=" + ID +  "]";
 	}
 
+	public List<String> getGeneros() {
+		return generos;
+	}
 
-	
-	
-	
+	public void setGeneros(List<String> generos) {
+		this.generos = generos;
+	}
+	public List<Livro> getListaAssociados() {
+		return listaAssociados;
+	}
+
+	public void setListaAssociados(List<Livro> listaAssociados) {
+		this.listaAssociados = listaAssociados;
+	}
+
 }
