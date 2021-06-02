@@ -3,9 +3,10 @@ package br.edu.ifpb.dac.livrariaParaiba;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.edu.ifpb.dac.livrariaParaiba.model.Autor;
 import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
 import br.edu.ifpb.dac.livrariaParaiba.model.Endereco;
+import br.edu.ifpb.dac.livrariaParaiba.model.GenerosTipos;
 import br.edu.ifpb.dac.livrariaParaiba.model.ItemCarrinho;
 import br.edu.ifpb.dac.livrariaParaiba.model.Livro;
 import br.edu.ifpb.dac.livrariaParaiba.service.AutorService;
@@ -140,6 +142,43 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				break;
 			case 5:
 				System.out.println("Insira os dados para cadastrar um novo livro");
+				System.out.println("Título do livro");
+				String títuloLivro = leitor.nextLine();
+				System.out.println("Autores correspondentes (separe por ',' , caso tenha mais que um): ");
+				String autoresCadastrados = leitor.nextLine();
+				List<String> autoresFornecidos = Arrays.asList(autoresCadastrados.split(","));
+				List<Autor> autoresLista = new ArrayList<>();
+
+				for (Iterator iterator = autoresFornecidos.iterator(); iterator.hasNext();) {
+					String string = (String) iterator.next();
+					Autor autorNumeravel = autorService.pesquisarAutorPorNome(string);
+					if (autorNumeravel != null) {
+						autoresLista.add(autorNumeravel);
+					}
+				}
+
+				System.out.println("Digite o genero correspondente: " + GenerosTipos.values());
+				String generoLivro = leitor.nextLine();
+				GenerosTipos generoSelecionadoLivro = GenerosTipos.valueOf(generoLivro);
+				System.out.println("Edição do Livro: ");
+				Integer edicaoLivro = leitor.nextInt();
+				System.out.println("Descrição do Livro: ");
+				String descricaoLivro = leitor.nextLine();
+				System.out.println("ISBN: ");
+				String isbn = leitor.nextLine();
+				System.out.println("Numero de paginas: ");
+				Integer nPaginasLivro = leitor.nextInt();
+				System.out.println("Quantidade cadastrada: ");
+				Integer qtdLivro = leitor.nextInt();
+				System.out.println("Valor unitário do livro: ");
+				BigDecimal valorLivro = leitor.nextBigDecimal();
+				Livro novoLivro = new Livro(qtdLivro, autoresLista, edicaoLivro, generoSelecionadoLivro, títuloLivro,
+						valorLivro, descricaoLivro, isbn, nPaginasLivro);
+				if (livroService.cadastrarLivro(novoLivro)) {
+					System.out.println("Livro cadastrado");
+				} else {
+					System.out.println("Livro não cadastrado");
+				}
 				break;
 			case 6:
 				break;

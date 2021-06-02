@@ -62,6 +62,14 @@ public class Autor {
 		return listaAssociados;
 	}
 
+	public boolean equals(Autor comparavel) {
+		if (comparavel.getNome().equals(nome)) {
+			return true;
+		}
+		return false;
+
+	}
+
 	public void setListaAssociados(List<Livro> listaAssociados) {
 		this.listaAssociados = listaAssociados;
 	}

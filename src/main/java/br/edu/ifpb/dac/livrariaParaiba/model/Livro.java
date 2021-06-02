@@ -3,6 +3,7 @@ package br.edu.ifpb.dac.livrariaParaiba.model;
 import java.io.Serializable;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -36,7 +37,7 @@ public class Livro implements Serializable {
 	private long id;
 
 	@OneToMany(mappedBy = "livro")
-	private List<ItemCarrinho> itemCarrinho;
+	private List<ItemCarrinho> itemCarrinho = new ArrayList<>();
 
 	private Integer quantidade;
 
