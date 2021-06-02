@@ -25,6 +25,7 @@ public class LivroService {
 
 	@Autowired
 	LivroRepository repositorioLivro;
+	@Autowired
 	AutorRepositorio repositorioAutor;
 
 	/**

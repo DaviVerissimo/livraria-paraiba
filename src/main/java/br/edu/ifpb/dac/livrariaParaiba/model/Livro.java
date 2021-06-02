@@ -76,6 +76,7 @@ public class Livro implements Serializable {
 		this.valor = valor;
 		this.descricao = descricao;
 		this.isbn = isbn;
+		this.autores = autores;
 		this.nPaginas = nPaginas;
 	}
 

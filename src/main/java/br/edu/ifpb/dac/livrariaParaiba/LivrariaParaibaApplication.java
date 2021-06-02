@@ -132,17 +132,17 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 			case 4:
 				System.out.println(autorService.retornarListaDeAutores().toString());
 				System.out.println("Qual o ID do autor deseja editar? ");
-				long idAutor = leitor.nextLong();
+				long idAutor = Long.parseLong(leitor.nextLine());
 				System.out.println("Digite o novo nome para esse autor: ");
-				String novoNomeAutor = leitor.next();
+				String novoNomeAutor = leitor.nextLine();
 				Autor novoAutor = autorService.pesquisarAutorPorID(idAutor);
 				novoAutor.setNome(novoNomeAutor);
 				autorService.editarAutor(novoAutor, idAutor);
 
 				break;
 			case 5:
-				System.out.println("Insira os dados para cadastrar um novo livro");
-				System.out.println("Título do livro");
+				leitor = new Scanner(System.in);
+				System.out.print("Título do livro");
 				String títuloLivro = leitor.nextLine();
 				System.out.println("Autores correspondentes (separe por ',' , caso tenha mais que um): ");
 				String autoresCadastrados = leitor.nextLine();
@@ -161,15 +161,15 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				String generoLivro = leitor.nextLine();
 				GenerosTipos generoSelecionadoLivro = GenerosTipos.valueOf(generoLivro);
 				System.out.println("Edição do Livro: ");
-				Integer edicaoLivro = leitor.nextInt();
+				Integer edicaoLivro = Integer.parseInt(leitor.nextLine());
 				System.out.println("Descrição do Livro: ");
 				String descricaoLivro = leitor.nextLine();
 				System.out.println("ISBN: ");
 				String isbn = leitor.nextLine();
 				System.out.println("Numero de paginas: ");
-				Integer nPaginasLivro = leitor.nextInt();
+				Integer nPaginasLivro = Integer.parseInt(leitor.nextLine());
 				System.out.println("Quantidade cadastrada: ");
-				Integer qtdLivro = leitor.nextInt();
+				Integer qtdLivro = Integer.parseInt(leitor.nextLine());
 				System.out.println("Valor unitário do livro: ");
 				BigDecimal valorLivro = leitor.nextBigDecimal();
 				Livro novoLivro = new Livro(qtdLivro, autoresLista, edicaoLivro, generoSelecionadoLivro, títuloLivro,
