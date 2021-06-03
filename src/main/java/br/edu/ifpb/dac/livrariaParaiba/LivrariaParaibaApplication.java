@@ -65,7 +65,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 			switch (n) {
 
 			case 1:
-
+				leitor = new Scanner(System.in);
 				Endereco endereco = new Endereco();
 				System.out.println("Digite seus dados");
 				String cond = leitor.nextLine();
@@ -109,6 +109,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				enderecoService.salvarEndereco(endereco);
 				break;
 			case 2:
+				leitor = new Scanner(System.in);
 				System.out.println("Digite seus dados");
 				cond = leitor.nextLine();
 				System.out.println("Digite o email: ");
@@ -119,6 +120,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				break;
 
 			case 3:
+				leitor = new Scanner(System.in);
 				Autor autorNovo = new Autor();
 				System.out.println("Digite seus dados");
 				cond = leitor.nextLine();
@@ -130,6 +132,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				break;
 
 			case 4:
+				leitor = new Scanner(System.in);
 				System.out.println(autorService.retornarListaDeAutores().toString());
 				System.out.println("Qual o ID do autor deseja editar? ");
 				long idAutor = Long.parseLong(leitor.nextLine());
