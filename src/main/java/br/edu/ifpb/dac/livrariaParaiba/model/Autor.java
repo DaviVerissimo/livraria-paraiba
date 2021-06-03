@@ -55,11 +55,19 @@ public class Autor {
 
 	@Override
 	public String toString() {
-		return "Autor [nome=" + nome + ", ID=" + ID + "]" + "\n";
+		return "Autor [nome=" + nome + ", ID=" + ID + "]";
 	}
 
 	public List<Livro> getListaAssociados() {
 		return listaAssociados;
+	}
+
+	public boolean equals(Autor comparavel) {
+		if (comparavel.getNome().equals(nome) && comparavel.getID() == ID) {
+			return true;
+		}
+		return false;
+
 	}
 
 	public void setListaAssociados(List<Livro> listaAssociados) {

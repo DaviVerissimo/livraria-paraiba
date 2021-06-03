@@ -3,11 +3,14 @@ package br.edu.ifpb.dac.livrariaParaiba.model;
 import java.io.Serializable;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,11 +39,11 @@ public class Livro implements Serializable {
 	private long id;
 
 	@OneToMany(mappedBy = "livro")
-	private List<ItemCarrinho> itemCarrinho;
+	private List<ItemCarrinho> itemCarrinho = new ArrayList<>();
 
 	private Integer quantidade;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Autor> autores;
 
 	private Integer edicao;
@@ -60,21 +63,22 @@ public class Livro implements Serializable {
 	private String isbn;
 
 	private Integer nPaginas;
-	
+
 	public Livro() {
-		
+
 	}
 
-	public Livro(Integer quantidade, List<Autor> autores, Integer edicao, GenerosTipos genero, String nome,
-			BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
+	public Livro(List<Autor> autores, Integer edicao, GenerosTipos genero, String nome, BigDecimal valor,
+			String descricao, String isbn, Integer nPaginas) {
 		super();
-		this.quantidade = quantidade;
 		this.edicao = edicao;
 		this.genero = genero;
 		this.nome = nome;
 		this.valor = valor;
+		this.quantidade = 0;
 		this.descricao = descricao;
 		this.isbn = isbn;
+		this.autores = autores;
 		this.nPaginas = nPaginas;
 	}
 
@@ -163,11 +167,17 @@ public class Livro implements Serializable {
 	}
 
 	public void setQuantidadeEstoque(Integer quantidade) {
-		this.quantidade += quantidade;
+		this.quantidade+=quantidade;
 	}
 
 	public void removerDoEstoque() {
 		quantidade--;
 	}
 
+	@Override
+	public String toString() {
+		return "\n" + "ID [" + id + "]" + "\n" + "Titulo: " + nome + "\n" + autores.toString() + "\n" + "Descrição: "
+				+ descricao + "\n" + "Edição: " + edicao + "\n" + "ISBN " + isbn + "\n" + "Quantidade de Paginas "
+				+ nPaginas + "\n" + "R$" + valor + "\n" + "Estoque: " + quantidade + "\n";
+	}
 }

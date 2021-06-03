@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,7 @@ public class LivroService {
 
 	@Autowired
 	LivroRepository repositorioLivro;
+	@Autowired
 	AutorRepositorio repositorioAutor;
 
 	/**
@@ -44,20 +46,24 @@ public class LivroService {
 	 * @param isbn      String - identificacao internacional do numero do livro
 	 * @param nPaginas  Integer - numero de paginas que o livro contem
 	 * 
-	 * @return Boolean - indica se a ação foi bem sucedida
+	 * @return Boolean - informa se a ação foi bem sucedida (true) ou não (false)
 	 */
 
 	public boolean cadastrarLivro(Livro livroNovo) {
 		List<Autor> autoresCadastrados = repositorioAutor.findAll();
+		List<Autor> autoresLivro = livroNovo.getAutores();
 		int aux = 0;
-		for (int i = 0; i < autoresCadastrados.size(); i++) {
-			if (livroNovo.getAutores().contains(autoresCadastrados.get(i))) {
-				aux++;
-				if (aux == livroNovo.getAutores().size()) {
-					repositorioLivro.save(livroNovo);
-					return true;
+		for (Autor autor : autoresLivro) {
+			for (Iterator iterator = autoresCadastrados.iterator(); iterator.hasNext();) {
+				Autor autor2 = (Autor) iterator.next();
+				if (autor2.equals(autor)) {
+					aux++;
 				}
 			}
+		}
+		if (aux == autoresLivro.size()) {
+			repositorioLivro.save(livroNovo);
+			return true;
 		}
 		return false;
 	}
@@ -79,14 +85,18 @@ public class LivroService {
 	 * @param isbn      String - identificacao internacional do numero do livro
 	 * @param nPaginas  Integer - numero de paginas que o livro contem
 	 * 
+	 * @return Boolean - informa se a ação foi bem sucedida (true) ou não (false)
 	 */
 
-	public void editarLivro(long livroAntigo, Livro livroNovo ) {
-
-		if (repositorioLivro.findById(livroAntigo) != null) {
-			livroNovo.setId(livroAntigo);
-			repositorioLivro.save(livroNovo);
+	public boolean editarLivro(Long idAntigo, Livro livroNovo) {
+		Livro livroSalvo = repositorioLivro.findById(idAntigo).get();
+		BeanUtils.copyProperties(livroNovo, livroSalvo);
+		if (livroSalvo != null) {
+			if (repositorioLivro.save(livroNovo) != null) {
+				return true;
+			}
 		}
+		return false;
 	}
 
 	/**

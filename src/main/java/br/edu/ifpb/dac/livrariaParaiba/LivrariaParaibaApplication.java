@@ -3,9 +3,10 @@ package br.edu.ifpb.dac.livrariaParaiba;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.edu.ifpb.dac.livrariaParaiba.model.Autor;
 import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
 import br.edu.ifpb.dac.livrariaParaiba.model.Endereco;
+import br.edu.ifpb.dac.livrariaParaiba.model.GenerosTipos;
 import br.edu.ifpb.dac.livrariaParaiba.model.ItemCarrinho;
 import br.edu.ifpb.dac.livrariaParaiba.model.Livro;
 import br.edu.ifpb.dac.livrariaParaiba.service.AutorService;
@@ -63,7 +65,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 			switch (n) {
 
 			case 1:
-
+				leitor = new Scanner(System.in);
 				Endereco endereco = new Endereco();
 				System.out.println("Digite seus dados");
 				String cond = leitor.nextLine();
@@ -107,6 +109,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				enderecoService.salvarEndereco(endereco);
 				break;
 			case 2:
+				leitor = new Scanner(System.in);
 				System.out.println("Digite seus dados");
 				cond = leitor.nextLine();
 				System.out.println("Digite o email: ");
@@ -117,6 +120,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				break;
 
 			case 3:
+				leitor = new Scanner(System.in);
 				Autor autorNovo = new Autor();
 				System.out.println("Digite seus dados");
 				cond = leitor.nextLine();
@@ -128,23 +132,137 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				break;
 
 			case 4:
+				leitor = new Scanner(System.in);
 				System.out.println(autorService.retornarListaDeAutores().toString());
 				System.out.println("Qual o ID do autor deseja editar? ");
-				long idAutor = leitor.nextLong();
+				long idAutor = Long.parseLong(leitor.nextLine());
 				System.out.println("Digite o novo nome para esse autor: ");
-				String novoNomeAutor = leitor.next();
+				String novoNomeAutor = leitor.nextLine();
 				Autor novoAutor = autorService.pesquisarAutorPorID(idAutor);
 				novoAutor.setNome(novoNomeAutor);
 				autorService.editarAutor(novoAutor, idAutor);
 
 				break;
 			case 5:
+				leitor = new Scanner(System.in);
+				System.out.println("Título do livro: ");
+				String títuloLivro = leitor.nextLine();
+
+				System.out.println("Insira o ID('s) dos autores desse livro, dentre: ");
+				System.out.println(autorService.retornarListaDeAutores().toString());
+				System.out.println("Separe por ',' em mais de um ID");
+				String autoresCadastrados = leitor.nextLine();
+				autoresCadastrados.trim();
+				List<String> autoresFornecidos = Arrays.asList(autoresCadastrados.split(","));
+				List<Autor> autoresLista = new ArrayList<>();
+				for (int i = 0; i < autoresFornecidos.size(); i++) {
+					Autor autorNumeravel = autorService.pesquisarAutorPorID(Long.parseLong(autoresFornecidos.get(i)));
+					if (autorNumeravel != null) {
+						autoresLista.add(autorNumeravel);
+					}
+				}
+
+				System.out.println("Dentre os generos disponíveis: ");
+				for (int i = 0; i < GenerosTipos.values().length; i++) {
+					System.out.println(GenerosTipos.values()[i].toString());
+				}
+				System.out.println("Insira o genero correspondente: ");
+				String generoLivro = leitor.nextLine();
+				GenerosTipos generoSelecionadoLivro = GenerosTipos.valueOf(generoLivro);
+				System.out.println("Edição do Livro: ");
+				Integer edicaoLivro = Integer.parseInt(leitor.nextLine());
+				System.out.println("Descrição do Livro: ");
+				String descricaoLivro = leitor.nextLine();
+				System.out.println("ISBN: ");
+				String isbn = leitor.nextLine();
+				System.out.println("Numero de paginas: ");
+				Integer nPaginasLivro = Integer.parseInt(leitor.nextLine());
+				System.out.println("Valor unitário do livro: ");
+				BigDecimal valorLivro = leitor.nextBigDecimal();
+				Livro novoLivro = new Livro(autoresLista, edicaoLivro, generoSelecionadoLivro, títuloLivro, valorLivro,
+						descricaoLivro, isbn, nPaginasLivro);
+				if (livroService.cadastrarLivro(novoLivro)) {
+					System.out.println("Livro cadastrado");
+				} else {
+					System.out.println("Livro não cadastrado");
+				}
 				break;
 			case 6:
+				leitor = new Scanner(System.in);
+				System.out.println("ID do livro que deseja editar: ");
+				System.out.println(livroService.recuperarTodosOsLivros().toString());
+				long idRecuperadoLivro = Long.parseLong(leitor.nextLine());
+				System.out.println("Novo titulo do livro");
+				String tituloEditado = leitor.nextLine();
+				System.out.println("Insira o ID('s) dos autores desse livro, dentre: ");
+				System.out.println(autorService.retornarListaDeAutores().toString());
+				System.out.println("Separe por ',' em mais de um ID");
+				String idAutoresEditados = leitor.nextLine();
+				idAutoresEditados.trim();
+				List<String> autoresEditados = Arrays.asList(idAutoresEditados.split(","));
+				List<Autor> autoresListaEditado = new ArrayList<>();
+				for (int i = 0; i < autoresEditados.size(); i++) {
+					Autor autorSelecEditado = autorService.pesquisarAutorPorID(Long.parseLong(autoresEditados.get(i)));
+					if (autorSelecEditado != null) {
+						autoresListaEditado.add(autorSelecEditado);
+					}
+				}
+
+				System.out.println("Dentre os generos disponíveis: ");
+				for (int i = 0; i < GenerosTipos.values().length; i++) {
+					System.out.println(GenerosTipos.values()[i].toString());
+				}
+				System.out.println("Insira o genero correspondente: ");
+				String generoLivroEditado = leitor.nextLine();
+				GenerosTipos generoSelecionadoLivroEditado = GenerosTipos.valueOf(generoLivroEditado);
+				System.out.println("Edição do Livro: ");
+				Integer edicaoLivroEditado = Integer.parseInt(leitor.nextLine());
+				System.out.println("Descrição do Livro: ");
+				String descricaoLivroEditado = leitor.nextLine();
+				System.out.println("ISBN: ");
+				String isbnEditado = leitor.nextLine();
+				System.out.println("Numero de paginas: ");
+				Integer nPaginasLivroEditado = Integer.parseInt(leitor.nextLine());
+				System.out.println("Valor unitário do livro: ");
+				BigDecimal valorLivroEditado = leitor.nextBigDecimal();
+				Livro livroEditado = new Livro(autoresListaEditado, edicaoLivroEditado, generoSelecionadoLivroEditado,
+						tituloEditado, valorLivroEditado, descricaoLivroEditado, isbnEditado, nPaginasLivroEditado);
+				livroEditado.setId(idRecuperadoLivro);
+				if (livroService.editarLivro(idRecuperadoLivro, livroEditado)) {
+					System.out.println("Livro editado");
+				} else {
+					System.out.println("Livro não editado");
+				}
 				break;
 			case 7:
+				leitor = new Scanner(System.in);
+				System.out.println(livroService.recuperarTodosOsLivros().toString());
+				System.out.println("ID do livro a ser excluido: ");
+				long idLivroRemover = Long.parseLong(leitor.nextLine());
+				try {
+					livroService.removePorId(idLivroRemover);
+					System.out.println("livro deletado");
+				} catch (Exception e) {
+					System.out.println("livro não deletado");
+				}
 				break;
 			case 8:
+				leitor = new Scanner(System.in);
+				System.out.println(livroService.recuperarTodosOsLivros().toString());
+				System.out.println("ID do livro a ser adicionado ao estoque: ");
+				long idLivroAddEstoque = Long.parseLong(leitor.nextLine());
+				System.out.println("Quantidade a ser adicionada");
+				Integer qtdEstoqueAtualizar = Integer.parseInt(leitor.nextLine());
+				Livro livroAddEstoque = livroService.recuperarLivro(idLivroAddEstoque).get();
+				if (livroAddEstoque != null) {
+					System.out.println(livroAddEstoque.getId());
+					livroAddEstoque.setQuantidadeEstoque(qtdEstoqueAtualizar);
+					if (livroService.editarLivro(idLivroAddEstoque, livroAddEstoque)) {
+						System.out.println("Estoque adicionado! ");
+					}
+				} else {
+					System.out.println("Livro não encontrado! ");
+				}
 				break;
 			case 9:
 				break;
