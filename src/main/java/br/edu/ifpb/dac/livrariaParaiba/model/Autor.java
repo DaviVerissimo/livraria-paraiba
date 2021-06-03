@@ -55,7 +55,7 @@ public class Autor {
 
 	@Override
 	public String toString() {
-		return "Autor [nome=" + nome + ", ID=" + ID + "]" + "\n";
+		return "Autor [nome=" + nome + ", ID=" + ID + "]";
 	}
 
 	public List<Livro> getListaAssociados() {

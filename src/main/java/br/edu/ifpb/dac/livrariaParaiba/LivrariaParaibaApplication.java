@@ -144,7 +144,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				leitor = new Scanner(System.in);
 				System.out.println("Título do livro: ");
 				String títuloLivro = leitor.nextLine();
-				
+
 				System.out.println("Insira o ID('s) dos autores desse livro, dentre: ");
 				System.out.println(autorService.retornarListaDeAutores().toString());
 				System.out.println("Separe por ',' em mais de um ID");
@@ -158,7 +158,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 						autoresLista.add(autorNumeravel);
 					}
 				}
-				
+
 				System.out.println("Dentre os generos disponíveis: ");
 				for (int i = 0; i < GenerosTipos.values().length; i++) {
 					System.out.println(GenerosTipos.values()[i].toString());
@@ -204,7 +204,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 						autoresListaEditado.add(autorSelecEditado);
 					}
 				}
-				
+
 				System.out.println("Dentre os generos disponíveis: ");
 				for (int i = 0; i < GenerosTipos.values().length; i++) {
 					System.out.println(GenerosTipos.values()[i].toString());
@@ -223,8 +223,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				System.out.println("Valor unitário do livro: ");
 				BigDecimal valorLivroEditado = leitor.nextBigDecimal();
 				Livro livroEditado = new Livro(autoresListaEditado, edicaoLivroEditado, generoSelecionadoLivroEditado,
-						tituloEditado, valorLivroEditado, descricaoLivroEditado, isbnEditado,
-						nPaginasLivroEditado);
+						tituloEditado, valorLivroEditado, descricaoLivroEditado, isbnEditado, nPaginasLivroEditado);
 				livroEditado.setId(idRecuperadoLivro);
 				if (livroService.editarLivro(idRecuperadoLivro, livroEditado)) {
 					System.out.println("Livro editado");
@@ -233,8 +232,34 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				}
 				break;
 			case 7:
+				leitor = new Scanner(System.in);
+				System.out.println(livroService.recuperarTodosOsLivros().toString());
+				System.out.println("ID do livro a ser excluido: ");
+				long idLivroRemover = Long.parseLong(leitor.nextLine());
+				try {
+					livroService.removePorId(idLivroRemover);
+					System.out.println("livro deletado");
+				} catch (Exception e) {
+					System.out.println("livro não deletado");
+				}
 				break;
 			case 8:
+				leitor = new Scanner(System.in);
+				System.out.println(livroService.recuperarTodosOsLivros().toString());
+				System.out.println("ID do livro a ser adicionado ao estoque: ");
+				long idLivroAddEstoque = Long.parseLong(leitor.nextLine());
+				System.out.println("Quantidade a ser adicionada");
+				Integer qtdEstoqueAtualizar = Integer.parseInt(leitor.nextLine());
+				Livro livroAddEstoque = livroService.recuperarLivro(idLivroAddEstoque).get();
+				if (livroAddEstoque != null) {
+					System.out.println(livroAddEstoque.getId());
+					livroAddEstoque.setQuantidadeEstoque(qtdEstoqueAtualizar);
+					if (livroService.editarLivro(idLivroAddEstoque, livroAddEstoque)) {
+						System.out.println("Estoque adicionado! ");
+					}
+				} else {
+					System.out.println("Livro não encontrado! ");
+				}
 				break;
 			case 9:
 				break;

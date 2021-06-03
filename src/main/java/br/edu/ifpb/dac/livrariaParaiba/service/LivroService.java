@@ -46,7 +46,7 @@ public class LivroService {
 	 * @param isbn      String - identificacao internacional do numero do livro
 	 * @param nPaginas  Integer - numero de paginas que o livro contem
 	 * 
-	 *  @return Boolean - informa se a ação foi bem sucedida (true) ou não (false)
+	 * @return Boolean - informa se a ação foi bem sucedida (true) ou não (false)
 	 */
 
 	public boolean cadastrarLivro(Livro livroNovo) {
@@ -89,10 +89,12 @@ public class LivroService {
 	 */
 
 	public boolean editarLivro(Long idAntigo, Livro livroNovo) {
-		Livro autorSalvo = repositorioLivro.findById(idAntigo).get();
-		BeanUtils.copyProperties(livroNovo, autorSalvo);
-		if (repositorioLivro.save(autorSalvo) != null) {
-			return true;
+		Livro livroSalvo = repositorioLivro.findById(idAntigo).get();
+		BeanUtils.copyProperties(livroNovo, livroSalvo);
+		if (livroSalvo != null) {
+			if (repositorioLivro.save(livroNovo) != null) {
+				return true;
+			}
 		}
 		return false;
 	}
