@@ -1,7 +1,6 @@
 package br.edu.ifpb.dac.livrariaParaiba.service;
 
 import java.util.List;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,10 +39,8 @@ public class AutorService {
 	 * @param ID Identificador único do Autor.
 	 * @return
 	 */
-	public Autor remove(String ID) {
-		// Autor autor =
-		// autorRepositorio.
-		return null;
+	public void remove(String ID) {
+		 autorRepositorio.deleteById(null);
 	}
 
 	/**
@@ -54,7 +51,7 @@ public class AutorService {
 	 */
 	public Autor pesquisarAutorPorNome(String nome) {
 		Autor autor = autorRepositorio.findUniqueByNome(nome);
-
+		
 		return autor;
 	}
 
@@ -89,9 +86,12 @@ public class AutorService {
 	 */
 	public Page<Autor> retornarListaDeAutoresPaginada(String campoOrdenacao, Sort.Direction direcaoOrdenacao,
 			Integer numPagina, int qtdPagina) {
+		
 		Sort ordenacao = Sort.by(direcaoOrdenacao, campoOrdenacao);
 		Page<Autor> paginaDeAutores = autorRepositorio.findAll(PageRequest.of(--numPagina, qtdPagina, ordenacao));
-
+		for (Autor autor : paginaDeAutores) {
+			System.out.println(autor +"\n");
+		}
 		return paginaDeAutores;
 	}
 
