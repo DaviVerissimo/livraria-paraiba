@@ -63,7 +63,7 @@ public class Autor {
 	}
 
 	public boolean equals(Autor comparavel) {
-		if (comparavel.getNome().equals(nome)) {
+		if (comparavel.getNome().equals(nome) && comparavel.getID() == ID) {
 			return true;
 		}
 		return false;

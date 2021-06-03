@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,7 +42,7 @@ public class Livro implements Serializable {
 
 	private Integer quantidade;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Autor> autores;
 
 	private Integer edicao;
@@ -66,14 +67,14 @@ public class Livro implements Serializable {
 
 	}
 
-	public Livro(Integer quantidade, List<Autor> autores, Integer edicao, GenerosTipos genero, String nome,
-			BigDecimal valor, String descricao, String isbn, Integer nPaginas) {
+	public Livro(List<Autor> autores, Integer edicao, GenerosTipos genero, String nome, BigDecimal valor,
+			String descricao, String isbn, Integer nPaginas) {
 		super();
-		this.quantidade = quantidade;
 		this.edicao = edicao;
 		this.genero = genero;
 		this.nome = nome;
 		this.valor = valor;
+		this.quantidade = 0;
 		this.descricao = descricao;
 		this.isbn = isbn;
 		this.autores = autores;
@@ -174,7 +175,7 @@ public class Livro implements Serializable {
 
 	@Override
 	public String toString() {
-		return "[ " + nome + ", " + autores.toString() + " " + edicao + " ISBN " + isbn + ", " + quantidade
-				+ " paginas, R$" + valor + ", quantidade: " + quantidade + "]";
+		return "[ " + "ID [" + id + "]" + nome + ", " + autores.toString() + " " + edicao + " ISBN " + isbn + ", "
+				+ quantidade + " paginas, R$" + valor + ", quantidade: " + quantidade + "]";
 	}
 }

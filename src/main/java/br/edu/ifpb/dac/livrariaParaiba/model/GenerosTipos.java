@@ -7,5 +7,54 @@ package br.edu.ifpb.dac.livrariaParaiba.model;
  */
 
 public enum GenerosTipos {
-	ROMANCE, COMEDIA, FICÇÃO_CIENTIFICA, DRAMA, HQ, INFANTIL, TERROR, CONTO, CRÔNICA, POESIA
+	ROMANCE {
+		public String toString() {
+			return "ROMANCE";
+		}
+	},
+	COMEDIA {
+		public String toString() {
+			return "COMÉDIA";
+		}
+	},
+	FICÇÃO_CIENTIFICA {
+		public String toString() {
+			return "FICÇÃO_CIENTIFICA";
+		}
+	},
+	DRAMA {
+		public String toString() {
+			return "DRAMA";
+		}
+	},
+	HQ {
+		public String toString() {
+			return "HQ";
+		}
+	},
+	INFANTIL {
+		public String toString() {
+			return "INFANTIL";
+		}
+	},
+	TERROR {
+		public String toString() {
+			return "TERROR";
+		}
+	},
+	CONTO {
+		public String toString() {
+			return "CONTO";
+		}
+	},
+	CRÔNICA {
+		public String toString() {
+			return "CRÔNICA";
+		}
+	},
+	POESIA {
+		public String toString() {
+			return "POESIA";
+		}
+	}
 }
