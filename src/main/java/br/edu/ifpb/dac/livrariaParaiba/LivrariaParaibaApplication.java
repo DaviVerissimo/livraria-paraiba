@@ -13,6 +13,8 @@ import java.util.Scanner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.Autor;
 import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
@@ -63,7 +65,11 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 			Cliente c = new Cliente();
 
 			switch (n) {
-
+			case 0:
+				
+				autorService.retornarListaDeAutoresPaginada(null, null, null, 2);
+				
+				break;
 			case 1:
 				leitor = new Scanner(System.in);
 				Endereco endereco = new Endereco();
@@ -265,14 +271,22 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				}
 				break;
 			case 9:
+				Page<Livro> lista5Baratos = livroService.cincoLivrosMaisBaratos();
+				for(Livro l: lista5Baratos) {
+					System.out.println(l.toString());
+				}
 				break;
 			case 10:
-				List<Livro> estoque = livroService.recuperarTodosOsLivros();
-				for (Livro livro : estoque) {
-					System.out.println("ID: " + livro.getId() + "\nNome: " + livro.getNome() + "\nPreço: "
-							+ livro.getValor() + "\nQuantidade disponível: " + livro.getQuantidade()
-							+ "\n---------------------------------------------");
-				}
+				Scanner input = new Scanner(System.in);
+				System.out.println("Lista de todos os produtos: \n");
+				String campoOrdenar = "nome";
+				Sort.Direction direcaoOrdenar = Sort.Direction.ASC;
+				System.out.println("Qual página? \n");
+				Integer numPagina = Integer.parseInt(input.nextLine());
+				int numeroPorPaginas = 3;
+				direcaoOrdenar = Sort.Direction.ASC;
+				livroService.retornarListaDeLivrosPaginada(campoOrdenar, direcaoOrdenar, numPagina, numeroPorPaginas);
+				
 				break;
 			case 11:
 				c = clienteService.pesquisarPorId(1);

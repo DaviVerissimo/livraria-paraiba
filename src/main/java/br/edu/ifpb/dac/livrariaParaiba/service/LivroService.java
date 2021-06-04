@@ -5,9 +5,13 @@ import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.Autor;
@@ -149,7 +153,18 @@ public class LivroService {
 	 * 
 	 */
 
-	public List<Livro> cincoLivrosMaisBaratos() {
-		return repositorioLivro.findTop5ByOrderByValorAsc();
+	public Page<Livro> cincoLivrosMaisBaratos() {
+		Integer pagina = 1;
+		Page<Livro> paginaDeLivros = (Page<Livro>) repositorioLivro.findTop5(PageRequest.of(--pagina, 5));
+		return paginaDeLivros;
+	}
+	public Page<Livro> retornarListaDeLivrosPaginada(String campoOrdenacao, Sort.Direction direcaoOrdenacao,
+			Integer pagina, int qtdPagina) {
+		Sort ordenacao = Sort.by(direcaoOrdenacao, campoOrdenacao);
+		Page<Livro> paginaDeLivros = repositorioLivro.findAll(PageRequest.of(--pagina, qtdPagina, ordenacao));
+		for (Livro livro : paginaDeLivros) {
+			System.out.println(livro +"\n");
+		}
+		return paginaDeLivros;
 	}
 }

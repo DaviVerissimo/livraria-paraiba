@@ -1,6 +1,8 @@
 package br.edu.ifpb.dac.livrariaParaiba.service;
 
 import java.util.List;
+import java.util.Scanner;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -85,8 +87,31 @@ public class AutorService {
 	 * @return
 	 */
 	public Page<Autor> retornarListaDeAutoresPaginada(String campoOrdenacao, Sort.Direction direcaoOrdenacao,
-			Integer numPagina, int qtdPagina) {
+			Integer pagina, int qtdPagina) {
+		Scanner input = new Scanner(System.in);
+		System.out.println("Lista de todos os produtos: \n");
+		System.out.println("Deseja ordenar por qual campo? \n");
+		String campoOrdenar = input.nextLine();
+		campoOrdenacao = campoOrdenar;
+		System.out.println("Crescente - 1 ou Decrescente - 2 \n");
+		Integer direcaoEscolha = Integer.parseInt(input.nextLine());
+		Sort.Direction direcaoOrdenar = Sort.Direction.ASC;
+		switch (direcaoEscolha) {
+			case 1:
+				direcaoOrdenar = Sort.Direction.ASC;
+				break;
 		
+			case 2:
+				direcaoOrdenar = Sort.Direction.DESC;
+				break;
+			default:
+				break;
+		}
+		
+		direcaoOrdenacao = direcaoOrdenar;
+		System.out.println("Qual página? \n");
+		Integer numPagina = Integer.parseInt(input.nextLine());
+		qtdPagina = 3;
 		Sort ordenacao = Sort.by(direcaoOrdenacao, campoOrdenacao);
 		Page<Autor> paginaDeAutores = autorRepositorio.findAll(PageRequest.of(--numPagina, qtdPagina, ordenacao));
 		for (Autor autor : paginaDeAutores) {
