@@ -66,9 +66,9 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 
 			switch (n) {
 			case 0:
-				
+
 				autorService.retornarListaDeAutoresPaginada(null, null, null, 2);
-				
+
 				break;
 			case 1:
 				leitor = new Scanner(System.in);
@@ -272,7 +272,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				break;
 			case 9:
 				Page<Livro> lista5Baratos = livroService.cincoLivrosMaisBaratos();
-				for(Livro l: lista5Baratos) {
+				for (Livro l : lista5Baratos) {
 					System.out.println(l.toString());
 				}
 				break;
@@ -286,26 +286,28 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				int numeroPorPaginas = 3;
 				direcaoOrdenar = Sort.Direction.ASC;
 				livroService.retornarListaDeLivrosPaginada(campoOrdenar, direcaoOrdenar, numPagina, numeroPorPaginas);
-				
+
 				break;
 			case 11:
 				c = clienteService.pesquisarPorId(1);
 
 				List<Livro> catalogo = livroService.recuperarTodosOsLivros();
 				for (Livro livro : catalogo) {
-					System.out.println("ID: " + livro.getId() + "\nNome: " + livro.getNome() + "\nPreço: "
-							+ livro.getValor() + "\nQuantidade disponível: " + livro.getQuantidade()
-							+ "\n---------------------------------------------");
+					if (livro.getQuantidade() > 0) {
+						System.out.println("ID: " + livro.getId() + "\nNome: " + livro.getNome() + "\nPreço: "
+								+ livro.getValor() + "\nQuantidade disponível: " + livro.getQuantidade()
+								+ "\n---------------------------------------------");
+					}
 				}
 				System.out.println("Digite o id do livro: ");
 				long id = leitor.nextLong();
 				System.out.println("Digite a quantidade: ");
 				int qtd = leitor.nextInt();
-				Optional<Livro> livro = livroService.recuperarLivro(id);
-				if (livro.get().getQuantidade() >= qtd) {
+				Optional<Livro> livro2 = livroService.recuperarLivro(id);
+				if (livro2.get().getQuantidade() >= qtd) {
 					ItemCarrinho item = new ItemCarrinho();
 					item.setCliente(c);
-					item.setLivro(livro.get());
+					item.setLivro(livro2.get());
 					item.setQtd(qtd);
 					item.setStatus("Pendente");
 					carrinhoService.salvarItem(item);
