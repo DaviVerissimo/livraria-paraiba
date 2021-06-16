@@ -2,13 +2,13 @@ package br.edu.ifpb.dac.livrariaParaiba.model;
 
 import java.io.Serializable;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -45,7 +45,7 @@ public class Cliente extends Usuario implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date nascimento;
 
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.MERGE)
 	private List<Endereco> endereco = new ArrayList<Endereco>();
 
 	@OneToMany(mappedBy = "cliente")
@@ -86,7 +86,6 @@ public class Cliente extends Usuario implements Serializable {
 	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
 	}
-	
 
 	public List<Endereco> getEndereco() {
 		return endereco;
@@ -127,26 +126,27 @@ public class Cliente extends Usuario implements Serializable {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	/**
 	 * Adiciona um livro ao carrinho
 	 */
 	public void adicionarLivroAoCarrinho(ItemCarrinho livro) {
 		carrinhoDeCompras.add(livro);
 	}
-	
+
 	/**
 	 * remove um livro do carrinho pelo id
 	 */
 	public boolean removerLivroDoCarrinho(long id) {
-		for(ItemCarrinho l: carrinhoDeCompras) {
-			if(l.getId()==id) {
+		for (ItemCarrinho l : carrinhoDeCompras) {
+			if (l.getId() == id) {
 				carrinhoDeCompras.remove(l);
 				return true;
 			}
 		}
 		return false;
 	}
+
 	/**
 	 * Esvazeia o carrinho do usuario cliente
 	 */
