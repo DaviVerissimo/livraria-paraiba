@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
@@ -43,10 +44,13 @@ public class ClienteService {
 	 * auterações O banco busca o cliente com o id passado e ocorre uma cópia de
 	 * suas propriedades por meio do BeanUtils
 	 */
-	public void updateCliente(long id, Cliente cliente) {
-		Cliente clienteSalvo = repositorioCliente.findById(id);
+	public void updateCliente(Long id, Cliente cliente) {
+		Cliente clienteSalvo = pesquisarPorId(id);
+		if (clienteSalvo == null) {
+			throw new EmptyResultDataAccessException(1);
+		}
 		BeanUtils.copyProperties(cliente, clienteSalvo);
-		repositorioCliente.save(clienteSalvo);
+		repositorioCliente.save(cliente);
 	}
 
 	/**
