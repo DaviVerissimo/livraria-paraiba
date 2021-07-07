@@ -18,6 +18,14 @@
 .p-inputtext{
   width: 100%;
 }
+.p-button{
+  background-color: #054f77;
+  color: white;
+  border: none;
+  margin-bottom: 2rem;
+  margin-left: 5rem;
+  
+}
 
 @media(max-width: 800px) {
   

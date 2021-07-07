@@ -1,52 +1,57 @@
 <div class="container">
   <div class="ui-g">
-    <div class="ui-g-12">
-      <h1>Faça o seu cadastro</h1>
-    </div>
-    <div class="ui-g-6">
-      <span class="p-float-label">
-        <input id="float-input" type="text" pInputText>
-        <label for="float-input">Nome</label>
-      </span>
-    </div>
-    <div class="ui-g-6 ">
-      <span class="p-float-label">
-        <input id="float-input" type="text" pInputText>
-        <label for="float-input">Sobrenome</label>
-      </span>
-    </div>
-    <div class="ui-g-12">
-      <span class="p-float-label">
-        <input id="float-input" type="text" pInputText>
-        <label for="float-input">Email</label>
-      </span>
-    </div>
-    <div class="ui-g-6">
-      <span class="p-float-label">
-        <input type="password" pPassword />
-        <label for="float-input">Senha</label>
-      </span>
-    </div>
-    <div class="ui-g-6">
-      <span class="p-float-label">
-        <input type="password" pPassword />
-        <label for="float-input">Confirme a senha</label>
-      </span>
-    </div>
-    <div class="ui-g-12">
-      <h1>Endereço</h1>
-    </div>
-    <div class="ui-g-6">
-      <span class="p-float-label">
-        <input id="float-input" type="text" pInputText>
-        <label for="float-input">C</label>
-      </span>
-    </div>
-    <div class="ui-g-6">
-      <span class="p-float-label">
-        <input id="float-input" type="text" pInputText>
-        <label for="float-input">Nome</label>
-      </span>
-    </div>
+    <form #usuarioForm="ngForm" (ngSubmit)="salvar(usuarioForm)">
+      <div class="ui-g-12">
+        <h1>Faça o seu cadastro</h1>
+      </div>
+      <div class="ui-g-6">
+        <span class="p-float-label">
+          <input id="float-input" type="text" pInputText name="nome" ngModel>
+          <!-- ngModel cria uma instancia de controle de formulario e vincula com o input
+             (O angular está gerenciando esté formulário)-->
+          <label for="float-input">Nome</label>
+        </span>
+      </div>
+      <div class="ui-g-6 ">
+        <span class="p-float-label">
+          <input id="float-input" type="text" pInputText name="sobrenome" ngModel>
+          <label for="float-input">Sobrenome</label>
+        </span>
+      </div>
+      <div class="ui-g-12">
+        <span class="p-float-label">
+          <input id="float-input" type="text" pInputText name="email" ngModel>
+          <label for="float-input">Email</label>
+        </span>
+      </div>
+      <div class="ui-g-6">
+        <span class="p-float-label">
+          <input type="password" pPassword name="senha" ngModel/>
+          <label for="float-input">Senha</label>
+        </span>
+      </div>
+      <div class="ui-g-6">
+        <span class="p-float-label">
+          <input type="password" pPassword name="cSenha" ngModel/>
+          <label for="float-input">Confirme a senha</label>
+        </span>
+      </div>
+      <div class="ui-g-12">
+        <h1>Endereço</h1>
+      </div>
+      <div class="ui-g-6">
+        <span class="p-float-label">
+          <input id="float-input" type="text" pInputText name="cep" ngModel>
+          <label for="float-input">CEP</label>
+        </span>
+      </div>
+      <div class="ui-g-6">
+        <span class="p-float-label">
+          <input id="float-input" type="text" pInputText name="cidade" ngModel>
+          <label for="float-input">Cidade</label>
+        </span>
+      </div>
+      <button pButton type="submit" label="Cadastrar"></button>
+    </form>
   </div>
 </div>
