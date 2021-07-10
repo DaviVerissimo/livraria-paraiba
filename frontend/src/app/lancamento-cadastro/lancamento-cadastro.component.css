@@ -3,7 +3,20 @@
   background: white;
   border: none;
   border-radius: 0.50rem;
+  margin-bottom: 2rem;
   width: 85%;
+}
+
+/*---Menssagem de Alerta*/
+.alert{
+  color: red;
+  padding: 1rem;
+}
+.ui-g-12 h4{
+  color: #000;
+  opacity: 50%;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: lighter;
 }
 .ui-g-6{
   display: inline-block;
@@ -24,15 +37,14 @@
   border: none;
   margin-bottom: 2rem;
   margin-left: 5rem;
-  
+
 }
 
 @media(max-width: 800px) {
-  
- 
+
+
   .ui-g-6{
     display:block;
     width: 100%;
   }
-  
 }
