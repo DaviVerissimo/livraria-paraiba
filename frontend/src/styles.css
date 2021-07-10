@@ -5,11 +5,11 @@ body{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: #f0f2f7;
+  background: #f0f299;
 }
 
 @media(max-width: 800px) {
-  
+
   .container{
     margin: 0 auto;
     width: 100%;
