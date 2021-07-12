@@ -8,6 +8,11 @@ import { NgForm } from '@angular/forms';
 })
 export class LancamentoCadastroComponent implements OnInit {
 
+  tipos = [
+    {label: 'Pessoa Física', value: 'Pessoa Física'},
+    {label: 'Pessoa Jurídica', value:'Pessoa Jurídica'}
+  ];
+
   salvar(form: NgForm){
     console.log(form)
   }

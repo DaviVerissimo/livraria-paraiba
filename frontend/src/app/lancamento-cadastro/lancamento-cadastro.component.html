@@ -1,3 +1,4 @@
+<!-- @author andre-->
 <div class="container">
 
   <div class="ui-g">
@@ -9,18 +10,16 @@
       <div class="ui-g-12">
         <h1>Faça o seu cadastro</h1>
       </div>
-      <div class="ui-g-6">
+      <div class="ui-g-12">
+        <p-selectButton [options]="tipos" #tipo></p-selectButton>
+      </div>
+      <div class="ui-g-12">
         <span class="p-float-label">
           <input id="float-input" type="text" pInputText name="nome" ngModel required minlength="3">
           <!-- ngModel cria uma instancia de controle de formulario e vincula com o input
              (O angular está gerenciando esté formulário)-->
-          <label for="float-input">Nome</label>
-        </span>
-      </div>
-      <div class="ui-g-6 ">
-        <span class="p-float-label">
-          <input id="float-input" type="text" pInputText name="sobrenome" ngModel required minlength="3">
-          <label for="float-input">Sobrenome</label>
+          <label for="float-input">{{tipo.value === 'Pessoa Jurídica' ? 'Razão Social' : 'Nome'}}</label>
+          <!-- Usando o button 'tipo' para manipular a label nome/razão-social (mesma coisa com o cpf/cnpj)-->
         </span>
       </div>
       <div class="ui-g-12">
@@ -39,6 +38,12 @@
         <span class="p-float-label">
           <input type="password" pPassword name="cSenha" ngModel required minlength="8" />
           <label for="float-input">Confirme a senha</label>
+        </span>
+      </div>
+      <div class="ui-g-6 ">
+        <span class="p-float-label">
+          <input id="float-input" type="text" pInputText name="cpf" ngModel required minlength="11" />
+          <label for="float-input">{{tipo.value === 'Pessoa Jurídica' ? 'CNPJ' : 'CPF'}}</label>
         </span>
       </div>
       <div class="ui-g-12">
