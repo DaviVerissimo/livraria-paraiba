@@ -1,0 +1,18 @@
+<!-- @author andre-->
+<nav class="navbar">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h1>Livraria Paraíba</h1>
+    </div>
+    <div class="ui-g-6">
+      <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i class="fa fa-bars">*Icone Menu*</i></a>
+    </div>
+  </div>
+  <ul class="navbar-menu" [hidden]="!exibindoMenu">
+    <li class="navbar-usuario">Administrador</li>
+    <li class="navbar-menuitem"><a href="#">Perfil</a></li>
+    <li class="navbar-menuitem"><a href="#">Carrinho</a></li>
+    <li class="navbar-menuitem"><a href="#">Minhas Compras</a></li>
+    <li class="navbar-menuitem"><a href="#">Logout</a></li>
+  </ul>
+</nav>
