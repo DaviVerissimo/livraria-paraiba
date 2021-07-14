@@ -18,7 +18,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
  * 
  * @author andré
  *
- */
+ *
 @SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
@@ -46,4 +46,4 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
 		return super.authenticationManagerBean();
 	}
 
-}
+}*/

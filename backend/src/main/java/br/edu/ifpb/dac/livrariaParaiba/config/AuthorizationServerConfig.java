@@ -16,7 +16,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  * 
  * @author andré
  *
- */
+ *
 @SuppressWarnings("deprecation")
 @Configuration
 @EnableAuthorizationServer
@@ -48,4 +48,4 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	public TokenStore tokenStore() {
 		return new JwtTokenStore(accessTokenConverter());
 	}
-}
+}*/
