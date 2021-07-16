@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+<head>
+	<meta charset="UTF-8" />
+	<title>Autores</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<h1>Autores</h1>
+		<a th:href="autor" class="btn">Incluir Pessoa</a>
+		<table border="1" class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nome</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="autor : ${listaAutores}">
+					<td th:text="${autor.ID}"></td>
+					<td th:text="${autor.nome}"></td>
+					<!--	<td>
+						<a th:href="@{/autor/{id}(id=${autor.ID})}" class="btn btn-primary">Alterar</a>
+						<a th:href="@{/autor/excluir/{id}(id=${autor.ID})}" class="btn btn-danger">Excluir</a>
+					</td> -->
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+<footer>Todos os direitos reservados.</footer>
+
+</html>
