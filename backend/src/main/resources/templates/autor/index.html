@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
-<head>
-	<meta charset="UTF-8" />
-	<title>Livraria Paraíba</title>
+<html xmlns:th="http://www.thymeleaf.org" <head>
+<meta charset="UTF-8" />
+<title>Livraria Paraíba</title>
+<link href="../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet" />
 </head>
 
 <body>
-
-	<div class="container">
+	<nav class="navbar">
+			<div class="ui-g-12">
+				<h1>Livraria Paraíba</h1>
+			</div>
+	</nav>
+	
+	<div class="ui-g">
 		<h1>Autores</h1>
-		<a th:href="@{/autores/novo}" class="btn">Incluir Autor</a>
-		<table border="1" class="table table-striped table-responsive-md">
+		<a th:href="@{/autores/novo}" class="btn incluir">Incluir Autor</a>
+		<table class="table">
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -23,14 +28,17 @@
 					<td th:text="${autor.ID}"></td>
 					<td th:text="${autor.nome}"></td>
 					<td>
-						<a th:href="@{/autor/{id}(id=${autor.ID})}" class="btn btn-primary">Alterar</a>
-						<a th:href="@{/autor/excluir/{id}(id=${autor.ID})}" class="btn btn-danger">Excluir</a>
+						<a th:href="@{/autor/{id}(id=${autor.ID})}" class="btn alterar">Alterar</a>
+						|
+						<a th:href="@{/autor/excluir/{id}(id=${autor.ID})}" class="btn excluir">Excluir</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 </body>
-<footer>Todos os direitos reservados.</footer>
+<footer>
+	<p>Todos os direitos reservados.</p>
+</footer>
 
 </html>
