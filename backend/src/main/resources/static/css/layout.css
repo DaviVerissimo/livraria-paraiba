@@ -11,6 +11,8 @@ body{
 a{
     text-decoration: none;
 }
+
+/* Botões -----------------*/
 .btn.incluir{
 	margin: auto;
 	color: #054f77;
