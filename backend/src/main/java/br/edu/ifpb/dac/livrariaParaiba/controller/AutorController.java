@@ -69,16 +69,15 @@ public class AutorController {
 		int tamanhoPagina = tamanho.orElse(4);
 
 		PageRequest requisicao = PageRequest.of(paginaAtual, tamanhoPagina, Sort.by("ID"));
-		/*
-		 * Page<Autor> listaPaginada =
-		 * autorService.retornarListaDeAutoresPaginada(requisicao);
-		 * 
-		 * model.addAttribute("listaAutores", listaPaginada); int totalPaginas =
-		 * listaPaginada.getTotalPages(); if (totalPaginas > 0) { List<Integer>
-		 * numerosPaginas = IntStream.rangeClosed(1,
-		 * totalPaginas).boxed().collect(Collectors.toList());
-		 * model.addAttribute("numerosPaginas", numerosPaginas); }
-		 */
+	/*	Page<Autor> listaPaginada = autorService.retornarListaDeAutoresPaginada(requisicao);
+		
+		model.addAttribute("listaAutores", listaPaginada);
+		int totalPaginas = listaPaginada.getTotalPages();
+		if (totalPaginas > 0) {
+			List<Integer> numerosPaginas = IntStream.rangeClosed(1, totalPaginas).boxed().collect(Collectors.toList());
+			model.addAttribute("numerosPaginas", numerosPaginas);
+		} */
+		model.addAttribute("listaAutores", autorService.retornarListaDeAutores());
 		return "autor/index";
 	}
 
