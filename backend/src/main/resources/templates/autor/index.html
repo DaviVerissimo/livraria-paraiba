@@ -24,7 +24,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="autor : ${listaAutores}">
+				<tr th:each="autor : ${listaAutores.content}">
 					<td th:text="${autor.ID}"></td>
 					<td th:text="${autor.nome}"></td>
 					<td>
@@ -35,6 +35,15 @@
 				</tr>
 			</tbody>
 		</table>
+		<nav aria-label="...">
+		    <ul class="pagination">
+			    <li th:if="${listaAutores.totalPages > 0}" th:each="numeroPagina : ${numerosPaginas}" 
+			    	th:class="${numeroPagina==listaAutores.number + 1} ? 'page-item active' : 'page-item'">
+			    	<a class="page-link" th:href="@{/autor/autores(size=${listaAutores.size}, page=${numeroPagina})}"
+			        th:text=${numeroPagina}></a>
+			    </li>
+		    </ul>
+		</nav>
 	</div>
 </body>
 <footer>
