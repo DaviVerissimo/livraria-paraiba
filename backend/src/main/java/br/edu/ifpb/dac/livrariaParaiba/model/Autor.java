@@ -8,8 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 
 /**
  * Modelo de Autor.
@@ -20,8 +18,7 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name = "autor")
 public class Autor {
-	
-	@NotBlank
+
 	private String nome;
 
 	@Id
