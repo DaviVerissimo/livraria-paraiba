@@ -82,6 +82,7 @@ public class AutorController {
 			List<Integer> numerosPaginas = IntStream.rangeClosed(1, totalPaginas).boxed().collect(Collectors.toList());
 			model.addAttribute("numerosPaginas", numerosPaginas);
 		} */
+		model.addAttribute("listaAutores", autorService.retornarListaDeAutores());
 		return "autor/index";
 	}
 
