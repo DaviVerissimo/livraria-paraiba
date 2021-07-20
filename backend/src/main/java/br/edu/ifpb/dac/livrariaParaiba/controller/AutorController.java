@@ -1,8 +1,28 @@
 package br.edu.ifpb.dac.livrariaParaiba.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import java.util.Optional;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import br.edu.ifpb.dac.livrariaParaiba.model.Autor;
+import br.edu.ifpb.dac.livrariaParaiba.service.AutorService;
+/**
+ * 
+ * @author andre
+ *
+ */
 @Controller
 public class AutorController {
 
@@ -49,14 +69,16 @@ public class AutorController {
 		int tamanhoPagina = tamanho.orElse(4);
 
 		PageRequest requisicao = PageRequest.of(paginaAtual, tamanhoPagina, Sort.by("ID"));
-	/*	Page<Autor> listaPaginada = autorService.retornarListaDeAutoresPaginada(requisicao);
-		
-		model.addAttribute("listaAutores", listaPaginada);
-		int totalPaginas = listaPaginada.getTotalPages();
-		if (totalPaginas > 0) {
-			List<Integer> numerosPaginas = IntStream.rangeClosed(1, totalPaginas).boxed().collect(Collectors.toList());
-			model.addAttribute("numerosPaginas", numerosPaginas);
-		} */
+		/*
+		 * Page<Autor> listaPaginada =
+		 * autorService.retornarListaDeAutoresPaginada(requisicao);
+		 * 
+		 * model.addAttribute("listaAutores", listaPaginada); int totalPaginas =
+		 * listaPaginada.getTotalPages(); if (totalPaginas > 0) { List<Integer>
+		 * numerosPaginas = IntStream.rangeClosed(1,
+		 * totalPaginas).boxed().collect(Collectors.toList());
+		 * model.addAttribute("numerosPaginas", numerosPaginas); }
+		 */
 		return "autor/index";
 	}
 

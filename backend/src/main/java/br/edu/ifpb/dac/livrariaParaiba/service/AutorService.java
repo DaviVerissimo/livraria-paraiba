@@ -41,7 +41,7 @@ public class AutorService {
 	 * @param ID Identificador único do Autor.
 	 * @return
 	 */
-	public void remove(String ID) {
+	public void remove(long ID) {
 		 autorRepositorio.deleteById(null);
 	}
 
