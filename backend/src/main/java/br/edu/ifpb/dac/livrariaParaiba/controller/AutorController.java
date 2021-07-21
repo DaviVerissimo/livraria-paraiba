@@ -89,7 +89,7 @@ public class AutorController {
 	 *         método.
 	 */
 	@GetMapping("/autor/{ID}")
-	public String alterarAutor(@PathVariable("ID") long id, Model model) {
+	public String alterarAutor(@Valid @PathVariable("ID") long id, Model model) {
 		Optional<Autor> autorOpt = Optional.ofNullable(autorService.pesquisarAutorPorID(id));
 		if (autorOpt.isEmpty()) {
 			throw new IllegalArgumentException("Autor inválido.");

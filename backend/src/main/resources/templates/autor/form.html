@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Livraria Paraíba</title>
+	<link href="../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<header th:insert="fragments/cabecalho.html :: header"> </header>
+	<div class="ui-g">
+		<h1>Editar Pessoa</h1>
+		<form action="#" th:action="@{/autor/salvar}" th:object="${autor}" method="POST">
+			<input type="hidden" id="ID" th:field="*{ID}">
+			<input type="text" th:field="*{nome}" placeholder="Nome" class="form-control">
+			<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></span>
+			<button type="submit" class="btn">Salvar</button>
+		</form>
+		<hr>
+		<a class="btn retornar" th:href="@{/autores}">Retornar para a lista de autores</a>
+	</div>
+</body>
+<footer>
+	<p>Todos os direitos reservados.</p>
+</footer>
+</html>
