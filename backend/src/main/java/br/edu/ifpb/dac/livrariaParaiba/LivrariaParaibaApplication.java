@@ -67,7 +67,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 			switch (n) {
 			case 0:
 
-				autorService.retornarListaDeAutoresPaginada(null, null, null, 2);
+		
 
 				break;
 			case 1:
