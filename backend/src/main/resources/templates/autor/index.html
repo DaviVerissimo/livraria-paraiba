@@ -14,7 +14,7 @@
 	<header th:insert="fragments/cabecalho.html :: header"> </header>
 	<div class="ui-g">
 		<h1>Autores</h1>
-		<a th:href="@{/autores/novo}" class="btn incluir">Incluir Autor</a>
+		<a th:href="@{/adm/autores/novo}" class="btn incluir">Incluir Autor</a>
 		<table border="1" class="table">
 			<thead>
 				<tr>
@@ -28,9 +28,9 @@
 					<td th:text="${autor.ID}"></td>
 					<td th:text="${autor.nome}"></td>
 					<td>
-						<a th:href="@{/autor/{id}(id=${autor.ID})}" class="btn alterar">Alterar</a>
+						<a th:href="@{/adm/autor/{id}(id=${autor.ID})}" class="btn alterar">Alterar</a>
 						|
-						<a th:href="@{/autor/excluir/{id}(id=${autor.ID})}" class="btn excluir">Excluir</a>
+						<a th:href="@{/adm/autor/excluir/{id}(id=${autor.ID})}" class="btn excluir">Excluir</a>
 					</td>
 				</tr>
 			</tbody>

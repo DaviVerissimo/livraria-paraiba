@@ -34,7 +34,7 @@ public class AutorController {
 	 * @param autor
 	 * @return retorna a página "form" (formulário) do autor.
 	 */
-	@GetMapping("/autores/novo")
+	@GetMapping("/adm/autores/novo")
 	public String autor(@ModelAttribute("autor") Autor autor) {
 		return "autor/form";
 	}
@@ -47,13 +47,13 @@ public class AutorController {
 	 *         erro. Se não tiver erro, o metodo salva o autor e redireciona para a
 	 *         pagina de autores.
 	 */
-	@PostMapping("/autor/salvar")
+	@PostMapping("/adm/autor/salvar")
 	public String salvarAutor(@Valid @ModelAttribute("autor") Autor autor, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return "autor/form";
 		}
 		autorService.salvar(autor);
-		return "redirect:/autores";
+		return "redirect:/adm/autores";
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class AutorController {
 	 * @param model
 	 * @return retorna a pagina index de autores.
 	 */
-	@GetMapping("/autores")
+	@GetMapping("/adm/autores")
 	public String autores(Model model, @RequestParam("page") Optional<Integer> pagina,
 			@RequestParam("size") Optional<Integer> tamanho) {
 
@@ -88,7 +88,7 @@ public class AutorController {
 	 * @return retorna o formulario para a edição do autor passado no parametro do
 	 *         método.
 	 */
-	@GetMapping("/autor/{ID}")
+	@GetMapping("/adm/autor/{ID}")
 	public String alterarAutor(@Valid @PathVariable("ID") long id, Model model) {
 		Optional<Autor> autorOpt = Optional.ofNullable(autorService.pesquisarAutorPorID(id));
 		if (autorOpt.isEmpty()) {
@@ -104,7 +104,7 @@ public class AutorController {
 	 * @return o autor passado como parametro é removido e retorna para a listagem
 	 *         de autores.
 	 */
-	@GetMapping("/autor/excluir/{ID}")
+	@GetMapping("/adm/autor/excluir/{ID}")
 	public String excluirAutor(@PathVariable("ID") long id) {
 		Optional<Autor> autorOpt = Optional.ofNullable(autorService.pesquisarAutorPorID(id));
 		if (autorOpt.isEmpty()) {
@@ -112,6 +112,6 @@ public class AutorController {
 		}
 
 		autorService.remove(autorOpt.get().getID());
-		return "redirect:/autores";
+		return "redirect:/adm/autores";
 	}
 }

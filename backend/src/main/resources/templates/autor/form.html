@@ -11,14 +11,14 @@
 	<header th:insert="fragments/cabecalho.html :: header"> </header>
 	<div class="ui-g">
 		<h1>Editar Pessoa</h1>
-		<form action="#" th:action="@{/autor/salvar}" th:object="${autor}" method="POST">
+		<form action="#" th:action="@{/adm/autor/salvar}" th:object="${autor}" method="POST">
 			<input type="hidden" id="ID" th:field="*{ID}">
 			<input type="text" th:field="*{nome}" placeholder="Nome" class="form-control">
 			<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></span>
 			<button type="submit" class="btn">Salvar</button>
 		</form>
 		<hr>
-		<a class="btn retornar" th:href="@{/autores}">Retornar para a lista de autores</a>
+		<a class="btn retornar" th:href="@{/adm/autores}">Retornar para a lista de autores</a>
 	</div>
 </body>
 <footer>
