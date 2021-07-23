@@ -16,7 +16,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.Role;
-
+/**
+ * 
+ * @author andre
+ *
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {

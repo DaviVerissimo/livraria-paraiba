@@ -15,7 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
 import br.edu.ifpb.dac.livrariaParaiba.service.ClienteService;
-
+/**
+ * 
+ * @author andre
+ *
+ */
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
