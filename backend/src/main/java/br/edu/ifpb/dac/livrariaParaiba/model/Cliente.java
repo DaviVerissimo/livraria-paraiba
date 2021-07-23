@@ -49,6 +49,12 @@ public class Cliente extends Usuario implements Serializable {
 
 	@OneToMany(mappedBy = "cliente")
 	private List<ItemCarrinho> carrinhoDeCompras = new ArrayList<ItemCarrinho>();
+	
+	private String role;
+
+	public void setEndereco(List<Endereco> endereco) {
+		this.endereco = endereco;
+	}
 
 	public Cliente() {
 
@@ -60,6 +66,14 @@ public class Cliente extends Usuario implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public long getId() {
@@ -151,6 +165,28 @@ public class Cliente extends Usuario implements Serializable {
 	 */
 	public void esvaziarCarrinho() {
 		carrinhoDeCompras.clear();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 }
