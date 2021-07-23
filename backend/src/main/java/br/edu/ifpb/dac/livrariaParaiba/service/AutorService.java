@@ -42,7 +42,7 @@ public class AutorService {
 	 * @return
 	 */
 	public void remove(long ID) {
-		 autorRepositorio.deleteById(null);
+		 autorRepositorio.deleteById(ID);
 	}
 
 	/**
