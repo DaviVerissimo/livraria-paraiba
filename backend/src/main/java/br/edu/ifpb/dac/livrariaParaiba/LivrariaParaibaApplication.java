@@ -1,20 +1,21 @@
 package br.edu.ifpb.dac.livrariaParaiba;
 
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.Autor;
 import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
@@ -36,6 +37,8 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 	private ItemCarrinhoService carrinhoService;
 	private LivroService livroService;
 	private AutorService autorService;
+	@Autowired
+	private PasswordEncoder encoder;
 
 	public LivrariaParaibaApplication(ClienteService clienteService, EnderecoService enderecoService,
 			ItemCarrinhoService carrinhoService, LivroService livroService, AutorService autorService) {
@@ -67,7 +70,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 			switch (n) {
 			case 0:
 
-		
+				autorService.retornarListaDeAutoresPaginada(null, null, null, 2);
 
 				break;
 			case 1:
@@ -103,7 +106,7 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 				Date data = formato.parse(nascimento);
 				c.setNascimento(data);
 				c.setUsername(email);
-				c.setSenha(senha);
+				c.setSenha(encoder.encode(senha));
 				endereco.setBairro(bairro);
 				endereco.setCidade(cidade);
 				endereco.setEstado(estado);

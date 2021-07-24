@@ -1,12 +1,10 @@
 package br.edu.ifpb.dac.livrariaParaiba.model;
 
 import java.io.Serializable;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

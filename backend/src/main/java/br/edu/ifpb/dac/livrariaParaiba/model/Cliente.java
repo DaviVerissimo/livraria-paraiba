@@ -1,14 +1,13 @@
 package br.edu.ifpb.dac.livrariaParaiba.model;
 
 import java.io.Serializable;
-
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -45,11 +44,17 @@ public class Cliente extends Usuario implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date nascimento;
 
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.MERGE)
 	private List<Endereco> endereco = new ArrayList<Endereco>();
 
 	@OneToMany(mappedBy = "cliente")
 	private List<ItemCarrinho> carrinhoDeCompras = new ArrayList<ItemCarrinho>();
+	
+	private String role;
+
+	public void setEndereco(List<Endereco> endereco) {
+		this.endereco = endereco;
+	}
 
 	public Cliente() {
 
@@ -61,6 +66,14 @@ public class Cliente extends Usuario implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public long getId() {
@@ -86,7 +99,6 @@ public class Cliente extends Usuario implements Serializable {
 	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
 	}
-	
 
 	public List<Endereco> getEndereco() {
 		return endereco;
@@ -127,31 +139,54 @@ public class Cliente extends Usuario implements Serializable {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	/**
 	 * Adiciona um livro ao carrinho
 	 */
 	public void adicionarLivroAoCarrinho(ItemCarrinho livro) {
 		carrinhoDeCompras.add(livro);
 	}
-	
+
 	/**
 	 * remove um livro do carrinho pelo id
 	 */
 	public boolean removerLivroDoCarrinho(long id) {
-		for(ItemCarrinho l: carrinhoDeCompras) {
-			if(l.getId()==id) {
+		for (ItemCarrinho l : carrinhoDeCompras) {
+			if (l.getId() == id) {
 				carrinhoDeCompras.remove(l);
 				return true;
 			}
 		}
 		return false;
 	}
+
 	/**
 	 * Esvazeia o carrinho do usuario cliente
 	 */
 	public void esvaziarCarrinho() {
 		carrinhoDeCompras.clear();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 }

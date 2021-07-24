@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" <head>
-<meta charset="UTF-8" />
-<title>Livraria Paraíba</title>
-<link href="../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet" />
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Livraria Paraíba</title>
+	<link href="../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet" />
+<!--	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+-->
 </head>
 
 <body>
-	<nav class="navbar">
-			<div class="ui-g-12">
-				<h1>Livraria Paraíba</h1>
-			</div>
-	</nav>
-	
+
+	<header th:insert="fragments/cabecalho.html :: header"> </header>
 	<div class="ui-g">
 		<h1>Autores</h1>
-		<a th:href="@{/autores/novo}" class="btn incluir">Incluir Autor</a>
+		<a th:href="@{/adm/autores/novo}" class="btn incluir">Incluir Autor</a>
 		<table border="1" class="table">
 			<thead>
 				<tr>
@@ -28,22 +28,14 @@
 					<td th:text="${autor.ID}"></td>
 					<td th:text="${autor.nome}"></td>
 					<td>
-						<a th:href="@{/autor/{id}(id=${autor.ID})}" class="btn alterar">Alterar</a>
+						<a th:href="@{/adm/autor/{id}(id=${autor.ID})}" class="btn alterar">Alterar</a>
 						|
-						<a th:href="@{/autor/excluir/{id}(id=${autor.ID})}" class="btn excluir">Excluir</a>
+						<a th:href="@{/adm/autor/excluir/{id}(id=${autor.ID})}" class="btn excluir">Excluir</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
-		<nav aria-label="...">
-		    <ul class="pagination">
-			    <li th:if="${listaAutores.totalPages > 0}" th:each="numeroPagina : ${numerosPaginas}" 
-			    	th:class="${numeroPagina==listaAutores.number + 1} ? 'page-item active' : 'page-item'">
-			    	<a class="page-link" th:href="@{/autor/autores(size=${listaAutores.size}, page=${numeroPagina})}"
-			        th:text=${numeroPagina}></a>
-			    </li>
-		    </ul>
-		</nav>
+
 	</div>
 </body>
 <footer>

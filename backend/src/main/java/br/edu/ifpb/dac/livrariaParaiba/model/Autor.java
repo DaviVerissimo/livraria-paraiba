@@ -19,7 +19,7 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name = "autor")
 public class Autor {
-	
+
 	@NotBlank
 	private String nome;
 

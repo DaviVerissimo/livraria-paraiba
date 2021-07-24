@@ -28,7 +28,11 @@ a{
 .btn.incluir:hover{
 	opacity: 1;
 }
-
+.btn.retornar{
+	color: #054f77;
+	padding: 0rem 0rem;
+	margin-left: 2rem;
+}
 .btn.excluir{
 	color: red;
 	opacity: 0.5;
@@ -60,7 +64,6 @@ a{
   align-items:center;
   margin-bottom: 2rem;
 }
-
 
 /* body--------------- */
 .ui-g{
