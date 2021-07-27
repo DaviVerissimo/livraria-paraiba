@@ -5,12 +5,22 @@ body{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: #f0f299;
+  background: #f0f299 !important;
 }
 
 a{
     text-decoration: none;
 }
+
+/*Cabecalho---------------------*/
+.btn-outline-primary{
+	text-decoration: none;
+	color: white !important;
+}
+.label-form{
+color: white;	
+}
+
 
 /* Botões -----------------*/
 .btn.incluir{
@@ -27,6 +37,8 @@ a{
 }
 .btn.incluir:hover{
 	opacity: 1;
+	background-color: #054f77 ;
+	color: white !important;
 }
 .btn.retornar{
 	color: #054f77;
@@ -52,7 +64,7 @@ a{
 
 /* header--------------- */
 .navbar{
-  background-color: #343434;
+  background-color: #343434 !important;
   width: 100%;
   padding: 0rem 0rem;
 }
@@ -67,7 +79,9 @@ a{
 
 /* body--------------- */
 .ui-g{
+  padding: 1rem 2rem;
   margin: auto;
+  margin-top: 2rem;
   background: white;
   border: none;
   border-radius: 0.50rem;
