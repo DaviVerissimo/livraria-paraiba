@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Livraria Paraíba</title>
+	<style type="text/css">
+		label.campo_input,
+		label.txt_desc {
+			display: block;
+			width: 90px;
+		}
+
+		textarea {
+			resize: none;
+			width: 170px;
+		}
+
+		div.tabela_autores {
+			overflow: auto;
+			width: 180px;
+			height: 170px;
+		}
+		
+		#addAutor{
+			width: 75px;
+			height: 20px;
+		}
+		
+	</style>
+</head>
+
+<body>
+	<h1>Cadastro de Livro</h1>
+	<div id=area>
+		<form id=formulario>
+			<fieldset>
+				<label class=campo_input>Nome </label><input>
+				<label class=campo_input>ID dos Autor(es)</label><input placeholder="Separe por , em +1 autor">
+				<button type="submit" id="addAutor">Adicionar</button>
+				<div class=tabela_autores>
+					<table border="1" class="table">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Nome</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="autor : ${listaAutores}">
+								<td th:text="${autor.ID}"></td>
+								<td th:text="${autor.nome}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<a th:href="@{/autores/novo}" class="btn incluir">Incluir Autor</a>
+				<label class=txt_desc>Descrição </label><textarea id="descricao" rows="5"></textarea>
+				<label class=campo_input>Edição </label><input>
+				<label class=campo_input>Gênero </label><input>
+				<label class=campo_input>Valor </label><input>
+				<label class=campo_input>Quantidade </label><input>
+				<label class=campo_input>ISBN </label><input>
+				<label class=campo_input>Quantidade de páginas </label> <input>
+				<input class="btn_submit" type="submit" value="Salvar">
+			</fieldset>
+		</form>
+	</div>
+</body>
+<footer>
+	<p>&COPY;Todos os direitos reservados</p>
+</footer>
+
+</html>

@@ -19,7 +19,7 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name = "autor")
 public class Autor {
-	
+
 	@NotBlank
 	private String nome;
 
@@ -32,6 +32,10 @@ public class Autor {
 
 	public Autor() {
 
+	}
+
+	public void addLivro(Livro l) {
+		listaAssociados.add(l);
 	}
 
 	public Autor(String nome) {
@@ -56,7 +60,7 @@ public class Autor {
 
 	@Override
 	public String toString() {
-		return "Autor [nome=" + nome + ", ID=" + ID + "]";
+		return nome;
 	}
 
 	public List<Livro> getListaAssociados() {

@@ -158,13 +158,18 @@ public class LivroService {
 		Page<Livro> paginaDeLivros = (Page<Livro>) repositorioLivro.findTop5(PageRequest.of(--pagina, 5));
 		return paginaDeLivros;
 	}
+
 	public Page<Livro> retornarListaDeLivrosPaginada(String campoOrdenacao, Sort.Direction direcaoOrdenacao,
 			Integer pagina, int qtdPagina) {
 		Sort ordenacao = Sort.by(direcaoOrdenacao, campoOrdenacao);
 		Page<Livro> paginaDeLivros = repositorioLivro.findAll(PageRequest.of(--pagina, qtdPagina, ordenacao));
 		for (Livro livro : paginaDeLivros) {
-			System.out.println(livro +"\n");
+			System.out.println(livro + "\n");
 		}
 		return paginaDeLivros;
+	}
+
+	public Page<Livro> recuperarTodosOsLivros(int inicio, int tamanho) {
+		return repositorioLivro.findAll(PageRequest.of(inicio, tamanho));
 	}
 }

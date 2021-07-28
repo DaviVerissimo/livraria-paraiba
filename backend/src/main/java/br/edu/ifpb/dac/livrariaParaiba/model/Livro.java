@@ -167,7 +167,7 @@ public class Livro implements Serializable {
 	}
 
 	public void setQuantidadeEstoque(Integer quantidade) {
-		this.quantidade+=quantidade;
+		this.quantidade += quantidade;
 	}
 
 	public void removerDoEstoque() {
@@ -179,5 +179,10 @@ public class Livro implements Serializable {
 		return "\n" + "ID [" + id + "]" + "\n" + "Titulo: " + nome + "\n" + autores.toString() + "\n" + "Descrição: "
 				+ descricao + "\n" + "Edição: " + edicao + "\n" + "ISBN " + isbn + "\n" + "Quantidade de Paginas "
 				+ nPaginas + "\n" + "R$" + valor + "\n" + "Estoque: " + quantidade + "\n";
+	}
+
+	public void addAutor(Autor a) {
+		a.addLivro(this);
+		autores.add(a);
 	}
 }
