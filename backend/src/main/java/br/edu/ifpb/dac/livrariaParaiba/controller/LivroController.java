@@ -34,9 +34,7 @@ public class LivroController {
 	
 	@RequestMapping(value="/livro/salvar", params = {"addAutor"})
 	public String addEndereco(Livro livro, BindingResult bindingResult, Model model) {
-		livro.addAutor(new Autor());
-		String fieldId = "autores" + (livro.getAutores().size() - 1) + ".autorLinha1";
-		model.addAttribute("fieldToFocus", fieldId);
-		return "redirect:livro/novo";
+		
+		return "redirect:livro/livrosIndex";
 	}
 }
