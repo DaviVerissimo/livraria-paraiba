@@ -36,7 +36,7 @@ public class ClienteService {
 	/**
 	 * Deleta um usuário cliente pelo id
 	 * 
-	 * @param id 
+	 * @param id
 	 */
 	public void deletarCliente(long id) {
 		repositorioCliente.deleteById(id);
