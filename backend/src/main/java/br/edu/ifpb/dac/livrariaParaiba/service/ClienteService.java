@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
@@ -18,6 +19,7 @@ public class ClienteService {
 
 	@Autowired
 	private ClienteRepository repositorioCliente;
+	private PasswordEncoder encoder;
 
 	/**
 	 * Recebe um usuário cliente e salva no database
@@ -27,6 +29,7 @@ public class ClienteService {
 	 * @return Cliente
 	 */
 	public Cliente salvarCliente(Cliente cliente) {
+		cliente.setSenha(encoder.encode(cliente.getSenha()));
 		return repositorioCliente.save(cliente);
 	}
 
