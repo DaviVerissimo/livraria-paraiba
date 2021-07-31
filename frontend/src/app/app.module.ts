@@ -1,3 +1,4 @@
+import { UsuarioService } from './usuario.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -6,6 +7,7 @@ import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import { InputMaskModule } from 'primeng/inputmask';
+import {TableModule} from 'primeng/table';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,13 +16,16 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
+import { ClienteComponent } from './cliente/cliente.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     LancamentoCadastroComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    ClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +35,11 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     ButtonModule,
     SelectButtonModule,
-    InputMaskModule
+    InputMaskModule,
+    TableModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
