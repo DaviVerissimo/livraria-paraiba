@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Livraria Paraíba</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+	<style type="text/css">
+		label.campo_input,
+		label.txt_desc,
+		btn_autor {
+			display: block;
+			width: 90px;
+		}
+
+		textarea {
+			resize: none;
+			width: 170px;
+		}
+
+		div.tabela_autores {
+			overflow: auto;
+			width: 180px;
+			height: 170px;
+		}
+
+		#addAutor {
+			width: 75px;
+			height: 20px;
+		}
+	</style>
+
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		document.addEventListener('DOMContentLoaded', function () {
+			var focusId = /*[[${fieldToFocus}]]*/ '';
+			document.getElementById(focusId).focus();
+			document.getElementById(focusId).select();
+		}, false);
+/*]]>*/
+	</script>
+</head>
+
+<body>
+	<h1>Cadastro de Livro</h1>
+	<div id=area>
+		<form action="#" th:action="@{/livros/salvar}" th:object="${livro}" method="post" id="editarFormLivro">
+			<fieldset>
+				<label class=campo_input>Nome </label><input>
+				<div class="table-responsive">
+					<span th:if="${#fields.hasErrors('autores')}" th:errors="*{autores}"
+									class="text-danger"></span>
+					<table class="table table-hover">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Nome do Autor</th>
+								<th scope="col"><button type="submit" name="addAutor" class="btn btn-outline-light">
+										<i class="fas fa-plus-circle"></i>
+									</button></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="autor,autorStat : *{autores}">
+								<th scope="row" th:text="${autorStat.count}"><input type="hidden"
+										th:field="*{autores[__${autorStat.index}__].id}">
+								</th>
+								<td><input id="inpAutor" placeholder="Adicione um por vez" type="text"
+										th:field="*{autores[__${autorStat.index}__].nome}" /></td>
+								<button type="submit" name="removeAutor" th:value="${autorStat.index}"
+									class="btn btn-danger">
+									<i class="fas fa-minus-square"></i>
+								</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<a target="_blank" th:href="@{/autores/novo}" class="btn incluir">Incluir Autor</a>
+				<label class=txt_desc>Descrição </label><textarea id="descricao" rows="5"></textarea>
+				<label class=campo_input>Edição </label><input>
+				<label class=campo_input>Gênero </label><input>
+				<label class=campo_input>Valor </label><input>
+				<label class=campo_input>Quantidade </label><input>
+				<label class=campo_input>ISBN </label><input>
+				<label class=campo_input>Quantidade de páginas </label> <input>
+				<input class="btn_submit" type="submit" value="Salvar">
+			</fieldset>
+		</form>
+	</div>
+</body>
+<footer>
+	<p>&COPY;Todos os direitos reservados</p>
+</footer>
+
+</html>

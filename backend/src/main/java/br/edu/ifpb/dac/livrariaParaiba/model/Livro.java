@@ -65,7 +65,7 @@ public class Livro implements Serializable {
 	private Integer nPaginas;
 
 	public Livro() {
-
+		autores = new ArrayList<>();
 	}
 
 	public Livro(List<Autor> autores, Integer edicao, GenerosTipos genero, String nome, BigDecimal valor,
@@ -184,5 +184,9 @@ public class Livro implements Serializable {
 	public void addAutor(Autor a) {
 		a.addLivro(this);
 		autores.add(a);
+	}
+
+	public void removerAutor(Integer indice) {
+		autores.remove(indice.intValue());
 	}
 }
