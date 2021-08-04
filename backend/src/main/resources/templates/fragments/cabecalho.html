@@ -27,8 +27,11 @@
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="btn-outline-primary" href="/">Livraria Paraíba</a>
+					
 				</div>
-				
+				<a th:href="@{/user/carrinho/1}">
+				<img src="https://img.icons8.com/material-rounded/24/ffffff/fast-cart.png"/>
+				</a>
 				<div sec:authorize="isAuthenticated()">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="nav-item">

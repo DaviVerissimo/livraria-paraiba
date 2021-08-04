@@ -1,9 +1,9 @@
 package br.edu.ifpb.dac.livrariaParaiba.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -44,15 +45,16 @@ public class Cliente extends Usuario implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date nascimento;
 
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.MERGE)
-	private List<Endereco> endereco = new ArrayList<Endereco>();
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id")
+	private Set<Endereco> endereco = new HashSet<>();
 
 	@OneToMany(mappedBy = "cliente")
-	private List<ItemCarrinho> carrinhoDeCompras = new ArrayList<ItemCarrinho>();
+	private Set<ItemCarrinho> carrinhoDeCompras = new HashSet<>();
 	
 	private String role;
 
-	public void setEndereco(List<Endereco> endereco) {
+	public void setEndereco(Set<Endereco> endereco) {
 		this.endereco = endereco;
 	}
 
@@ -100,7 +102,7 @@ public class Cliente extends Usuario implements Serializable {
 		this.nascimento = nascimento;
 	}
 
-	public List<Endereco> getEndereco() {
+	public Set<Endereco> getEndereco() {
 		return endereco;
 	}
 
@@ -108,11 +110,11 @@ public class Cliente extends Usuario implements Serializable {
 		this.endereco.add(endereco);
 	}
 
-	public List<ItemCarrinho> getCarrinhoDeCompras() {
+	public Set<ItemCarrinho> getCarrinhoDeCompras() {
 		return carrinhoDeCompras;
 	}
 
-	public void setCarrinhoDeCompras(List<ItemCarrinho> carrinhoDeCompras) {
+	public void setCarrinhoDeCompras(Set<ItemCarrinho> carrinhoDeCompras) {
 		this.carrinhoDeCompras = carrinhoDeCompras;
 	}
 

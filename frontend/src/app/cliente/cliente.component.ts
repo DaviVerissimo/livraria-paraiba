@@ -15,8 +15,8 @@ export class ClienteComponent implements OnInit {
     this.listAll();
   }
   listAll(){
-    this.usuarioService.listAll().then(usuarios => {
-      this.usuarios = usuarios});
+    this.usuarioService.listAll().then(usuarios =>
+      this.usuarios = usuarios);
 
     }
 }

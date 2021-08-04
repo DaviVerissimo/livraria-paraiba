@@ -1,3 +1,4 @@
+import { UsuarioService } from './../usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -12,9 +13,14 @@ export class LancamentoCadastroComponent implements OnInit {
     {label: 'Pessoa Física', value: 'Pessoa Física'},
     {label: 'Pessoa Jurídica', value:'Pessoa Jurídica'}
   ];
+  apiUrl = 'localhost:8080/cliente';
 
+  constructor(private usuarioService: UsuarioService){
+
+  }
   salvar(form: NgForm){
-    console.log(form)
+    this.usuarioService.salvar(form.value)
+
   }
 
   ngOnInit(): void {

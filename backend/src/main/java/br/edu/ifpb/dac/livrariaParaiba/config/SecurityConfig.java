@@ -1,5 +1,7 @@
 package br.edu.ifpb.dac.livrariaParaiba.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.Role;
 /**
@@ -29,7 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/css/**", "/js/**", "/resources/**", "/error").permitAll()
+		http.cors().and().csrf().disable();
+		http.authorizeRequests().antMatchers("/css/**", "/js/**", "/resources/**", "/error", "/cliente/**").permitAll()
 				.antMatchers("/adm/**").hasAuthority(Role.ADMIN.getNome()).anyRequest().authenticated().and()
 				.formLogin().permitAll().and().logout().permitAll();
 	}
@@ -42,5 +48,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
 		return new BCryptPasswordEncoder(12);
+	}
+	
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
+		configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
+		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
 	}
 }

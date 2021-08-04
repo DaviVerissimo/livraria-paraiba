@@ -39,8 +39,9 @@ public class ClienteController {
 	private ApplicationEventPublisher publisher;
 
 	@GetMapping
-	public List<Cliente> listarAll() {
-		return clienteService.pesquisarTodosClientes();
+	public ResponseEntity<List<Cliente>> listarAll() {
+		List<Cliente> list =  clienteService.pesquisarTodosClientes();
+		return ResponseEntity.ok().body(list);
 	}
 
 	@PostMapping

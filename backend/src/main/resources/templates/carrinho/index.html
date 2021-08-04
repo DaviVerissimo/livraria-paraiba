@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Livraria Paraíba</title>
+	<link href="../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet" />
+	<link href="../static/css/cart.css" th:href="@{/css/cart.css}" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+
+	<header th:insert="fragments/cabecalho.html :: header"> </header>
+	<div class="container-cart">
+		<div class="items-cart">
+			<h1>Seus Produtos</h1>
+			<div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-3">
+				<div th:each="livro : ${carrinho}" class="card">
+					<img src="https://images-na.ssl-images-amazon.com/images/I/41C+P8UUitL._SX260_BO1,204,203,200_.jpg"
+						class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title" th:text="${livro.livro.nome}"></h5>
+						<p class="card-text" th:text="${livro.livro.descricao}"></p>
+				
+						<a th:href="@{/user/carrinho/excluir/{id_item}(id_item=${livro.id})}"
+							class="btn btn-primary">Remover</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="total-cart">
+			<h3 class="h1-cart">Resumo do Pedido</h3>
+			<p>Subtotal</p>
+			<hr>
+			<p><strong>Total</strong></p>
+			<a class="btn compra">COMPRAR</a>
+		</div>
+	</div>
+</body>
+<footer>
+	<p>Todos os direitos reservados.</p>
+</footer>
+
+</html>
