@@ -36,11 +36,6 @@ public class LivroController {
 
 	@GetMapping("/livros/novo")
 	public String livroCadastro(Model model) {
-		ArrayList<String> nomeAutores = new ArrayList<>();
-		for (Autor autorIt : servicoAutor.retornarListaDeAutores()) {
-			nomeAutores.add(autorIt.getNome());
-		}
-		model.addAttribute("autoresNome", nomeAutores);
 		model.addAttribute("livro", new Livro());
 		model.addAttribute("fieldToFocus", "nome");
 
@@ -67,26 +62,20 @@ public class LivroController {
 	}
 
 	@PostMapping("/livros/salvar")
-	public String salvarLivro(@Valid @ModelAttribute("livro") Livro livro, @PathVariable("autores") ArrayList<Autor> autores,
-			BindingResult bindingResult) {
+	public String salvarLivro(@Valid @ModelAttribute("livro") Livro livro, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return "livro/editarLivro";
 		}
-		for (int i = 0; i < autores.size(); i++) {
-			if (autores.get(i) != null) {
-				if (servicoAutor.pesquisarAutorPorNome(autores.get(i).getNome()) == null) {
-					Autor a = new Autor(livro.getAutores().get(i).getNome());
-					a.addLivro(livro);
-					servicoAutor.salvar(a);
-					livro.addAutor(a);
-				} else {
-					servicoAutor.pesquisarAutorPorNome(autores.get(i).getNome()).addLivro(livro);
-					livro.addAutor(servicoAutor.pesquisarAutorPorNome(autores.get(i).getNome()));
-				}
+
+		List<Autor> autoresLista = livro.getAutores();
+		livro.setAutores(new ArrayList<>());
+		for (int i = 0; i < autoresLista.size(); i++) {
+			Autor autorNumeravel = servicoAutor.pesquisarAutorPorNome(autoresLista.get(i).getNome());
+			if (autorNumeravel != null) {
+				livro.addAutor(autorNumeravel);
 			}
 		}
 		servico.cadastrarLivro(livro);
-
 		return "redirect:/livros";
 	}
 

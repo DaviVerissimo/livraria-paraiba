@@ -11,6 +11,10 @@
 		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
 	<style type="text/css">
+		div.area {
+			overflow: auto;
+		}
+
 		label.campo_input,
 		label.txt_desc,
 		btn_autor {
@@ -21,12 +25,6 @@
 		textarea {
 			resize: none;
 			width: 170px;
-		}
-
-		div.tabela_autores {
-			overflow: auto;
-			width: 180px;
-			height: 170px;
 		}
 
 		#addAutor {
@@ -51,7 +49,7 @@
 	<div id=area>
 		<form action="#" th:action="@{/livros/salvar}" th:object="${livro}" method="post" id="editarFormLivro">
 			<fieldset>
-				<label class=campo_input>Nome </label><input>
+				<label class=campo_input>Nome </label><input th:field="*{nome}">
 				<div class="table-responsive">
 					<span th:if="${#fields.hasErrors('autores')}" th:errors="*{autores}"
 									class="text-danger"></span>
@@ -70,26 +68,30 @@
 										th:field="*{autores[__${autorStat.index}__].id}">
 								</th>
 								<td><input id="inpAutor" placeholder="Adicione um por vez" type="text"
-										th:field="*{autores[__${autorStat.index}__].nome}" /></td>
-								<button type="submit" name="removeAutor" th:value="${autorStat.index}"
-									class="btn btn-danger">
-									<i class="fas fa-minus-square"></i>
-								</button>
-								</td>
+										th:field="*{autores[__${autorStat.index}__].nome}" />
+									<button type="submit" name="removeAutor" th:value="${autorStat.index}" class="btn btn-outline-ligth">
+									<i class="fas fa-minus-circle"></i></td>
+									</button>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 				<a target="_blank" th:href="@{/autores/novo}" class="btn incluir">Incluir Autor</a>
-				<label class=txt_desc>Descrição </label><textarea id="descricao" rows="5"></textarea>
-				<label class=campo_input>Edição </label><input>
-				<label class=campo_input>Gênero </label><input>
-				<label class=campo_input>Valor </label><input>
-				<label class=campo_input>Quantidade </label><input>
-				<label class=campo_input>ISBN </label><input>
-				<label class=campo_input>Quantidade de páginas </label> <input>
-				<input class="btn_submit" type="submit" value="Salvar">
+				<label class=campo_input>Gênero</label>
+				<select th:field="*{genero}">
+					<option
+						th:each="tipoOpc : ${T(br.edu.ifpb.dac.livrariaParaiba.model.GenerosTipos).values()}"
+						th:value="${tipoOpc}" th:text="${tipoOpc.toString}">
+					</option>
+				</select>
+				<label class=txt_desc>Descrição </label><textarea id="descricao" rows="5" th:field="*{descricao}"></textarea>
+				<label class=campo_input>Edição </label><input th:field="*{edicao}">
+				<label class=campo_input>Valor </label><input th:field="*{valor}">
+				<label class=campo_input>Quantidade </label><input th:field="*{quantidade}" placeholder="quantidade em estoque">
+				<label class=campo_input>ISBN </label><input th:field="*{isbn}">
+				<label class=campo_input>Quantidade de páginas </label> <input th:field="*{nPaginas}">
 			</fieldset>
+				<input class="btn_submit" type="submit" value="Salvar">
 		</form>
 	</div>
 </body>
