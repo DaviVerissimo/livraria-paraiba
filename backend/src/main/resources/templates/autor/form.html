@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
-<meta charset="UTF-8" />
- <title>Livraria Paraíba</title>
-
+	<meta charset="UTF-8" />
+	<title>Livraria Paraíba</title>
+	<link href="../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
-<body>
 
-	<div class="container">
-		<h2>Editar Pessoa</h2>
-		<form action="#" th:action="@{/autor/salvar}" th:object="${autor}" method="POST">
+<body>
+	<header th:insert="fragments/cabecalho.html :: header"> </header>
+	<div class="ui-g">
+		<h1>Editar Pessoa</h1>
+		<form action="#" th:action="@{/adm/autor/salvar}" th:object="${autor}" method="POST">
 			<input type="hidden" id="ID" th:field="*{ID}">
-			<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></span>
 			<input type="text" th:field="*{nome}" placeholder="Nome" class="form-control">
-      		
-      		
-			<button type="submit" class="btn">Salvar</button>
+			<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></span>
+			<button type="submit" style="margin-top: 2rem;" class="btn incluir">Salvar</button>
 		</form>
 		<hr>
-		<a th:href="@{/autores}">Retornar para a lista de autores</a>
+		<a class="btn retornar" th:href="@{/adm/autores}">Retornar para a lista de autores</a>
 	</div>
 </body>
+<footer>
+	<p>Todos os direitos reservados.</p>
+</footer>
 </html>

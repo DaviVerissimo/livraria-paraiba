@@ -132,4 +132,9 @@ public class AutorService {
 		autorRepositorio.save(autorSalvo);
 	}
 
+	public Page<Autor> retornarListaDeAutoresPaginada(PageRequest requisicao) {
+		Page<Autor> lista = autorRepositorio.findAll(requisicao);
+		return lista;
+	}
+
 }

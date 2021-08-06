@@ -20,11 +20,14 @@ public class ItemCarrinhoService {
 		return carrinhoRepository.save(itemCarrinho);
 	}
 	
-	public void removerItem(ItemCarrinho itemCarrinho) {
-		carrinhoRepository.delete(itemCarrinho);
+	public void removerItem(long id) {
+		carrinhoRepository.deleteById(id);;
 	}
 	
 	public List<ItemCarrinho> listarItensIdCliente(long id){
 		return carrinhoRepository.findByCliente(id);
+	}
+	public ItemCarrinho pesquisarId(long id) {
+		return carrinhoRepository.getById(id);
 	}
 }

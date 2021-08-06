@@ -1,11 +1,8 @@
 package br.edu.ifpb.dac.livrariaParaiba.service;
 
-import java.math.BigDecimal;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
