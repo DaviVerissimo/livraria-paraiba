@@ -16,6 +16,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 
 import com.sun.istack.NotNull;
 
@@ -40,11 +43,11 @@ public class Livro implements Serializable {
 
 	@OneToMany(mappedBy = "livro")
 	private List<ItemCarrinho> itemCarrinho = new ArrayList<>();
-
+	
 	private Integer quantidade;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	private List<Autor> autores;
+	private List<Autor> autores = new ArrayList<>();
 
 	private Integer edicao;
 
@@ -65,7 +68,6 @@ public class Livro implements Serializable {
 	private Integer nPaginas;
 
 	public Livro() {
-		autores = new ArrayList<>();
 	}
 
 	public Livro(List<Autor> autores, Integer edicao, GenerosTipos genero, String nome, BigDecimal valor,
@@ -173,8 +175,11 @@ public class Livro implements Serializable {
 	public void removerDoEstoque() {
 		quantidade--;
 	}
+	
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
 
-	@Override
 	public String toString() {
 		return "\n" + "ID [" + id + "]" + "\n" + "Titulo: " + nome + "\n" + autores.toString() + "\n" + "Descrição: "
 				+ descricao + "\n" + "Edição: " + edicao + "\n" + "ISBN " + isbn + "\n" + "Quantidade de Paginas "

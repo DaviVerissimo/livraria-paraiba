@@ -66,7 +66,6 @@ public class LivroController {
 		if (bindingResult.hasErrors()) {
 			return "livro/editarLivro";
 		}
-
 		List<Autor> autoresLista = livro.getAutores();
 		livro.setAutores(new ArrayList<>());
 		for (int i = 0; i < autoresLista.size(); i++) {
