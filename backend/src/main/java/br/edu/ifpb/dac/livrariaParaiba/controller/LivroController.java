@@ -22,19 +22,20 @@ import br.edu.ifpb.dac.livrariaParaiba.service.AutorService;
 import br.edu.ifpb.dac.livrariaParaiba.service.LivroService;
 
 @Controller
+@RequestMapping("/livros")
 public class LivroController {
 	@Autowired
 	private LivroService servico;
 	@Autowired
 	private AutorService servicoAutor;
 
-	@GetMapping("/livros")
+	@GetMapping("/")
 	public String livroLista(Model modelo) {
 		modelo.addAttribute("listaLivros", servico.recuperarTodosOsLivros());
 		return "livro/livrosIndex";
 	}
 
-	@GetMapping("/livros/novo")
+	@GetMapping("/novo")
 	public String livroCadastro(Model model) {
 		model.addAttribute("livro", new Livro());
 		model.addAttribute("fieldToFocus", "nome");
@@ -42,7 +43,7 @@ public class LivroController {
 		return "livro/editarLivro";
 	}
 
-	@GetMapping("/livros/alterar/{id}")
+	@GetMapping("/alterar/{id}")
 	public String alterarLivro(@PathVariable("id") long id, Model model) {
 		Livro livroAlterado = servico.recuperarLivro(id)
 				.orElseThrow(() -> new IllegalArgumentException("Livro inválido"));
@@ -51,17 +52,17 @@ public class LivroController {
 		return "livro/editarLivro";
 	}
 
-	@PostMapping("/livros/excluir/{id}")
+	@PostMapping("/excluir/{id}")
 	public String excluirLivro(@PathVariable("id") long id, Model model) {
 		Livro livroExcluir = servico.recuperarLivro(id)
 				.orElseThrow(() -> new IllegalArgumentException("Livro inválido"));
 
 		servico.removerLivro(livroExcluir);
 
-		return "redirect:/livros";
+		return "redirect:/";
 	}
 
-	@PostMapping("/livros/salvar")
+	@PostMapping("/salvar")
 	public String salvarLivro(@Valid @ModelAttribute("livro") Livro livro, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return "livro/editarLivro";
@@ -78,7 +79,7 @@ public class LivroController {
 		return "redirect:/livros";
 	}
 
-	@RequestMapping(value = "/livros/salvar", params = { "addAutor" })
+	@RequestMapping(value = "/salvar", params = { "addAutor" })
 	public String addLivro(Livro livro, Model model, BindingResult bindingResult) {
 		livro.addAutor(new Autor());
 		String fieldId = "autores" + (livro.getAutores().size() - 1) + ".nome";
@@ -86,7 +87,7 @@ public class LivroController {
 		return "livro/editarLivro";
 	}
 
-	@RequestMapping(value = "/livros/salvar", params = { "removeAutor" })
+	@RequestMapping(value = "/salvar", params = { "removeAutor" })
 	public String removeLivro(Livro livro, BindingResult bindingResult, HttpServletRequest req) {
 		final Integer autorIndex = Integer.valueOf(req.getParameter("removeAutor"));
 		livro.removerAutor(autorIndex);

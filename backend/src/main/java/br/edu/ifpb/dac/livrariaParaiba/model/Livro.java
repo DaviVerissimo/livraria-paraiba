@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
 import com.sun.istack.NotNull;
 
@@ -42,27 +43,37 @@ public class Livro implements Serializable {
 	@OneToMany(mappedBy = "livro")
 	private List<ItemCarrinho> itemCarrinho = new ArrayList<>();
 	
+	@NotNull
+	@Min(0)
 	private Integer quantidade;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Autor> autores = new ArrayList<>();
-
+	
+	@NotNull
+	@Min(1)
 	private Integer edicao;
 
 	@Enumerated(EnumType.STRING)
 	private GenerosTipos genero;
 
 	@NotNull
+	@Size(min=1, max=5633)
 	private String nome;
 
 	@NotNull
 	private BigDecimal valor;
-
+	
+	@NotBlank
+	@Size(max=1500)
 	private String descricao;
 
 	@NotNull
+	@Size(min=10, max=13)
 	private String isbn;
-
+	
+	@NotNull
+	@Min(1)
 	private Integer nPaginas;
 
 	public Livro() {

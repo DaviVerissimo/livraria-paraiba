@@ -45,21 +45,23 @@
 </head>
 
 <body>
+	<header th:insert="fragments/cabecalho.html :: header"> </header>
+	<div class="container">
 	<h1>Cadastro de Livro</h1>
-	<div id=area>
 		<form action="#" th:action="@{/livros/salvar}" th:object="${livro}" method="post" id="editarFormLivro">
 			<fieldset>
 				<label class=campo_input>Nome </label><input th:field="*{nome}">
 				<label class=campo_input>ISBN </label><input th:field="*{isbn}">
 				<label class=campo_input>Valor </label><input th:field="*{valor}">
+				<p>
 				<div class="table-responsive">
 					<span th:if="${#fields.hasErrors('autores')}" th:errors="*{autores}"
 									class="text-danger"></span>
 					<table class="table table-hover">
-						<thead class="thead-dark">
+						<thead class="thead-white">
 							<tr>
-								<th scope="col">Nome do Autor</th>
-								<th scope="col"><button type="submit" name="addAutor" class="btn btn-outline-light">
+								<th scope="col">Nome do Autor(es)</th>
+								<th scope="col"><button type="submit" name="addAutor" class="btn btn-outline-dark">
 										<i class="fas fa-plus-circle"></i>
 									</button></th>
 							</tr>
@@ -71,7 +73,7 @@
 								</th>
 								<td><input id="inpAutor" placeholder="Adicione um por vez" type="text"
 										th:field="*{autores[__${autorStat.index}__].nome}" />
-									<button type="submit" name="removeAutor" th:value="${autorStat.index}" class="btn btn-outline-ligth">
+									<button type="submit" name="removeAutor" th:value="${autorStat.index}" class="btn btn-outline-dark">
 									<i class="fas fa-minus-circle"></i></td>
 									</button>
 							</tr>
@@ -86,16 +88,18 @@
 						th:value="${tipoOpc}" th:text="${tipoOpc.toString}">
 					</option>
 				</select>
-				<label class=txt_desc>Descrição </label><textarea id="descricao" rows="5" th:field="*{descricao}"></textarea>
+				<label class=txt_desc>Descrição </label><textarea class="container-fluid" id="descricao" rows="5" th:field="*{descricao}"></textarea>
 				<label class=campo_input>Edição </label><input th:field="*{edicao}">
 				<label class=campo_input>Quantidade de páginas </label> <input type="number" th:field="*{nPaginas}">
 				<label class=campo_input>Quantidade em estoque </label> <input type="number" th:field="*{quantidade}">
+				<hr>
+				<input class="btn btn-primary" type="submit" value="Salvar livro">
 			</fieldset>
-				<input class="btn_submit" type="submit" value="Salvar">
 		</form>
 	</div>
 </body>
 <footer>
+<hr>
 	<p>&COPY;Todos os direitos reservados</p>
 </footer>
 
