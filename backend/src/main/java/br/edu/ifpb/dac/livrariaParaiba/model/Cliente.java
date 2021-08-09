@@ -51,7 +51,7 @@ public class Cliente extends Usuario implements Serializable {
 
 	@OneToMany(mappedBy = "cliente")
 	private Set<ItemCarrinho> carrinhoDeCompras = new HashSet<>();
-	
+
 	private String role;
 
 	public void setEndereco(Set<Endereco> endereco) {
@@ -69,7 +69,7 @@ public class Cliente extends Usuario implements Serializable {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	
+
 	public String getRole() {
 		return role;
 	}

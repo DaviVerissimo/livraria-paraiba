@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.Autor;
 import br.edu.ifpb.dac.livrariaParaiba.service.AutorService;
+
 /**
  * 
  * @author andre
@@ -74,14 +75,14 @@ public class AutorController {
 
 		PageRequest requisicao = PageRequest.of(paginaAtual, tamanhoPagina, Sort.by("ID"));
 		Page<Autor> listaPaginada = autorService.retornarListaDeAutoresPaginada(requisicao);
-		
+
 		model.addAttribute("listaAutores", listaPaginada);
 		int totalPaginas = listaPaginada.getTotalPages();
 		if (totalPaginas > 0) {
 			List<Integer> numerosPaginas = IntStream.rangeClosed(1, totalPaginas).boxed().collect(Collectors.toList());
 			model.addAttribute("numerosPaginas", numerosPaginas);
-		} 
-	//	model.addAttribute("listaAutores", autorService.retornarListaDeAutores());
+		}
+		// model.addAttribute("listaAutores", autorService.retornarListaDeAutores());
 		return "autor/index";
 	}
 

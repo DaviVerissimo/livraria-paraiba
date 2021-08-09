@@ -11,7 +11,7 @@
 .total-cart{
 	
   padding: 1rem 2rem;
- margin-left: 2rem;
+  margin-left: 2rem;
   margin-top: 2rem;
   background: white;
   border: none;
@@ -23,6 +23,13 @@
 	display: flex;
 	align-items: flex-start;
 	padding-left: 2rem;
+}
+.card-qtd{
+	display: flex;
+	align-items: center;
+}
+.qtd{
+	margin-left: 0.50rem;
 }
 .h1-cart{
 	padding: 0 !important; 
@@ -45,4 +52,13 @@
 .btn.compra:hover{
 	color: white;
 	opacity: 0.8;
+}
+
+.adicional-cart{
+  margin: 2rem;	
+  padding: 1rem 2rem;
+  background: white;
+  border: none;
+  border-radius: 0.50rem;
+  margin-bottom: 2rem;
 }

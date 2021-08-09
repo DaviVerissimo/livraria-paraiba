@@ -1,36 +1,30 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head th:fragment="headerfiles">
-<meta charset="UTF-8" />
-<link href="../static/css/cabecalho.css" th:href="@{/css/cabecalho.css}" rel="stylesheet" />
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-	crossorigin="anonymous">
-	
- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<meta charset="UTF-8" />
+	<link href="../static/css/cabecalho.css" th:href="@{/css/cabecalho.css}" rel="stylesheet" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
-<script
-  src="https://code.jquery.com/jquery-3.5.1.js"
-  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-  crossorigin="anonymous"></script>
-<script
-  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
-  crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"
+		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+		integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 </head>
+
 <body>
 	<div th:fragment="header">
-		<nav class="navbar"
-			role="navigation">
+		<nav class="navbar" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="btn-outline-primary" href="/">Livraria Paraíba</a>
-					
 				</div>
 				<a th:href="@{/user/carrinho/1}">
-				<img src="https://img.icons8.com/material-rounded/24/ffffff/fast-cart.png"/>
+					<img src="https://img.icons8.com/material-rounded/24/ffffff/fast-cart.png" />
 				</a>
 				<div sec:authorize="isAuthenticated()">
 					<ul class="nav navbar-nav navbar-right">
@@ -38,6 +32,7 @@
 							<form name="logoutForm" th:action="@{/logout}" method="post">
 								<label class="label-form">Olá, <span sec:authentication="name">Usuário</span></label>
 								<input class="btn btn-outline-danger" type="submit" value="Sair" />
+
 							</form>
 						</li>
 					</ul>
@@ -46,4 +41,5 @@
 		</nav>
 	</div>
 </body>
+
 </html>

@@ -40,7 +40,7 @@ public class ClienteController {
 
 	@GetMapping
 	public ResponseEntity<List<Cliente>> listarAll() {
-		List<Cliente> list =  clienteService.pesquisarTodosClientes();
+		List<Cliente> list = clienteService.pesquisarTodosClientes();
 		return ResponseEntity.ok().body(list);
 	}
 
