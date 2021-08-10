@@ -69,8 +69,22 @@ public class LivrariaParaibaApplication implements CommandLineRunner {
 
 			switch (n) {
 			case 0:
-
-				autorService.retornarListaDeAutoresPaginada(null, null, null, 2);
+				System.out.println("Lista paginada dos Autores: ");
+				System.out.println("Deseja ordenar por qual campo?  ");
+				String campoOrdenarPorAtributo = leitor.next();
+				System.out.println("\n");
+				System.out.println("Crescente - 1 ou Decrescente - 2 ");
+				String ordemDoCampo = leitor.nextLine();
+				System.out.println("Qual página? ");
+				String pagina = leitor.nextLine();
+				System.out.println("Quantidade de itens por pagina: ");
+				int qtd_itensPorPagina = leitor.nextInt();
+				Page<Autor> paginaDeAutores = autorService.retornarListaDeAutoresPaginada
+						(campoOrdenarPorAtributo, ordemDoCampo, pagina, qtd_itensPorPagina);
+						
+				for (Autor autor : paginaDeAutores) {
+					System.out.println(autor +"\n");
+				}
 
 				break;
 			case 1:
