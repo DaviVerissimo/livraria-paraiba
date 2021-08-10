@@ -39,7 +39,6 @@ public class LivroController {
 	public String livroCadastro(Model model) {
 		model.addAttribute("livro", new Livro());
 		model.addAttribute("fieldToFocus", "nome");
-
 		return "livro/editarLivro";
 	}
 
@@ -76,7 +75,7 @@ public class LivroController {
 			}
 		}
 		servico.cadastrarLivro(livro);
-		return "redirect:/livros";
+		return "redirect:/livros/";
 	}
 
 	@RequestMapping(value = "/salvar", params = { "addAutor" })
