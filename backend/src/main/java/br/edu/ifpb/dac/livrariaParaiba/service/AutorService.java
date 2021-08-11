@@ -80,43 +80,30 @@ public class AutorService {
 	/**
 	 * retorna uma pagina com quantidade definida de Autores.
 	 * 
-	 * @param campoOrdenacao   ordenar com base neste campo.
+	 * @param campoOrdenarPorAtributo   ordenar com base neste campo.
 	 * @param direcaoOrdenacao Forma de ordenar (Ascedente, decrescente).
 	 * @param numPagina        Numero da pagina solicitada.
-	 * @param qtdPagina        Quantidade máxima de itens por pargina.
+	 * @param qtd_itensPorPagina Quantidade máxima de itens por pargina.
 	 * @return
 	 */
-	public Page<Autor> retornarListaDeAutoresPaginada(String campoOrdenacao, Sort.Direction direcaoOrdenacao,
-			Integer pagina, int qtdPagina) {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Lista de todos os produtos: \n");
-		System.out.println("Deseja ordenar por qual campo? \n");
-		String campoOrdenar = input.nextLine();
-		campoOrdenacao = campoOrdenar;
-		System.out.println("Crescente - 1 ou Decrescente - 2 \n");
-		Integer direcaoEscolha = Integer.parseInt(input.nextLine());
+	public Page<Autor> retornarListaDeAutoresPaginada(String campoOrdenarPorAtributo, String ordemDoCampo,
+			String pagina, int qtd_itensPorPagina) {		
 		Sort.Direction direcaoOrdenar = Sort.Direction.ASC;
-		switch (direcaoEscolha) {
-			case 1:
+		switch (ordemDoCampo) {
+			case "1":
 				direcaoOrdenar = Sort.Direction.ASC;
 				break;
 		
-			case 2:
+			case "2":
 				direcaoOrdenar = Sort.Direction.DESC;
 				break;
 			default:
 				break;
 		}
-		
-		direcaoOrdenacao = direcaoOrdenar;
-		System.out.println("Qual página? \n");
-		Integer numPagina = Integer.parseInt(input.nextLine());
-		qtdPagina = 3;
-		Sort ordenacao = Sort.by(direcaoOrdenacao, campoOrdenacao);
-		Page<Autor> paginaDeAutores = autorRepositorio.findAll(PageRequest.of(--numPagina, qtdPagina, ordenacao));
-		for (Autor autor : paginaDeAutores) {
-			System.out.println(autor +"\n");
-		}
+		Integer numPagina = Integer.parseInt(pagina);
+		Sort ordenacao = Sort.by(direcaoOrdenar, campoOrdenarPorAtributo);
+		Page<Autor> paginaDeAutores = autorRepositorio.findAll(PageRequest.of(--numPagina, qtd_itensPorPagina, ordenacao));
+			
 		return paginaDeAutores;
 	}
 
