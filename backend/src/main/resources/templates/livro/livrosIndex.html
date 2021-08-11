@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
-<meta charset="UTF-8" />
- <title>Livraria Paraíba</title>
+	<meta charset="UTF-8" />
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+	<title>Livraria Paraíba</title>
 </head>
+
 <body>
-<nav class="navbar">
-			<div class="ui-g-12">
-				<h1>Livraria Paraíba</h1>
-			</div>
-	</nav>
-	
-	<div class="ui-g">
-		<h1>Livros</h1>
+	<header th:insert="fragments/cabecalho.html :: header"> </header>
+	<div class="container">
+		<h1>Livros
+		<small class="text-muted">Cadastrados</small>
+		</h1>
 		<a th:href="@{/livros/novo}" class="btn incluir">Incluir Livro</a>
-		<table border="1" class="table">
+		<table  class="table table-hover ">
 			<thead>
 				<tr>
-					<th>ID</th>
+					<th style="width:  5%">ID</th>
 					<th>Nome</th>
 					<th>Valor</th>
-					<th>quantidade</th>
-					<th>descricao</th>
-					<th>isbn</th>
-					<th>autores</th>
-					<th>paginas</th>
-					<th>edicao</th>
-					<th>genero</th>
+					<th>Estoque</th>
+					<th>ISBN</th>
+					<th>Autores</th>
+					<th>Páginas</th>
+					<th>Edição</th>
+					<th>Gênero</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -35,32 +39,32 @@
 					<td th:text="${livro.nome}"></td>
 					<td th:text="${livro.valor}"></td>
 					<td th:text="${livro.quantidade}"></td>
-					<td th:text="${livro.descricao}"></td>
 					<td th:text="${livro.isbn}"></td>
 					<td th:text="${livro.autores}"></td>
 					<td th:text="${livro.nPaginas}"></td>
 					<td th:text="${livro.edicao}"></td>
 					<td th:text="${livro.genero}"></td>
-					<!--<td>
-						<a th:href="@{/livro/{id}(id=${autor.ID})}" class="btn alterar">Alterar</a>
-						|
-						<a th:href="@{/autor/excluir/{id}(id=${autor.ID})}" class="btn excluir">Excluir</a>
-					</td>-->
+					<td>
+						<a th:href="@{livros/alterar/{id}(id=${livro.id})}" class="btn btn-success">Alterar</a>
+						
+						<a th:href="@{livros/excluir/{id}(id=${livro.id})}" class="btn btn-danger"> Excluir </a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
 		<nav aria-label="...">
-		    <ul class="pagination">
-			    <li th:if="${listaLivros.totalPages > 0}" th:each="numeroPagina : ${numerosPaginas}" 
-			    	th:class="${numeroPagina==listaLivros.number + 1} ? 'page-item active' : 'page-item'">
-			    	<a class="page-link" th:href="@{/livro/livros(size=${listaLivros.size}, page=${numeroPagina})}"
-			        th:text=${numeroPagina}></a>
-			    </li>
-		    </ul>
+			<ul class="pagination">
+				<li th:if="${listaLivros.totalPages > 0}" th:each="numeroPagina : ${numerosPaginas}"
+					th:class="${numeroPagina==listaLivros.number + 1} ? 'page-item active' : 'page-item'">
+					<a class="page-link" th:href="@{/livro/livros(size=${listaLivros.size}, page=${numeroPagina})}"
+						th:text=${numeroPagina}></a>
+				</li>
+			</ul>
 		</nav>
 	</div>
 </body>
 <footer>
-	<p>Todos os direitos reservados.</p>
+	<p>&COPY;Todos os direitos reservados.</p>
 </footer>
+
 </html>
