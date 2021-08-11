@@ -38,7 +38,7 @@
 			<hr>
 			<p><strong>Total</strong></p>
 			<p th:text="${#numbers.formatCurrency(#aggregates.sum(carrinho.![livro.valor*qtd]))}">R$ 0,00</p>
-			<a class="btn compra">COMPRAR</a>
+			<a th:href="@{/user/pedido}" class="btn compra">COMPRAR</a>
 		</div>
 	</div>
 	<div class="adicional-cart">

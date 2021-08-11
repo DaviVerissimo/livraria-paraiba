@@ -22,8 +22,8 @@ public class FormaDePagamento implements Serializable{
 	private long id;
 	@NotBlank
 	private String nome;
-	@NotBlank
-	private String descricao;
+
+	private String uriImage;
 	
 	public FormaDePagamento() {
 		
@@ -45,12 +45,13 @@ public class FormaDePagamento implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getDescricao() {
-		return descricao;
+
+	public String getUriImage() {
+		return uriImage;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setUriImage(String uriImage) {
+		this.uriImage = uriImage;
 	}
 
 	@Override

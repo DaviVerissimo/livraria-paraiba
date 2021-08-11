@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import br.edu.ifpb.dac.livrariaParaiba.event.RecursoUser;
 import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
 import br.edu.ifpb.dac.livrariaParaiba.model.ItemCarrinho;
 import br.edu.ifpb.dac.livrariaParaiba.service.ClienteService;
@@ -23,16 +25,21 @@ public class ItemCarrinhoController {
 
 	@Autowired
 	private ClienteService clienteService;
+	private RecursoUser recurso = new RecursoUser();
 
-	@GetMapping("/user/carrinho/{id}")
-	public String carrinho(@PathVariable("id") long id, Model model) {
-		Cliente cliente = clienteService.pesquisarPorId(id);
+	@GetMapping("/user/carrinho")
+	public String carrinho(Model model) {
+
+		String nome = recurso.getUsarname();
+
+		Cliente cliente = clienteService.pesquisarPorEmail(nome);
 		List<ItemCarrinho> lista = new ArrayList<ItemCarrinho>();
-		for(ItemCarrinho ic : cliente.getCarrinhoDeCompras()) {
-			if(ic.getStatus().equals("pendente")) {
+		for (ItemCarrinho ic : cliente.getCarrinhoDeCompras()) {
+			if (ic.getStatus().equals("pendente")) {
 				lista.add(ic);
 			}
 		}
+
 		model.addAttribute("carrinho", lista);
 		return "carrinho/index";
 	}
@@ -44,8 +51,12 @@ public class ItemCarrinhoController {
 			throw new IllegalArgumentException("Item inválido");
 		}
 		service.removerItem(itemOpt.get().getId());
-		return "redirect:/user/carrinho/" + 1;
+		return "redirect:/user/carrinho";
 	}
-	
+
+	@PostMapping("/carrinho/adicionar")
+	public String adicionar() {
+		return "redirect:/home";
+	}
 
 }
