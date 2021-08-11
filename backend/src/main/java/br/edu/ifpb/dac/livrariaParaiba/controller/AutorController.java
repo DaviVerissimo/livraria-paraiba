@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.Autor;
 import br.edu.ifpb.dac.livrariaParaiba.service.AutorService;
@@ -118,8 +119,12 @@ public class AutorController {
 		autorService.remove(autorOpt.get().getID());
 		return "redirect:/adm/autores";
 	}
-	@GetMapping("/autor/teste")
-	public String teste() {
-		return "autor/file";
-	}
+
+	
+	@GetMapping("/autor/listaTodosAutores")
+	public ModelAndView listarTodosAutores() {
+		ModelAndView modelAndView = new ModelAndView("autor/listaTodosAutores");
+		modelAndView.addObject("listaAutores", autorService.retornarListaDeAutores());
+		return modelAndView;
+		}
 }
