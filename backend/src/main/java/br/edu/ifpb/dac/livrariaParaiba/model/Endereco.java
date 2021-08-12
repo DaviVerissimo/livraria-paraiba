@@ -28,7 +28,6 @@ public class Endereco implements Serializable {
 	@NotNull
 	private int numero;
 	@ManyToOne
-	@JoinColumn(name = "id")
 	private Cliente cliente;
 
 	public Endereco() {

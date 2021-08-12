@@ -130,7 +130,13 @@ footer{
 p{
   color:black;
 }
+/* card-----------------*/
 
+.card{
+	margin-left: 2rem;
+	margin-right: 2rem;
+	padding: 1rem;
+}
 /* responsivo---------------- */
 @media(max-width: 800px) {
 
