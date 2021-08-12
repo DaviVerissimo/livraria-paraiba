@@ -48,7 +48,6 @@ public class LivroController {
 				.orElseThrow(() -> new IllegalArgumentException("Livro inválido"));
 		livroAlterado.setId(id);
 		model.addAttribute("livro", livroAlterado);
-		
 		return "livro/editarLivro";
 	}
 

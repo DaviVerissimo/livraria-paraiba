@@ -45,7 +45,7 @@
 					<td th:text="${livro.edicao}"></td>
 					<td th:text="${livro.genero}"></td>
 					<td>
-						<a th:href="@{alterar/{id}(id=${livro.id})}" class="btn btn-success" >Alterar</a>
+						<a th:href="@{livros/alterar/{id}(id=${livro.id})}" class="btn btn-success" >Alterar</a>
 						
 						<a th:href="@{livros/excluir/{id}(id=${livro.id})}" class="btn btn-danger"> Excluir </a>
 					</td>
