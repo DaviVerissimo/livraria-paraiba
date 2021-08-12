@@ -46,9 +46,9 @@ public class LivroController {
 	public String alterarLivro(@PathVariable("id") long id, Model model) {
 		Livro livroAlterado = servico.recuperarLivro(id)
 				.orElseThrow(() -> new IllegalArgumentException("Livro inválido"));
-
+		livroAlterado.setId(id);
 		model.addAttribute("livro", livroAlterado);
-		model.addAttribute("fieldToFocus", "nome");
+		
 		return "livro/editarLivro";
 	}
 
@@ -57,7 +57,7 @@ public class LivroController {
 
 		Optional<Livro> livroOpt = servico.recuperarLivro(id);
 		if (livroOpt.isEmpty()) {
-			throw new IllegalArgumentException("Autor inválido.");
+			throw new IllegalArgumentException("Livro inválido.");
 		}
 
 		servico.removePorId(livroOpt.get().getId());

@@ -42,14 +42,15 @@ public class Livro implements Serializable {
 
 	@OneToMany(mappedBy = "livro")
 	private List<ItemCarrinho> itemCarrinho = new ArrayList<>();
-	
+
 	@NotNull
 	@Min(0)
 	private Integer quantidade;
 
+	@NotNull
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Autor> autores = new ArrayList<>();
-	
+
 	@NotNull
 	@Min(1)
 	private Integer edicao;
@@ -58,20 +59,20 @@ public class Livro implements Serializable {
 	private GenerosTipos genero;
 
 	@NotNull
-	@Size(min=1, max=5633)
+	@Size(min = 1, max = 5633)
 	private String nome;
 
 	@NotNull
 	private BigDecimal valor;
-	
+
 	@NotBlank
-	@Size(max=1500)
+	@Size(max = 1500)
 	private String descricao;
 
 	@NotNull
-	@Size(min=10, max=13)
+	@Size(min = 10, max = 13)
 	private String isbn;
-	
+
 	@NotNull
 	@Min(1)
 	private Integer nPaginas;
@@ -184,7 +185,7 @@ public class Livro implements Serializable {
 	public void removerDoEstoque() {
 		quantidade--;
 	}
-	
+
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
