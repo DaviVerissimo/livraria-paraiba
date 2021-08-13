@@ -16,7 +16,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 import com.sun.istack.NotNull;
