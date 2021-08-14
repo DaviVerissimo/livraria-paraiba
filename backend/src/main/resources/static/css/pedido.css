@@ -1,0 +1,23 @@
+.container{
+	display: flex;
+	align-items: flex-start;
+	padding-left: 2rem;
+}
+.content{
+	padding: 1rem 2rem;
+  	margin-top: 2rem;
+  	background: white;
+ 	border: none;
+ 	border-radius: 0.50rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+.endereco{
+	margin-left: 0.5rem;
+	display: flex;
+}
+
+.endereco p{
+	margin-left: 0.5rem;
+	
+}

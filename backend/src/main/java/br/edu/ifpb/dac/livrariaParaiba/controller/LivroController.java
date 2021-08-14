@@ -62,7 +62,7 @@ public class LivroController {
 		}
 
 		servico.removePorId(livroOpt.get().getId());
-		return "redirect:/livros";
+		return "redirect:/adm/livros";
 	}
 
 	@PostMapping("/livros/salvar")
@@ -79,18 +79,11 @@ public class LivroController {
 			}
 		}
 		servico.cadastrarLivro(livro);
-		return "redirect:/livros";
+		return "redirect:/adm/livros";
 	}
 
-	@RequestMapping(value = "/livros/salvar", params = { "addAutor" })
-	public String addLivro(Livro livro, Model model, BindingResult bindingResult) {
-		if (!model.containsAttribute("autoresCadastrados")) {
-			ArrayList<String> nomeAutores = new ArrayList<>();
-			for (Autor autorCad : servicoAutor.retornarListaDeAutores()) {
-				nomeAutores.add(autorCad.getNome());
-			}
-			model.addAttribute("autoresCadastrados", nomeAutores);
-		}
+	@RequestMapping(value = "/livros/salvar", params = {"addAutor"})
+	public String addAutor(Livro livro, Model model, BindingResult bindingResult) {
 		livro.addAutor(new Autor());
 		String fieldId = "autores" + (livro.getAutores().size() - 1) + ".nome";
 		model.addAttribute("fieldToFocus", fieldId);
@@ -98,7 +91,7 @@ public class LivroController {
 	}
 
 	@RequestMapping(value = "/livros/salvar", params = { "removeAutor" })
-	public String removeLivro(Livro livro, BindingResult bindingResult, HttpServletRequest req) {
+	public String removeAutor(Livro livro, BindingResult bindingResult, HttpServletRequest req) {
 		final Integer autorIndex = Integer.valueOf(req.getParameter("removeAutor"));
 		livro.removerAutor(autorIndex);
 		return "livro/editarLivro";

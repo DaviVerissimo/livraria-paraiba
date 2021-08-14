@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.Autor;
 import br.edu.ifpb.dac.livrariaParaiba.service.AutorService;
+
 /**
  * 
  * @author andre
@@ -74,14 +76,14 @@ public class AutorController {
 
 		PageRequest requisicao = PageRequest.of(paginaAtual, tamanhoPagina, Sort.by("ID"));
 		Page<Autor> listaPaginada = autorService.retornarListaDeAutoresPaginada(requisicao);
-		
+
 		model.addAttribute("listaAutores", listaPaginada);
 		int totalPaginas = listaPaginada.getTotalPages();
 		if (totalPaginas > 0) {
 			List<Integer> numerosPaginas = IntStream.rangeClosed(1, totalPaginas).boxed().collect(Collectors.toList());
 			model.addAttribute("numerosPaginas", numerosPaginas);
-		} 
-	//	model.addAttribute("listaAutores", autorService.retornarListaDeAutores());
+		}
+		// model.addAttribute("listaAutores", autorService.retornarListaDeAutores());
 		return "autor/index";
 	}
 
@@ -118,4 +120,12 @@ public class AutorController {
 		autorService.remove(autorOpt.get().getID());
 		return "redirect:/adm/autores";
 	}
+
+	
+	@GetMapping("/autor/listaTodosAutores")
+	public ModelAndView listarTodosAutores() {
+		ModelAndView modelAndView = new ModelAndView("autor/listaTodosAutores");
+		modelAndView.addObject("listaAutores", autorService.retornarListaDeAutores());
+		return modelAndView;
+		}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class ClienteService {
 
 	@Autowired
 	private ClienteRepository repositorioCliente;
-	private PasswordEncoder encoder;
+	private PasswordEncoder encoder =  new BCryptPasswordEncoder();
 
 	/**
 	 * Recebe um usuário cliente e salva no database
