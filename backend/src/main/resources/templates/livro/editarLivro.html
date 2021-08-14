@@ -40,12 +40,12 @@
 							<thead>
 							<tbody>
 								<tr>
-									<td scope="row"><input th:field="*{nome}"></td>
-									<td scope="row"><input th:field="*{isbn}"></td>
-									<td scope="row"><input th:field="*{valor}"></td>
-								</tr>
+									<td scope="row"><input required th:field="*{nome}"></td>
+									<td scope="row"><input required th:field="*{isbn}"></td>
+									<td scope="row"><input required th:field="*{valor}"></td>								</tr>
 							</tbody>
 					</table>
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}">Error</div>
 					<span th:if="${#fields.hasErrors('autores')}" th:errors="*{autores}"
 									class="text-danger"></span>
 					<table class="table table-hover">
@@ -59,8 +59,8 @@
 						</thead>
 						<tbody>
 							<td scope="row"><input th:field="*{edicao}"></td>
-							<td scope="row"><input type="number" th:field="*{nPaginas}"></td>
-							<td scope="row"><input type="number" th:field="*{quantidade}"></td>
+							<td scope="row"><input required type="number" th:field="*{nPaginas}"></td>
+							<td scope="row"><input required type="number" th:field="*{quantidade}"></td>
 							<td scope="row">
 								<select th:field="*{genero}">
 									<option

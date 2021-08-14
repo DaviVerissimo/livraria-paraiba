@@ -1,6 +1,7 @@
 package br.edu.ifpb.dac.livrariaParaiba.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,6 +83,13 @@ public class LivroController {
 
 	@RequestMapping(value = "/livros/salvar", params = { "addAutor" })
 	public String addLivro(Livro livro, Model model, BindingResult bindingResult) {
+		if (!model.containsAttribute("autoresCadastrados")) {
+			ArrayList<String> nomeAutores = new ArrayList<>();
+			for (Autor autorCad : servicoAutor.retornarListaDeAutores()) {
+				nomeAutores.add(autorCad.getNome());
+			}
+			model.addAttribute("autoresCadastrados", nomeAutores);
+		}
 		livro.addAutor(new Autor());
 		String fieldId = "autores" + (livro.getAutores().size() - 1) + ".nome";
 		model.addAttribute("fieldToFocus", fieldId);
