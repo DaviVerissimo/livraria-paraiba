@@ -14,7 +14,7 @@ public enum GenerosTipos {
 	},
 	COMEDIA {
 		public String toString() {
-			return "COMÉDIA";
+			return "COMEDIA";
 		}
 	},
 	FICÇÃO_CIENTIFICA {
