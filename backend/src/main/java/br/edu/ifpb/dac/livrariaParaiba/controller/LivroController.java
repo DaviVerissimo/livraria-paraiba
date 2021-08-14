@@ -65,7 +65,7 @@ public class LivroController {
 		return "redirect:/adm/livros";
 	}
 
-	@PostMapping("/adm/livros/salvar")
+	@PostMapping("/livros/salvar")
 	public String salvarLivro(@Valid @ModelAttribute("livro") Livro livro, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return "livro/editarLivro";
