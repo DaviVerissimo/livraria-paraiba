@@ -26,7 +26,7 @@
 	<header th:insert="fragments/cabecalho.html :: header"> </header>
 	<div class="container">
 		<h1>Cadastro de Livro</h1>
-		<form action="#" th:action="@{/livros/salvar}" th:object="${livro}" method="post" id="editarFormLivro">
+		<form action="#" th:action="@{/adm/livros/salvar}" th:object="${livro}" method="post" id="editarFormLivro">
 			<fieldset>
 				<div class="table-responsive">
 					<input type="hidden" id="id" th:field="*{id}">
@@ -76,7 +76,7 @@
 								<th scope="col"><button type="submit" name="addAutor" class="btn btn-outline-dark">
 										<i class="fas fa-plus-circle"></i>
 									</button></th>
-								<th scope="col"><a target="_blank" th:href="@{/autores/novo}" class="btn incluir">Incluir Autor</a></th>
+								<th scope="col"><a target="_blank" th:href="@{/adm/autores/novo}" class="btn incluir">Incluir Autor</a></th>
 							</tr>
 						</thread>
 						<tbody>

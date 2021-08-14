@@ -24,6 +24,7 @@ import br.edu.ifpb.dac.livrariaParaiba.service.AutorService;
 import br.edu.ifpb.dac.livrariaParaiba.service.LivroService;
 
 @Controller
+@RequestMapping("/adm")
 public class LivroController {
 	@Autowired
 	private LivroService servico;
