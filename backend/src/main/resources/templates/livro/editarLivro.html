@@ -26,7 +26,7 @@
 <body>
 	<header th:insert="fragments/cabecalho.html :: header"> </header>
 	<div class="container">
-		<form action="#" th:action="@{/livros/salvar}" th:object="${livro}" method="post" id="editarFormLivro">
+		<form action="#" th:action="@{/adm/livros/salvar}" th:object="${livro}" method="post" id="editarFormLivro">
 			<fieldset>
 				<div class="table-responsive">
 					<div class="ui-g">

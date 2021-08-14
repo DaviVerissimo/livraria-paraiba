@@ -82,7 +82,7 @@ public class LivroController {
 		return "redirect:/adm/livros";
 	}
 
-	@RequestMapping(value = "/adm/livros/salvar", params = {"addAutor"})
+	@RequestMapping(value = "/livros/salvar", params = {"addAutor"})
 	public String addAutor(Livro livro, Model model, BindingResult bindingResult) {
 		livro.addAutor(new Autor());
 		String fieldId = "autores" + (livro.getAutores().size() - 1) + ".nome";
@@ -90,7 +90,7 @@ public class LivroController {
 		return "livro/editarLivro";
 	}
 
-	@RequestMapping(value = "/adm/livros/salvar", params = { "removeAutor" })
+	@RequestMapping(value = "/livros/salvar", params = { "removeAutor" })
 	public String removeAutor(Livro livro, BindingResult bindingResult, HttpServletRequest req) {
 		final Integer autorIndex = Integer.valueOf(req.getParameter("removeAutor"));
 		livro.removerAutor(autorIndex);
