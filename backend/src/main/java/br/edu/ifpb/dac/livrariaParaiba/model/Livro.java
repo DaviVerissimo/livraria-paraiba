@@ -14,6 +14,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.sun.istack.NotNull;
 
@@ -39,31 +42,41 @@ public class Livro implements Serializable {
 	@OneToMany(mappedBy = "livro")
 	private List<ItemCarrinho> itemCarrinho = new ArrayList<>();
 
+	@NotNull
+	@Min(0)
 	private Integer quantidade;
 
+	@NotNull
 	@ManyToMany(fetch = FetchType.EAGER)
-	private List<Autor> autores;
+	private List<Autor> autores = new ArrayList<>();
 
+	@NotNull
+	@Min(1)
 	private Integer edicao;
 
 	@Enumerated(EnumType.STRING)
 	private GenerosTipos genero;
 
 	@NotNull
+	@Size(min = 1, max = 5633)
 	private String nome;
 
 	@NotNull
 	private BigDecimal valor;
 
+	@NotBlank
+	@Size(max = 1500)
 	private String descricao;
 
 	@NotNull
+	@Size(min = 10, max = 13)
 	private String isbn;
 
+	@NotNull
+	@Min(1)
 	private Integer nPaginas;
 
 	public Livro() {
-
 	}
 
 	public Livro(List<Autor> autores, Integer edicao, GenerosTipos genero, String nome, BigDecimal valor,
@@ -165,17 +178,29 @@ public class Livro implements Serializable {
 	}
 
 	public void setQuantidadeEstoque(Integer quantidade) {
-		this.quantidade+=quantidade;
+		this.quantidade += quantidade;
 	}
 
 	public void removerDoEstoque() {
 		quantidade--;
 	}
 
-	@Override
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+
 	public String toString() {
 		return "\n" + "ID [" + id + "]" + "\n" + "Titulo: " + nome + "\n" + autores.toString() + "\n" + "Descrição: "
 				+ descricao + "\n" + "Edição: " + edicao + "\n" + "ISBN " + isbn + "\n" + "Quantidade de Paginas "
 				+ nPaginas + "\n" + "R$" + valor + "\n" + "Estoque: " + quantidade + "\n";
+	}
+
+	public void addAutor(Autor a) {
+		a.addLivro(this);
+		autores.add(a);
+	}
+
+	public void removerAutor(Integer indice) {
+		autores.remove(indice.intValue());
 	}
 }

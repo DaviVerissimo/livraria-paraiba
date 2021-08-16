@@ -1,5 +1,6 @@
 package br.edu.ifpb.dac.livrariaParaiba.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -31,7 +32,15 @@ public class Autor {
 	private List<Livro> listaAssociados;
 
 	public Autor() {
+		listaAssociados = new ArrayList<>();
+	}
 
+	public void addLivro(Livro l) {
+		listaAssociados.add(l);
+	}
+
+	public void removerLivro(Livro l) {
+		listaAssociados.remove(l);
 	}
 
 	public Autor(String nome) {
@@ -56,7 +65,7 @@ public class Autor {
 
 	@Override
 	public String toString() {
-		return "Autor [nome=" + nome + ", ID=" + ID + "]";
+		return nome;
 	}
 
 	public List<Livro> getListaAssociados() {
