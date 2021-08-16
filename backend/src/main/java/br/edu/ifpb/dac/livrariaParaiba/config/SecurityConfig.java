@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/img/**","/css/**", "/js/**", "/error", "/autor/**").permitAll()
+		http.authorizeRequests().antMatchers("/img/**","/css/**", "/js/**", "/error", "/autor/**", "/home/**").permitAll()
 				.antMatchers("/adm/**").hasAuthority(Role.ADMIN.getNome()).anyRequest().authenticated().and()
 				.formLogin().permitAll().and().logout().permitAll();
 	}

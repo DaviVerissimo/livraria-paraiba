@@ -34,7 +34,7 @@ import br.edu.ifpb.dac.livrariaParaiba.service.LivroService;
 
 @SpringBootApplication
 public class LivrariaParaibaApplication  {
-
+	
 	public static void main(String[] args) {
 		SpringApplication.run(LivrariaParaibaApplication.class, args);
 	}
