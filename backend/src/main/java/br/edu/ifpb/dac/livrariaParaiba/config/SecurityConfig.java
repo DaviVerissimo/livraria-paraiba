@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.Role;
+
 /**
  * 
  * @author andre
@@ -33,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/img/**","/css/**", "/js/**", "/error", "/autor/**", "/home/**").permitAll()
+		http.authorizeRequests().antMatchers("/img/**", "/css/**", "/js/**", "/error", "/autor/**", "/").permitAll()
 				.antMatchers("/adm/**").hasAuthority(Role.ADMIN.getNome()).anyRequest().authenticated().and()
 				.formLogin().permitAll().and().logout().permitAll();
 	}
@@ -46,5 +47,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
 		return new BCryptPasswordEncoder(12);
+	}
+
+	@Bean
+	public AuthenticationManager getAuthenticationManager() throws Exception {
+		return super.authenticationManagerBean();
 	}
 }

@@ -46,7 +46,7 @@ public class Cliente extends Usuario implements Serializable {
 	private Date nascimento;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "cliente_id")
 	private Set<Endereco> endereco = new HashSet<>();
 
 	@OneToMany(mappedBy = "cliente")
