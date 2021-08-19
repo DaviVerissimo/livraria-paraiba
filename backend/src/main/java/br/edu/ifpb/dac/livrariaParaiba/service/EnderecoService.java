@@ -36,6 +36,10 @@ public class EnderecoService{
 		return enderecoRepository.findAll();
 	}
 	public List<Endereco> findByIdCliente(long id_cliente){
-		return enderecoRepository.findByCliente(id_cliente);
+		return enderecoRepository.findByClienteId(id_cliente);
+	}
+	
+	public Endereco findById(long id) {
+		return enderecoRepository.findById(id);
 	}
 }

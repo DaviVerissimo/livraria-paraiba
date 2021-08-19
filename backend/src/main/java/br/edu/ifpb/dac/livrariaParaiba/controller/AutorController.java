@@ -120,7 +120,6 @@ public class AutorController {
 		autorService.remove(autorOpt.get().getID());
 		return "redirect:/adm/autores";
 	}
-
 	
 	@GetMapping("/autor/listaTodosAutores")
 	public ModelAndView listarTodosAutores() {
