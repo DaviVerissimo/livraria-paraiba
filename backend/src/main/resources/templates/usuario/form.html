@@ -16,7 +16,6 @@
 		<h2>Faça o seu cadastro</h2>
 		<form action="#" th:action="@{/usuario/salvar}" th:object="${usuario}" method="POST">
 			<input type="hidden" id="id" th:field="*{id}">
-			<input type="hidden" id="role" th:field="*{role}">
 			
 			<input type="text" th:field="*{nome}" placeholder="Nome Completo" class="form-control">
 			<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></span>

@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
+import br.edu.ifpb.dac.livrariaParaiba.model.Role;
 import br.edu.ifpb.dac.livrariaParaiba.repository.ClienteRepository;
 
 /**
@@ -31,6 +32,7 @@ public class ClienteService {
 	 * @return Cliente
 	 */
 	public Cliente salvarCliente(Cliente cliente) {
+		cliente.setRole(Role.USER.getNome());
 		cliente.setSenha(encoder.encode(cliente.getSenha()));
 		return repositorioCliente.save(cliente);
 	}
