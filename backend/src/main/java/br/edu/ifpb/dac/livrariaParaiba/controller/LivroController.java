@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.edu.ifpb.dac.livrariaParaiba.model.Autor;
 import br.edu.ifpb.dac.livrariaParaiba.model.Livro;
@@ -82,7 +83,7 @@ public class LivroController {
 		return "redirect:/adm/livros";
 	}
 
-	@RequestMapping(value = "/livros/salvar", params = {"addAutor"})
+	@RequestMapping(value = "/livros/salvar", params = { "addAutor" })
 	public String addAutor(Livro livro, Model model, BindingResult bindingResult) {
 		livro.addAutor(new Autor());
 		String fieldId = "autores" + (livro.getAutores().size() - 1) + ".nome";
@@ -95,5 +96,11 @@ public class LivroController {
 		final Integer autorIndex = Integer.valueOf(req.getParameter("removeAutor"));
 		livro.removerAutor(autorIndex);
 		return "livro/editarLivro";
+	}
+
+	@PostMapping("**/pesquisarlivro")
+	public String pesquisar(@RequestParam("pesquisar") String nomeLivro, Model model) {
+		model.addAttribute("listaLivros", servico.retornarLivrosPeloNome(nomeLivro));
+		return "livro/livrosIndex";
 	}
 }

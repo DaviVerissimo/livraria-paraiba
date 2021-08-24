@@ -166,6 +166,10 @@ public class LivroService {
 		return paginaDeLivros;
 	}
 
+	public List<Livro> retornarLivrosPeloNome(String nome) {
+		return repositorioLivro.findLivroByName(nome);
+	}
+
 	public Page<Livro> recuperarTodosOsLivros(int inicio, int tamanho) {
 		return repositorioLivro.findAll(PageRequest.of(inicio, tamanho));
 	}

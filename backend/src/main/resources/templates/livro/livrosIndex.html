@@ -15,56 +15,78 @@
 
 <body>
 	<header th:insert="fragments/cabecalho.html :: header"> </header>
-	<div class="container">
-		<div class="ui-g">
-			<h1>Livros
-				<small class="text-muted">Cadastrados</small>
-			</h1>
-			<a th:href="@{/adm/livros/novo}" class="btn incluir">Incluir Livro</a>
-			<table class="table table-hover ">
-				<thead>
-					<tr>
-						<th style="width:  5%">ID</th>
-						<th>Nome</th>
-						<th>Valor</th>
-						<th>Estoque</th>
-						<th>ISBN</th>
-						<th>Autores</th>
-						<th>Páginas</th>
-						<th>Edição</th>
-						<th>Gênero</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="livro : ${listaLivros}">
-						<td th:text="${livro.id}"></td>
-						<td th:text="${livro.nome}"></td>
-						<td th:text="${livro.valor}"></td>
-						<td th:text="${livro.quantidade}"></td>
-						<td th:text="${livro.isbn}"></td>
-						<td th:text="${livro.autores}"></td>
-						<td th:text="${livro.nPaginas}"></td>
-						<td th:text="${livro.edicao}"></td>
-						<td th:text="${livro.genero}"></td>
-						<td>
-							<a th:href="@{/adm/livros/alterar/{id}(id=${livro.id})}" class="btn btn-success">Alterar</a>
+	<form action="pesquisarlivro" method="POST">
+		<div class="container">
+			<div class="ui-g">
+				<h1>Livros
+					<small class="text-muted">Cadastrados</small>
+				</h1>
+				<a th:href="@{/adm/livros/novo}" class="btn incluir">Incluir Livro</a>
+				<br>
+				<div class="row">
+				<div class="col col-lg-8">
+				</div>
+					<div class="col col-lg-3">
+						<input name="pesquisar">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+				<div class="col col-lg-9">
+				</div>
+					<div class="col">
+						<input class="btn btn-outline-dark btn-sm" type="submit" value="Buscar">
+					</div>
+				</div>
+				<br>
+				<table class="table table-hover ">
+					<thead>
+						<tr>
+							<th style="width:  5%">ID</th>
+							<th>Nome</th>
+							<th>Valor</th>
+							<th>Estoque</th>
+							<th>ISBN</th>
+							<th>Autores</th>
+							<th>Páginas</th>
+							<th>Edição</th>
+							<th>Gênero</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="livro : ${listaLivros}">
+							<td th:text="${livro.id}"></td>
+							<td th:text="${livro.nome}"></td>
+							<td th:text="${livro.valor}"></td>
+							<td th:text="${livro.quantidade}"></td>
+							<td th:text="${livro.isbn}"></td>
+							<td th:text="${livro.autores}"></td>
+							<td th:text="${livro.nPaginas}"></td>
+							<td th:text="${livro.edicao}"></td>
+							<td th:text="${livro.genero}"></td>
+							<td>
+								<a th:href="@{/adm/livros/alterar/{id}(id=${livro.id})}"
+									class="btn btn-success">Alterar</a>
 
-							<a th:href="@{/adm/livros/excluir/{id}(id=${livro.id})}" class="btn btn-danger"> Excluir </a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<nav aria-label="...">
-				<ul class="pagination">
-					<li th:if="${listaLivros.totalPages > 0}" th:each="numeroPagina : ${numerosPaginas}"
-						th:class="${numeroPagina==listaLivros.number + 1} ? 'page-item active' : 'page-item'">
-						<a class="page-link" th:href="@{/livro/livros(size=${listaLivros.size}, page=${numeroPagina})}"
-							th:text=${numeroPagina}></a>
-					</li>
-				</ul>
-			</nav>
+								<a th:href="@{/adm/livros/excluir/{id}(id=${livro.id})}" class="btn btn-danger"> Excluir
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<nav aria-label="...">
+					<ul class="pagination">
+						<li th:if="${listaLivros.totalPages > 0}" th:each="numeroPagina : ${numerosPaginas}"
+							th:class="${numeroPagina==listaLivros.number + 1} ? 'page-item active' : 'page-item'">
+							<a class="page-link"
+								th:href="@{/livro/livros(size=${listaLivros.size}, page=${numeroPagina})}"
+								th:text=${numeroPagina}></a>
+						</li>
+					</ul>
+				</nav>
+			</div>
 		</div>
-	</div>
+		<form>
 </body>
 <footer>
 	<p>&COPY;Todos os direitos reservados.</p>
