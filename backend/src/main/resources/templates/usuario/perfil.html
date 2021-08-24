@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Livraria Paraíba</title>
+	<link href="../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+	<header th:insert="fragments/cabecalho.html :: header"> </header>
+	<div class="ui-g">
+		<div class="pedidos">
+			<h2>Gestão</h2>
+		</div>
+		<div class="opcoes">
+			<a class="btn btn-primary" th:href="@{/user/pedidos/index}">Meus Pedidos</a>
+			<a class="btn btn-primary" th:href="@{/user/pedidos/lista-de-desejos}">Lista de Desejos</a>
+			<a class="btn btn-primary" th:href="@{/user/enderecos}">Meus Endereços</a>
+			<a class="btn btn-primary" th:href="@{/user/usuario/{id}(id=${usuario.id})}">Editar Cadastro</a>
+			<a class="btn btn-danger" th:href="@{/user/usuario/excluir/{id}(id=${usuario.id})}">Excluir Conta</a>
+		</div>
+		<div class="burocratico">
+			<hr>
+			<a class="btn" th:href="@{/user/pedidos/reclamcoes}">Reclamações</a>
+			<hr>
+			<a class="btn" th:href="@{/user/pedidos/reembolsos-devolucoes}">Reembolsos e Devoluções</a>
+			<hr>
+		</div>
+	</div>
+</body>
+<footer>
+	<p>Todos os direitos reservados.</p>
+</footer>
+
+</html>

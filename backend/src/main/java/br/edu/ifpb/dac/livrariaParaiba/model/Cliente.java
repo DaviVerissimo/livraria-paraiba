@@ -42,8 +42,7 @@ public class Cliente extends Usuario implements Serializable {
 	private String cpf;
 
 	@NotNull
-	@Temporal(TemporalType.DATE)
-	private Date nascimento;
+	private String telefone;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cliente_id")
@@ -94,12 +93,13 @@ public class Cliente extends Usuario implements Serializable {
 		this.nome = nome;
 	}
 
-	public Date getNascimento() {
-		return nascimento;
+
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setNascimento(Date nascimento) {
-		this.nascimento = nascimento;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public Set<Endereco> getEndereco() {
