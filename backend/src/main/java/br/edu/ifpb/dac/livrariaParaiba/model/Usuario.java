@@ -1,28 +1,55 @@
 package br.edu.ifpb.dac.livrariaParaiba.model;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
+
+import com.sun.istack.NotNull;
+
 
 /**
- * @author André Felipe
+ * @author davi
+ *
  */
-@MappedSuperclass
-public abstract class Usuario {
+@Entity
+public class Usuario {
+	
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	@NotNull
+	private String nome;
+	private String senha;
+	private String email;
+	
+//	@NotNull
+//	private String cpf;
+//
+//	@NotNull
+//	private String telefone;
+	
 
-	private String username, senha;
-	private boolean status;
+//	@ManyToMany(fetch = FetchType.EAGER)
+//	private List<Perfil> perfis;
 
-	public abstract boolean verificarLogin(String user, String senha);
-
-	public abstract boolean isLogado();
-
-	public abstract boolean validarLogin(String user, String senha);
-
-	public String getUsername() {
-		return username;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getSenha() {
@@ -33,12 +60,29 @@ public abstract class Usuario {
 		this.senha = senha;
 	}
 
-	public boolean isStatus() {
-		return status;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setStatus(boolean estado) {
-		this.status = estado;
+	public void setEmail(String email) {
+		this.email = email;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+//	public List<Perfil> getPerfis() {
+//		return perfis;
+//	}
+//
+//	public void setPerfis(List<Perfil> perfis) {
+//		this.perfis = perfis;
+//	}
+	
 
 }

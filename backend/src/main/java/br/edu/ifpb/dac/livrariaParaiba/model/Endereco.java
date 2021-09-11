@@ -28,7 +28,15 @@ public class Endereco implements Serializable {
 	@NotNull
 	private int numero;
 	@ManyToOne
-	private Cliente cliente;
+	private Usuario usuario;
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	public Endereco() {
 
@@ -74,13 +82,6 @@ public class Endereco implements Serializable {
 		this.numero = numero;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
 
 	public long getIdEnd() {
 		return idEnd;

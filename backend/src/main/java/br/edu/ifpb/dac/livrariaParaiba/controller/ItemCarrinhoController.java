@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.ifpb.dac.livrariaParaiba.event.RecursoUser;
-import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
 import br.edu.ifpb.dac.livrariaParaiba.model.ItemCarrinho;
-import br.edu.ifpb.dac.livrariaParaiba.service.ClienteService;
+import br.edu.ifpb.dac.livrariaParaiba.model.Usuario;
 import br.edu.ifpb.dac.livrariaParaiba.service.ItemCarrinhoService;
+import br.edu.ifpb.dac.livrariaParaiba.service.UsuarioService;
 
 @Controller
 public class ItemCarrinhoController {
@@ -24,7 +24,7 @@ public class ItemCarrinhoController {
 	private ItemCarrinhoService service;
 
 	@Autowired
-	private ClienteService clienteService;
+	private UsuarioService clienteService;
 	private RecursoUser recurso = new RecursoUser();
 
 	@GetMapping("/user/carrinho")
@@ -32,13 +32,13 @@ public class ItemCarrinhoController {
 
 		String nome = recurso.getUsarname();
 
-		Cliente cliente = clienteService.pesquisarPorEmail(nome);
+		Usuario cliente = clienteService.pesquisarPorEmail(nome);
 		List<ItemCarrinho> lista = new ArrayList<ItemCarrinho>();
-		for (ItemCarrinho ic : cliente.getCarrinhoDeCompras()) {
-			if (ic.getStatus().equals("pendente")) {
-				lista.add(ic);
-			}
-		}
+//		for (ItemCarrinho ic : cliente.getCarrinhoDeCompras()) {
+//			if (ic.getStatus().equals("pendente")) {
+//				lista.add(ic);
+//			}
+//		}
 
 		model.addAttribute("carrinho", lista);
 		return "carrinho/index";

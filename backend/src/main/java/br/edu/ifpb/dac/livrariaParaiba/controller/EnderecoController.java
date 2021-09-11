@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.ifpb.dac.livrariaParaiba.event.RecursoUser;
-import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
 import br.edu.ifpb.dac.livrariaParaiba.model.Endereco;
-import br.edu.ifpb.dac.livrariaParaiba.service.ClienteService;
+import br.edu.ifpb.dac.livrariaParaiba.model.Usuario;
 import br.edu.ifpb.dac.livrariaParaiba.service.EnderecoService;
+import br.edu.ifpb.dac.livrariaParaiba.service.UsuarioService;
 
 @Controller
 public class EnderecoController {
@@ -27,12 +27,12 @@ public class EnderecoController {
 	private EnderecoService enderecoService;
 	private RecursoUser recurso = new RecursoUser();
 	@Autowired
-	private ClienteService clienteService;
+	private UsuarioService clienteService;
 
 	@GetMapping("user/enderecos")
 	public String listarEnderecos(Model model) {
 		String nome = recurso.getUsarname();
-		Cliente c = clienteService.pesquisarPorEmail(nome);
+		Usuario c = clienteService.pesquisarPorEmail(nome);
 		List<Endereco> lista = enderecoService.findByIdCliente(c.getId()); 
 		model.addAttribute("enderecos", lista);
 		return "endereco/index";
@@ -49,8 +49,8 @@ public class EnderecoController {
 			return "autor/form";
 		}
 		String nome = recurso.getUsarname();
-		Cliente c = clienteService.pesquisarPorEmail(nome);
-		endereco.setCliente(c);
+		Usuario c = clienteService.pesquisarPorEmail(nome);
+		//endereco.setCliente(c);
 		enderecoService.salvarEndereco(endereco);
 		return "redirect:/user/enderecos";
 	}

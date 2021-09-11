@@ -25,7 +25,7 @@ public class ItemCarrinho implements Serializable {
 	private String status;
 	private int qtd;
 	@ManyToOne
-	private Cliente cliente;
+	private Usuario cliente;
 
 	public ItemCarrinho() {
 
@@ -63,12 +63,14 @@ public class ItemCarrinho implements Serializable {
 		this.qtd = qtd;
 	}
 
-	public Cliente getCliente() {
+	public Usuario getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Cliente cliente) {
+	public void setCliente(Usuario cliente) {
 		this.cliente = cliente;
 	}
+
+
 
 }

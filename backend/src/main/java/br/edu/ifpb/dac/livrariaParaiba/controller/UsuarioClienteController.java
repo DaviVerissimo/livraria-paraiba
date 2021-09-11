@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifpb.dac.livrariaParaiba.event.RecursoCriadoEvent;
-import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
-import br.edu.ifpb.dac.livrariaParaiba.service.ClienteService;
+import br.edu.ifpb.dac.livrariaParaiba.model.Usuario;
+import br.edu.ifpb.dac.livrariaParaiba.service.UsuarioService;
 
 /**
  * 
@@ -30,30 +30,30 @@ import br.edu.ifpb.dac.livrariaParaiba.service.ClienteService;
  */
 @RestController
 @RequestMapping("/cliente")
-public class ClienteController {
+public class UsuarioClienteController {
 
 	@Autowired
-	private ClienteService clienteService;
+	private UsuarioService clienteService;
 
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
 	@GetMapping
-	public ResponseEntity<List<Cliente>> listarAll() {
-		List<Cliente> list = clienteService.pesquisarTodosClientes();
+	public ResponseEntity<List<Usuario>> listarAll() {
+		List<Usuario> list = clienteService.pesquisarTodosClientes();
 		return ResponseEntity.ok().body(list);
 	}
 
 	@PostMapping
-	public ResponseEntity<Cliente> save(@Validated @RequestBody Cliente cliente, HttpServletResponse response) {
-		Cliente clienteSalvo = clienteService.salvarCliente(cliente);
+	public ResponseEntity<Usuario> save(@Validated @RequestBody Usuario cliente, HttpServletResponse response) {
+		Usuario clienteSalvo = clienteService.salvarCliente(cliente);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, clienteSalvo.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(clienteSalvo);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Cliente> buscarPeloId(@PathVariable long id) {
-		Cliente cliente = clienteService.pesquisarPorId(id);
+	public ResponseEntity<Usuario> buscarPeloId(@PathVariable long id) {
+		Usuario cliente = clienteService.pesquisarPorId(id);
 		return cliente != null ? ResponseEntity.ok(cliente) : ResponseEntity.notFound().build();
 	}
 
@@ -64,7 +64,7 @@ public class ClienteController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Cliente> atualizar(@Validated @RequestBody Cliente cliente, @PathVariable Long id) {
+	public ResponseEntity<Usuario> atualizar(@Validated @RequestBody Usuario cliente, @PathVariable Long id) {
 		clienteService.updateCliente(id, cliente);
 		return ResponseEntity.ok(cliente);
 	}

@@ -13,6 +13,6 @@ import br.edu.ifpb.dac.livrariaParaiba.model.Endereco;
 public interface EnderecoRepository extends JpaRepository<Endereco, Long>{
 	
 	public Endereco findById(long id);
-	public List<Endereco> findByClienteId(long id);
+	public List<Endereco> findByUsuarioId(long id);
 
 }

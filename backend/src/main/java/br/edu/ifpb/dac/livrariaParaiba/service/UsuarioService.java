@@ -1,6 +1,5 @@
 package br.edu.ifpb.dac.livrariaParaiba.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -10,35 +9,31 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import br.edu.ifpb.dac.livrariaParaiba.model.Cliente;
-import br.edu.ifpb.dac.livrariaParaiba.model.Role;
-import br.edu.ifpb.dac.livrariaParaiba.repository.ClienteRepository;
+import br.edu.ifpb.dac.livrariaParaiba.model.Usuario;
+import br.edu.ifpb.dac.livrariaParaiba.repository.UsuarioRepository;
 
-/**
- * @author André Felipe
- */
+
 @Service
-public class ClienteService {
+public class UsuarioService {
 
 	@Autowired
-	private ClienteRepository repositorioCliente;
+	private UsuarioRepository repositorioCliente;
 	private PasswordEncoder encoder =  new BCryptPasswordEncoder();
 
 	/**
-	 * Recebe um usuário cliente e salva no database
+	 * Recebe um usuário e salva no database
 	 * 
-	 * @param Cliente
+	 * @param Usuario
 	 * 
-	 * @return Cliente
+	 * @return Usuario
 	 */
-	public Cliente salvarCliente(Cliente cliente) {
-		cliente.setRole(Role.USER.getNome());
-		cliente.setSenha(encoder.encode(cliente.getSenha()));
-		return repositorioCliente.save(cliente);
+	public Usuario salvarCliente(Usuario usuario) {
+		usuario.setSenha(encoder.encode(usuario.getSenha()));
+		return repositorioCliente.save(usuario);
 	}
 
 	/**
-	 * Deleta um usuário cliente pelo id
+	 * Deleta um usuário pelo id
 	 * 
 	 * @param id
 	 */
@@ -51,34 +46,34 @@ public class ClienteService {
 	 * auterações O banco busca o cliente com o id passado e ocorre uma cópia de
 	 * suas propriedades por meio do BeanUtils
 	 */
-	public void updateCliente(Long id, Cliente cliente) {
-		Cliente clienteSalvo = pesquisarPorId(id);
-		if (clienteSalvo == null) {
+	public void updateCliente(Long id, Usuario usuario) {
+		Usuario usuarioSalvo = pesquisarPorId(id);
+		if (usuarioSalvo == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		BeanUtils.copyProperties(cliente, clienteSalvo);
-		repositorioCliente.save(cliente);
+		BeanUtils.copyProperties(usuario, usuarioSalvo);
+		repositorioCliente.save(usuario);
 	}
 
 	/**
 	 * Retorna todos os usuários clientes cadastrados
 	 */
-	public List<Cliente> pesquisarTodosClientes() {
+	public List<Usuario> pesquisarTodosClientes() {
 		return repositorioCliente.findAll();
 	}
 
 	/**
 	 * Retorna um usuário cliente pelo o id
 	 */
-	public Cliente pesquisarPorId(long id) {
+	public Usuario pesquisarPorId(long id) {
 		return repositorioCliente.findById(id);
 	}
 
 	/**
 	 * Retorna um usuário cliente pelo email
 	 */
-	public Cliente pesquisarPorEmail(String email) {
-		return repositorioCliente.findByUsername(email);
+	public Usuario pesquisarPorEmail(String email) {
+		return repositorioCliente.findByNome(email);
 	}
 
 }
